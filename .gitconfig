@@ -1,0 +1,11 @@
+[user]
+	email = jannehess@gmail.com
+	name = Janne Heß
+[core]
+	editor = vim
+[push]
+	default = simple
+[alias]
+	last = log -1 HEAD
+	unstage = reset HEAD --
+
