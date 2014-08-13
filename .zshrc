@@ -15,7 +15,6 @@ export LANG=en_US.UTF-8
 
 ZSH_THEME="jonathan"
 CASE_SENSITIVE="true" # Case sensitive search
-DISABLE_AUTO_UPDATE="true" # Updated via my own rep
 ENABLE_CORRECTION="true" # Autororrection (did you mean ...?)
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Untracked files aren'T dirty
