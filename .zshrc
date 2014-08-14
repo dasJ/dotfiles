@@ -30,6 +30,7 @@ source $ZSH/oh-my-zsh.sh
 
 unalias sl # Because I love the sl
 alias duh='du -h -d' # Human readable output
+alias pacman=yaourt
 
 ###############
 # Functions
