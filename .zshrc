@@ -9,6 +9,8 @@ export SAVEHIST=$HISTSIZE
 export EDITOR='vim'
 export LANG=en_US.UTF-8
 
+xhost local:root # Allow root to access X Server
+
 ###############
 # ZSH Config
 ###############
@@ -68,4 +70,13 @@ qemu-system-x86_64 -enable-kvm -M q35 -m 2084 -cpu host \
 -device vfio-pci,host=04:00.0,bus=root.1,addr=00.0,multifunction=on,x-vga=on \
 -device vfio-pci,host=04:00.1,bus=root.1,addr=00.1 \
 -drive file=/root/windows.img,id=disk,format=raw -device ide-hd,bus=ide.0,drive=disk
+}
+
+function dcvpn() {
+	sudo truecrypt -t -k "" -m ro ~/.dcvpn.tc /mnt/tcdcvpn
+	CURRENTPATH=`pwd`
+	cd /mnt/tcdcvpn
+	sudo openvpn client.ovpn
+	cd $CURRENTPATH
+	sudo truecrypt -d ~/.dcvpn.tc
 }
