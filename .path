@@ -8,6 +8,7 @@ PATH=$PATH:/usr/bin
 PATH=$PATH:/usr/X11/bin # X11
 PATH=$PATH:/usr/games/bin # Games
 PATH=$PATH:/usr/bin/core_perl # Perl
+PATH=$PATH:/opt/java/bin # Java
 
 export PATH
 

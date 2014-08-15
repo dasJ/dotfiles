@@ -9,7 +9,7 @@ export SAVEHIST=$HISTSIZE
 export EDITOR='vim'
 export LANG=en_US.UTF-8
 
-xhost local:root # Allow root to access X Server
+#xhost local:root # Allow root to access X Server
 
 ###############
 # ZSH Config
@@ -33,6 +33,12 @@ source $ZSH/oh-my-zsh.sh
 unalias sl # Because I love the sl
 alias duh='du -h -d' # Human readable output
 alias pacman=yaourt
+alias update-pacman=/usr/bin/pacman -Syu
+alias update-yaourt=yaourt -Syua --devel
+alias zshconfig='vim ~/.zshrc && source ~/.zshrc'
+alias mcserver='CURRENTPATH=`pwd` && cd /srv/minecraft && java -Xmx4096M -Xms4069M -jar minecraft_server.1.7.10.jar nogui && cd $CURRENTPATH'
+alias minecraft='java -Xmx4096M -Xms4096M -jar ~/Desktop/Minecraft.jar'
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 ###############
 # Functions
