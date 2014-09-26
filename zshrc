@@ -84,3 +84,34 @@ function dcvpn() {
 	sudo truecrypt -d ~/.dcvpn.tc
 }
 
+mkcd() {
+	[[ $1 ]] || return 0
+	[[ -d $1 ]] || mkdir -vp "$1"
+	[[ -d $1 ]] && builtin cd "$1"
+}
+
+kopt() {
+	[[ $1 ]] || return 1
+	zgrep "${1^^}" /proc/config.gz
+}
+
+deps() {
+	local bin dir
+	if [[ -f "$1" ]]; then
+		bin=$1
+	elif bin=$(type -P "$1"); then
+		:
+	else
+		# maybe its a lib?
+		[[ -f /usr/lib/$1 ]] && bin=/usr/lib/$1
+	fi
+	if [[ $bin && $1 != "$bin" ]]; then
+		printf '%s => %s\n\n' "$1" "$bin"
+	fi
+	if [[ -z $bin ]]; then
+		echo "error: binary not found: $1"
+		return 1
+	fi
+	objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
+}
+
