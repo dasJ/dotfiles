@@ -12,6 +12,19 @@ install_dotfiles () {
 	done
 }
 
+create_vim_dirs () {
+	mkdir ~/.vim
+	mkdir ~/.vim/backup
+	mkdir ~/.vim/swap
+}
+
+clone_other_repos () {
+	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
+}
+
+init_stuff () {
+	vim +PluginInstall +qall
+
 init_submodules () {
 	CURRENTDIR=`pwd`
 	cd $BASEDIR
@@ -22,4 +35,7 @@ init_submodules () {
 
 install_dotfiles
 init_submodules
+create_vim_dirs
+clone_other_repos
+init_stuff
 
