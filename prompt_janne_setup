@@ -17,6 +17,11 @@ function prompt_janne_precmd {
 	else
 		PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
 	fi
+
+	if $TIMER_EXECUTED; then
+		TIMER_EXECUTED=false
+		TIMER_ELAPSED=$(($(($(date +%s%N)/1000000))-TIMER_START))
+	fi
 }
 
 function prompt_janne_preexec {
@@ -24,6 +29,9 @@ function prompt_janne_preexec {
 	local CMD=${1[(wr)^(*=*|sudo|-*)]}
 	echo -n "\ek$CMD\e\\"
 	fi
+
+	TIMER_START=$(($(date +%s%N)/1000000))
+	TIMER_EXECUTED=true
 }
 
 function prompt_janne_setup {
@@ -136,7 +144,7 @@ $PR_HBAR\
 	# display exitcode on the right when >0
 	return_code="%(?..%{$fg[red]%}%? ↵ %{$reset_color%})"
 	RPROMPT=' $return_code$PROMPT_COLOR$PR_HBAR$PROMPT_SECOND_COLOR$PR_HBAR\
-($PR_YELLOW%D{%a,%b%d}$PROMPT_SECOND_COLOR)$PR_HBAR$PROMPT_COLOR$PR_LRCORNER$PR_NO_COLOUR'
+($PR_YELLOW${TIMER_ELAPSED}ms$PROMPT_SECOND_COLOR)$PR_HBAR$PROMPT_COLOR$PR_LRCORNER$PR_NO_COLOUR'
 
 	PS2='$PROMPT_COLOR$PR_HBAR\
 $PROMPT_SECOND_COLOR$PR_HBAR(\
@@ -144,6 +152,9 @@ $PR_LIGHT_GREEN%_$PROMPT_SECOND_COLOR)$PR_HBAR\
 $PROMPT_COLOR$PR_HBAR$PR_NO_COLOUR '
 
 	SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+
+	TIMER_ELAPSED=0
+	TIMER_EXECUTED=false
 }
 
 function prompt_janne_preview {
