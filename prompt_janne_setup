@@ -1,3 +1,4 @@
+# vim: filetype=sh
 function prompt_janne_precmd {
 	local TERMWIDTH
 	(( TERMWIDTH = ${COLUMNS} - 1 ))
