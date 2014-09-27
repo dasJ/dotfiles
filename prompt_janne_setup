@@ -1,6 +1,12 @@
 # vim: filetype=sh
 function prompt_janne_precmd {
 	local TERMWIDTH
+
+	if $TIMER_EXECUTED; then
+		TIMER_EXECUTED=false
+		TIMER_ELAPSED=$(($(($(date +%s%N)/1000000))-TIMER_START))
+	fi
+
 	(( TERMWIDTH = ${COLUMNS} - 1 ))
 
 	# Truncate the path if it's too long.
@@ -17,17 +23,12 @@ function prompt_janne_precmd {
 	else
 		PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
 	fi
-
-	if $TIMER_EXECUTED; then
-		TIMER_EXECUTED=false
-		TIMER_ELAPSED=$(($(($(date +%s%N)/1000000))-TIMER_START))
-	fi
 }
 
 function prompt_janne_preexec {
 	if [[ "$TERM" == "screen" ]]; then
-	local CMD=${1[(wr)^(*=*|sudo|-*)]}
-	echo -n "\ek$CMD\e\\"
+		local CMD=${1[(wr)^(*=*|sudo|-*)]}
+		echo -n "\ek$CMD\e\\"
 	fi
 
 	TIMER_START=$(($(date +%s%N)/1000000))
