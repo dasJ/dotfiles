@@ -1,41 +1,102 @@
 #/usr/bin/zsh
 
-BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+###
+# Configuration
+###
+REQUIRED_COMMANDS='zsh git curl'
+OPTIONAL_COMMANDS='vim tmux'
+DOTFILES_TO_LINK='gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc'
 
+###
+# Variables
+###
+BASEDIR=$(readlink -f $(dirname $0))
 
-install_dotfiles () {
+###
+# Functions
+###
 
-	ln -s $BASEDIR/prompt_janne_setup $BASEDIR/zprezto/modules/prompt/functions/prompt_janne_setup
+checkcommands () {
+	local everythingFound=true
+	local everythingRequired=$1
+	shift
+	
+	for cmd in $@; do
+		echo -ne ":: [ .... ] Checking for $cmd"
+		if hash $cmd 2>/dev/null; then
+			echo -ne "\r:: [ \e[00;32mokay\e[00m ]\v\r"
+		else
+			echo -ne "\r:: [ \e[00;31mfail\e[00m ]\v\r"
+		fi
+	done
 
-	for toLink in gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc; do
-		ln -s $BASEDIR/$toLink $HOME/.$toLink
+	if ! $everythingFound; then
+		if [ $everythingRequired -eq 1 ]; then
+			echo "Could not find all dependencies."
+			exit 1
+		fi
+		while true; do
+			read -p "Not all optional commands were found. Continue anyway? [yn] " yn
+			case $yn in
+				[Yy]* ) ;;
+				[Nn]* ) exit 1 ;;
+			esac
+		done
+	fi
+}
+
+creategitconfig () {
+	if ! [ -f ~/.dotfiles/gitcustom ]; then
+		read -p "Please enter your name for the Git config: " name
+		read -p "Please enter your mail for the Git config: " email
+		echo -e "[user]\n\tname = ${name}\n\temail = ${email}\n" > ~/.dotfiles/gitcustom
+	else
+		echo "Git configuration already exists."
+	fi
+}
+
+linktohome () {
+	for toLink in $DOTFILES_TO_LINK; do
+		ln -sv $BASEDIR/$toLink ~/.$toLink
 	done
 }
 
-create_vim_dirs () {
-	mkdir ~/.vim
-	mkdir ~/.vim/backup
-	mkdir ~/.vim/swap
+linkotherstuff () {
+	ln -sv $BASEDIR/prompt_janne_setup $BASEDIR/zprezto/modules/prompt/functions/prompt_janne_setup
 }
 
-clone_other_repos () {
+createemptydirs () {
+	mkdir -vp ~/.vim
+	mkdir -vp ~/.vim/backup
+	mkdir -vp ~/.vim/swap
+}
+
+cloneotherrepos () {
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
 }
 
-init_stuff () {
+init () {
 	vim +PluginInstall +qall
-
-init_submodules () {
-	CURRENTDIR=`pwd`
-	cd $BASEDIR
-	git submodule init
-	git submodule update
-	cd $CURRENTDIR
 }
 
-install_dotfiles
-init_submodules
-create_vim_dirs
-clone_other_repos
-init_stuff
+main () {
+	echo ":: Checking requirements..."
+	checkcommands 1 $REQUIRED_COMMANDS
+	checkcommands 0 $OPTIONAL_COMMANDS
+	echo ":: Asking for configuration..."
+	creategitconfig
+	echo ":: Create empty directories..."
+	createemptydirs
+	echo ":: Linking to home..."
+	linktohome
+	echo ":: Create more links..."
+	linkotherstuff
+	echo ":: Cloning other repositories..."
+	cloneotherrepos
+	echo ":: Running post-installation stuff..."
+	init
+	echo ":: Think about chshing to zsh"
+}
+
+main
 
