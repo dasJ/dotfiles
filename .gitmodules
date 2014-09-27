@@ -1,3 +1,4 @@
-[submodule "prezto"]
-	path = prezto
-	url = https://github.com/dasJ/prezto.git
+[submodule "zprezto"]
+	path = zprezto
+	url = https://github.com/sorin-ionescu/prezto.git
+	ignore = untracked
