@@ -1,10 +1,46 @@
 # vim: filetype=sh
+
+# Thanks to Karen for this!
+function milis_to_human() {
+	if [ $1 -gt 30000 ]; then # 30 seconds
+		local elapsed=`expr $1 / 1000`
+		TIMER_ELAPSED="${elapsed}s"
+		return
+	fi
+	if [ $1 -gt 120000 ]; then # 2 minutes
+		local elapsed=`expr $1 / 60000`
+		TIMER_ELAPSED="${elapsed}min"
+		return
+	fi
+	if [ $1 -gt 7200000 ]; then # 2 hours
+		local elapsed=`expr $1 / 3600000`
+		TIMER_ELAPSED="${elapsed}h"
+		return
+	fi
+	if [ $1 -gt 7200000 ]; then # 2 days
+		local elapsed=`expr $1 / 3600000`
+		TIMER_ELAPSED="${elapsed}days"
+		return
+	fi
+	if [ $1 -gt 1209600000 ]; then # 2 weeks
+		local elapsed=`expr $1 / 604800000`
+		TIMER_ELASPED="${elapsed}weeks"
+		return
+	fi
+	if [ $1 -gt 5259487660 ]; then # 2 months
+		local elapsed=`expr $1 / 2629743830`
+		TIMER_ELAPSED="${elapsed}months"
+		return
+	fi
+	TIMER_ELAPSED="${1}ms"
+}
+
 function prompt_janne_precmd {
 	local TERMWIDTH
 
 	if $TIMER_EXECUTED; then
 		TIMER_EXECUTED=false
-		TIMER_ELAPSED=$(($(($(date +%s%N)/1000000))-TIMER_START))
+		milis_to_human $(($(($(date +%s%N)/1000000))-TIMER_START))
 	fi
 
 	(( TERMWIDTH = ${COLUMNS} - 1 ))
@@ -145,7 +181,7 @@ $PR_HBAR\
 	# display exitcode on the right when >0
 	return_code="%(?..%{$fg[red]%}%? ↵ %{$reset_color%})"
 	RPROMPT=' $return_code$PROMPT_COLOR$PR_HBAR$PROMPT_SECOND_COLOR$PR_HBAR\
-($PR_YELLOW${TIMER_ELAPSED}ms$PROMPT_SECOND_COLOR)$PR_HBAR$PROMPT_COLOR$PR_LRCORNER$PR_NO_COLOUR'
+($PR_YELLOW$TIMER_ELAPSED$PROMPT_SECOND_COLOR)$PR_HBAR$PROMPT_COLOR$PR_LRCORNER$PR_NO_COLOUR'
 
 	PS2='$PROMPT_COLOR$PR_HBAR\
 $PROMPT_SECOND_COLOR$PR_HBAR(\
@@ -154,7 +190,7 @@ $PROMPT_COLOR$PR_HBAR$PR_NO_COLOUR '
 
 	SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 
-	TIMER_ELAPSED=0
+	milis_to_human 0
 	TIMER_EXECUTED=false
 }
 
