@@ -60,12 +60,13 @@ function prompt_janne_precmd {
 
 	local promptsize=${#${(%):---(%n@%m:%l)---()--}}
 	local pwdsize=${#${(%):-%~}}
+	local gitsize=${#git-info[prompt]}
 
 	# Calculate bar width
-	if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
+	if [[ "$promptsize + $pwdsize + $gitsize" -gt $TERMWIDTH ]]; then
 		((PR_PWDLEN=$TERMWIDTH - $promptsize))
 	else
-		PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
+		PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize + $gitsize)))..${PR_HBAR}.)}"
 	fi
 }
 
@@ -108,12 +109,13 @@ function prompt_janne_setup {
 
 	# Modify Git prompt
 	zstyle ':prezto:module:git:info' verbose 'yes'
-	zstyle ':prezto:module:git:info:added' format ' %F{7}✚'
-	zstyle ':prezto:module:git:info:branch' format '%F{7}on %F{5}%b'
-	zstyle ':prezto:module:git:info:commit' format '%F{7}at %F{1}%.7c'
-	zstyle ':prezto:module:git:info:modified' format ' %F{7}✱'
+	zstyle ':prezto:module:git:info:branch' format 'ᛘ%b'
+	zstyle ':prezto:module:git:info:commit' format 'at %.7c'
+	zstyle ':prezto:module:git:info:modified' format ' ✱'
+	zstyle ':prezto:module:git:info:ahead' format ' ↑%A'
+	zstyle ':prezto:module:git:info:behind' format ' ⬇%B'
 	zstyle ':prezto:module:git:info:keys' format \
-		'prompt' ' $(coalesce "%b" "%c")%a%m'
+		'prompt' '($(coalesce "%b" "%c")%A%B%m%F{gray})'
 
 	# See if we can use extended characters to look nicer.
 	if [[ $(locale charmap) == "UTF-8" ]]; then
@@ -172,13 +174,13 @@ function prompt_janne_setup {
 	PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
 $PROMPT_COLOR$PR_ULCORNER$PR_HBAR$PR_GREY(\
 $PR_GREEN%$PR_PWDLEN<...<%~%<<\
-$PR_GREY)$PROMPT_COLOR$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_GREY(\
+$PR_GREY)${git_info:+${(e)git_info[prompt]}}$PROMPT_COLOR$PR_HBAR\
+$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_GREY(\
 $PROMPT_COLOR%(!.%SROOT%s.%n)$PR_GREY@$PR_GREEN%m:%l\
 $PR_GREY)$PROMPT_COLOR$PR_HBAR$PR_URCORNER\
 
 $PROMPT_COLOR$PR_LLCORNER$PROMPT_SECOND_COLOR$PR_HBAR(\
 $PR_YELLOW%D{%H:%M:%S}\
-${git_info:+${(e)git_info[prompt]}}\
 $PR_LIGHT_BLUE%{$reset_color%}$PROMPT_SECOND_COLOR)$PROMPT_COLOR$PR_HBAR\
 $PR_HBAR\
 >$PR_NO_COLOUR '
