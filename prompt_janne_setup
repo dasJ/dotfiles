@@ -109,8 +109,8 @@ function prompt_janne_setup {
 
 	# Modify Git prompt
 	zstyle ':prezto:module:git:info' verbose 'yes'
-	zstyle ':prezto:module:git:info:branch' format 'ᛘ%b'
-	zstyle ':prezto:module:git:info:commit' format 'at %.7c'
+	zstyle ':prezto:module:git:info:branch' format '%b'
+	zstyle ':prezto:module:git:info:commit' format '%.7c'
 	zstyle ':prezto:module:git:info:modified' format ' ✱'
 	zstyle ':prezto:module:git:info:ahead' format ' ↑%A'
 	zstyle ':prezto:module:git:info:behind' format ' ⬇%B'
