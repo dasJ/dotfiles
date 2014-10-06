@@ -21,6 +21,7 @@ setopt complete_in_word # Tab completion in word
 setopt braceccl # Expand stuff like {0-9} {a-z}
 
 . ~/.dotfiles/z/z.sh
+bindkey "^R" history-incremental-search-backward
 
 ###############
 ## Environment Variables
@@ -42,7 +43,6 @@ alias p='ping -c4'
 alias dd_status='kill -SIGUSR1 $(pidof dd)'
 alias why='whence -fa'
 alias subl=subl3
-alias cd=z
 
 ###############
 ## Functions
