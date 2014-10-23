@@ -59,6 +59,7 @@ Plugin 'gmarik/Vundle.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'tomasr/molokai'
+Bundle 'Keithbsmiley/tmux.vim'
 call vundle#end()
 filetype plugin indent on
 

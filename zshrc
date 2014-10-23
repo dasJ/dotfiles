@@ -46,6 +46,7 @@ alias p='ping -c4'
 alias dd_status='kill -SIGUSR1 $(pidof dd)'
 alias why='whence -fa'
 alias subl=subl3
+alias tmux='tmux -2'
 
 ###############
 ## Functions
@@ -114,4 +115,13 @@ deps() {
 	fi
 	objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
 }
+
+###############
+## Try to launch tmux
+################
+
+if which tmux >/dev/null 2>&1; then
+	# Start a new session or attach to existing
+	test -z ${TMUX} && (tmux attach) && exit
+fi
 
