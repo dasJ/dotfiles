@@ -120,8 +120,33 @@ deps() {
 ## Try to launch tmux
 ################
 
+# Parts of this are taken from http://mutelight.org/practical-tmux
 if which tmux >/dev/null 2>&1; then
-	# Start a new session or attach to existing
-	test -z ${TMUX} && (tmux attach) && exit
+	# Works because bash automatically trims
+	trim() { echo $1; }
+	# Check if tmux session exists
+	tmux_nb=$(trim `tmux ls | grep "^base" | wc -l`)
+	if [[ "$tmux_nb" == "0" ]]; then
+		tmux new-session -s base
+		exit
+	else
+		# Make sure  we don't start tmux in tmux
+		if [[ -z "$TMUX" ]]; then
+			# Kill defunct sessions first
+			old_sessions=$(tmux ls 2>/dev/null | egrep "^[0-9]{14}.*[0-9]+\)$" | cut -f 1 -d:)
+			for old_session_id in $old_sessions; do
+				tmux kill-session -t $old_session_id
+			done
+			# Session is is date and time to prevent conflict
+			session_id=`date +%Y%m%d%H%M%S`
+			# Create session and link to old one
+			tmux new-session -d -t base -s $session_id
+			# Attach to it
+			tmux attach-session -t $session_id
+			# When we detach, kill it
+			tmux kill-session -t $session_id
+			exit
+		fi
+	fi
 fi
 
