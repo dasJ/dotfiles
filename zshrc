@@ -39,7 +39,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 alias duh='du -h -d' # Human readable output
 alias zshconfig='vim ~/.zshrc && source ~/.zshrc'
 alias mcserver='CURRENTPATH=`pwd` && cd /srv/minecraft && java -Xmx4096M -Xms4069M -jar minecraft_server.jar nogui && cd $CURRENTPATH'
-alias minecraft='java -Xmx4096M -Xms4096M -jar ~/Desktop/Minecraft.jar'
+alias minecraft='java -Xmx4096M -Xms4096M -jar ~/Downloads/Minecraft.jar'
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias vi=vim
 alias p='ping -c4'
@@ -65,6 +65,7 @@ function extract () {
 			*.tgz) tar xzf $1 ;;
 			*.zip) unzip $1 ;;
 			*.Z) uncompress $1 ;;
+			*.war) unzip $1 ;;
 			*) echo "'$1' cannot be extracted via extract()" ;;
 		esac
 	else
