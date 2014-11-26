@@ -68,7 +68,7 @@ function extract () {
 }
 
 function gi() {
-	curl http://www.gitignore.io/api/$@ ;
+	curl https://www.gitignore.io/api/$@ ;
 }
 
 function dcvpn() {
