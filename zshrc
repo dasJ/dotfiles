@@ -88,7 +88,7 @@ mkcd() {
 
 kopt() {
 	[[ $1 ]] || return 1
-	zgrep "${1^^}" /proc/config.gz
+	zgrep -i "${1}" /proc/config.gz
 }
 
 deps() {
