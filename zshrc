@@ -34,14 +34,15 @@ alias duh='du -h -d' # Human readable output
 alias zshconfig='vim ~/.zshrc && source ~/.zshrc'
 alias mcserver='CURRENTPATH=`pwd` && cd /srv/minecraft && java -Xmx4096M -Xms4069M -jar minecraft_server.jar nogui && cd $CURRENTPATH'
 alias minecraft='java -Xmx4096M -Xms4096M -jar ~/Downloads/Minecraft.jar'
-alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias vi=vim
 alias p='ping -c4'
 alias dd_status='kill -SIGUSR1 $(pidof dd)'
 alias why='whence -fa'
 alias subl=subl3
 alias tmux='tmux -2'
-
+if ! hash "find" 2>/dev/null; then
+	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+fi
 ###############
 ## Functions
 ################
