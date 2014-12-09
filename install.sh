@@ -77,7 +77,7 @@ cloneotherrepos () {
 }
 
 init () {
-	vim +PluginInstall +qall
+	echo | vim +PluginInstall +qall
 }
 
 main () {

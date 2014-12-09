@@ -8,4 +8,4 @@ Feel free to use them as template for your own dotfiles, but remember: _Those ar
 ##Installation
 	git clone --recursive https://github.com/dasJ/dotfiles.git ~/.dotfiles
 	~/.dotfiles/install.sh
-	And remember to press enter for vim while installing. I may fix this one day.
+
