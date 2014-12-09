@@ -27,6 +27,7 @@ checkcommands () {
 			echo -ne "\r:: [ \e[00;32mokay\e[00m ]\v\r"
 		else
 			echo -ne "\r:: [ \e[00;31mfail\e[00m ]\v\r"
+			everythingFound=false
 		fi
 	done
 
