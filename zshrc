@@ -20,8 +20,6 @@ setopt function_arg_zero # Function name instead of zsh when using $0
 setopt complete_in_word # Tab completion in word
 setopt braceccl # Expand stuff like {0-9} {a-z}
 
-# Source Z
-. ~/.dotfiles/z/z.sh
 # Useful ZSH Stuff
 bindkey "^R" history-incremental-search-backward
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}

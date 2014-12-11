@@ -2,6 +2,3 @@
 	path = zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
 	ignore = untracked
-[submodule "z"]
-	path = z
-	url = https://github.com/rupa/z
