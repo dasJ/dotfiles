@@ -74,6 +74,9 @@ createemptydirs () {
 
 cloneotherrepos () {
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
+	rm $BASEDIR/zprezto/.keep
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git $BASEDIR/zprezto
+	touch $BASEDIR/zprezto/.keep
 }
 
 init () {
@@ -88,12 +91,12 @@ main () {
 	creategitconfig
 	echo ":: Create empty directories..."
 	createemptydirs
+	echo ":: Cloning other repositories..."
+	cloneotherrepos
 	echo ":: Linking to home..."
 	linktohome
 	echo ":: Create more links..."
 	linkotherstuff
-	echo ":: Cloning other repositories..."
-	cloneotherrepos
 	echo ":: Running post-installation stuff..."
 	init
 	echo ":: Think about chshing to zsh"
