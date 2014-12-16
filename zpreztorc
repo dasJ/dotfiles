@@ -44,6 +44,9 @@ zstyle ':prezto:module:editor' key-bindings 'vi'
 # Auto convert .... to ../..
 zstyle ':prezto:module:editor' dot-expansion 'yes'
 
+# Yellow for prompt if in vi command mode
+zstyle ':prezto:module:editor:info:keymap:alternate' format '%F{yellow}'
+
 #
 # Git
 #
