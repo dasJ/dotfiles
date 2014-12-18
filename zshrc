@@ -38,6 +38,7 @@ alias dd_status='kill -SIGUSR1 $(pidof dd)'
 alias why='whence -fa'
 alias subl=subl3
 alias tmux='tmux -2'
+alias fuck='sudo $(fc -nl -1)'
 if ! hash "find" 2>/dev/null; then
 	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 fi
