@@ -121,7 +121,7 @@ deps() {
 ################
 
 # Parts of this are taken from http://mutelight.org/practical-tmux
-if which tmux >/dev/null 2>&1; then
+if hash tmux 2>/dev/null; then
 	# Works because bash automatically trims
 	trim() { echo $1; }
 	# Check if tmux session exists
