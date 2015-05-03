@@ -5,7 +5,7 @@
 ###
 REQUIRED_COMMANDS='zsh git curl'
 OPTIONAL_COMMANDS='vim tmux'
-DOTFILES_TO_LINK='gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc tmux.conf'
+DOTFILES_TO_LINK='gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc tmux.conf Xresources'
 
 ###
 # Variables
