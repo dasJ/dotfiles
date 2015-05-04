@@ -46,6 +46,7 @@ path=(
   /usr/{bin}
   $HOME/bin
   $path
+	/home/janne/.gem/ruby/2.2.0/bin
 )
 
 #

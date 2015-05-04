@@ -22,6 +22,9 @@ setopt braceccl # Expand stuff like {0-9} {a-z}
 
 # Useful ZSH Stuff
 bindkey "^R" history-incremental-search-backward
+
+# Environment
+source ~/.zshenv
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 ###############
@@ -39,6 +42,7 @@ alias why='whence -fa'
 alias subl=subl3
 alias tmux='tmux -2'
 alias fuck='sudo $(fc -nl -1)'
+alias dri='ncat -U /var/run/docker.sock' # Docker remote interface
 if ! hash "find" 2>/dev/null; then
 	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 fi
@@ -115,6 +119,19 @@ deps() {
 	fi
 	objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
 }
+
+a2ensite() {
+	[[ $1 ]] || return 1
+	sudo ln -sv /etc/httpd/conf/sites-available/$1 /etc/httpd/conf/sites-enabled/$1
+	sudo apachectl graceful
+}
+
+a2disite() {
+	[[ $1 ]] || return 1
+	sudo rm -v /etc/httpd/conf/sites-enabled/$1
+	sudo apachectl graceful
+}
+
 
 ###############
 ## Try to launch tmux
