@@ -10,8 +10,17 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+###############
+## Variables
+###############
+export HISTSIZE=500
+export SAVEHIST=$HISTSIZE
+export LSCOLORS="gxfxcxexbxegedabagacad" # http://geoff.greer.fm/lscolors/
+export LS_COLORS="di=36;40:ln=35;40:so=32;40:pi=34;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
 
+###############
+## zsh options
+###############
 setopt nolistbeep # No beep when completion list is displayed
 setopt share_history # One history for all shells
 setopt auto_remove_slash # When autocomplete adds a slash and you do as well, one will be removed
@@ -19,28 +28,18 @@ setopt auto_cd # Allow omitting of cd
 setopt function_arg_zero # Function name instead of zsh when using $0
 setopt complete_in_word # Tab completion in word
 setopt braceccl # Expand stuff like {0-9} {a-z}
-
-# Useful ZSH Stuff
-bindkey "^R" history-incremental-search-backward
-
-# Environment
-source ~/.zshenv
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+bindkey "^R" history-incremental-search-backward # Ctrl+R for backwards search
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
 
 ###############
 ## Aliases
 ################
-
-alias duh='du -h -d' # Human readable output
-alias zshconfig='vim ~/.zshrc && source ~/.zshrc'
-alias mcserver='CURRENTPATH=`pwd` && cd /srv/minecraft && java -Xmx4096M -Xms4069M -jar minecraft_server.jar nogui && cd $CURRENTPATH'
-alias minecraft='java -Xmx4096M -Xms4096M -jar ~/Downloads/Minecraft.jar'
+alias duh='du -h' # Human readable output
 alias vi=vim
 alias p='ping -c4'
-alias dd_status='kill -SIGUSR1 $(pidof dd)'
 alias why='whence -fa'
 alias subl=subl3
-alias tmux='tmux -2'
+alias tmux='tmux -2' # Color support
 alias fuck='sudo $(fc -nl -1)'
 alias dri='ncat -U /var/run/docker.sock' # Docker remote interface
 if ! hash "find" 2>/dev/null; then
@@ -139,7 +138,7 @@ a2disite() {
 
 # Parts of this are taken from http://mutelight.org/practical-tmux
 if hash tmux 2>/dev/null; then
-	# Works because bash automatically trims
+	# Works because shell automatically trims
 	trim() { echo $1; }
 	# Check if tmux session exists
 	tmux_nb=$(trim `tmux ls | grep "^base" | wc -l`)
@@ -166,4 +165,5 @@ if hash tmux 2>/dev/null; then
 		fi
 	fi
 fi
+
 
