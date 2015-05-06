@@ -35,6 +35,8 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
 ## Aliases
 ################
 alias duh='du -h' # Human readable output
+alias rcp='rsync -avP'
+alias rmv='rcp --remove-source-files'
 alias vi=vim
 alias p='ping -c4'
 alias why='whence -fa'
@@ -42,6 +44,19 @@ alias subl=subl3
 alias tmux='tmux -2' # Color support
 alias fuck='sudo $(fc -nl -1)'
 alias dri='ncat -U /var/run/docker.sock' # Docker remote interface
+# Math stuff
+alias bin2dec='cbase 2 10'
+alias bin2hex='cbase 2 16'
+alias bin2oct='cbase 2 8'
+alias dec2bin='cbase 10 2'
+alias dec2hex='cbase 10 16'
+alias dec2oct='cbase 10 8'
+alias hex2bin='cbase 16 2'
+alias hex2dec='cbase 16 10'
+alias hex2oct='cbase 16 8'
+alias oct2bin='cbase 8 2'
+alias oct2dec='cbase 8 10'
+alias oct2hex='cbase 8 16'
 if ! hash "find" 2>/dev/null; then
 	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 fi
@@ -86,6 +101,10 @@ function dcvpn() {
 	sudo openvpn client.ovpn
 	cd $CURRENTPATH
 	sudo truecrypt -d ~/.dcvpn.tc
+}
+
+function cbase() {
+	echo "obase=$2;ibase=$1;$3" | bc
 }
 
 mkcd() {
