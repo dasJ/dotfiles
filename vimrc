@@ -61,7 +61,6 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'tomasr/molokai'
 Bundle 'Keithbsmiley/tmux.vim'
 Bundle 'tpope/vim-markdown'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 call vundle#end()
 filetype plugin indent on
 
