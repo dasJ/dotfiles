@@ -70,10 +70,13 @@ createemptydirs () {
 	mkdir -vp ~/.vim
 	mkdir -vp ~/.vim/backup
 	mkdir -vp ~/.vim/swap
+	mkdir -vp ~/.tmux
+	mkdir -vp ~/.tmux/plugins
 }
 
 cloneotherrepos () {
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	rm $BASEDIR/zprezto/.keep
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git $BASEDIR/zprezto
 	touch $BASEDIR/zprezto/.keep
