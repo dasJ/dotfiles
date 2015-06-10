@@ -82,6 +82,7 @@ function extract () {
 			*.Z) uncompress $1 ;;
 			*.war) unzip $1 ;;
 			*.7z) 7z x $1 ;;
+			*.wim) 7z x $1 ;;
 			*.lzma) unlzma $1 ;;
 			*.xz) unxz $1 ;;
 			*.exe) cabextract $1 ;;
