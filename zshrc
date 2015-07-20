@@ -46,6 +46,7 @@ alias subl=subl3
 alias tmux='tmux -2' # Color support
 alias fuck='sudo $(fc -nl -1)'
 alias dri='ncat -U /var/run/docker.sock' # Docker remote interface
+unalias sl # SL
 # Math stuff
 alias bin2dec='cbase 2 10'
 alias bin2hex='cbase 2 16'
