@@ -195,6 +195,12 @@ $PROMPT_COLOR$PR_HBAR$PR_NO_COLOUR '
 
 	SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 
+	# Fix for midnight commander
+	if ps $PPID | grep mc; then
+		unset RPROMPT
+		PROMPT='mc: '
+	fi
+
 	milis_to_human 0
 	TIMER_EXECUTED=false
 }
