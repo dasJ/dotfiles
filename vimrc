@@ -61,7 +61,6 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'tomasr/molokai'
 Bundle 'Keithbsmiley/tmux.vim'
 Bundle 'tpope/vim-markdown'
-Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -77,6 +76,8 @@ let g:molokai_original=1
 " ###
 map <LocalLeader>t <Esc>:tabnew<CR>
 set pastetoggle=<F12> " Sane indentation on pastes with F12
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
 
 " ###
 " Folding
