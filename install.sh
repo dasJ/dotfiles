@@ -4,7 +4,7 @@
 # Configuration
 ###
 REQUIRED_COMMANDS='zsh git curl'
-OPTIONAL_COMMANDS='vim tmux fasd'
+OPTIONAL_COMMANDS='vim tmux fasd yaourt htop'
 DOTFILES_TO_LINK='gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc tmux.conf Xresources gemrc yaourtrc'
 
 ###
@@ -64,6 +64,7 @@ linktohome () {
 
 linkotherstuff () {
 	ln -sv $BASEDIR/prompt_janne_setup $BASEDIR/zprezto/modules/prompt/functions/prompt_janne_setup
+	ln -sv $BASEDIR/htoprc ~/.config/htop/htoprc
 }
 
 createemptydirs () {
@@ -72,6 +73,7 @@ createemptydirs () {
 	mkdir -vp ~/.vim/swap
 	mkdir -vp ~/.tmux
 	mkdir -vp ~/.tmux/plugins
+	mkdir -vp ~/.config/htop
 }
 
 cloneotherrepos () {
