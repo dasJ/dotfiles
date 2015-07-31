@@ -5,7 +5,7 @@
 ###
 REQUIRED_COMMANDS='zsh git curl'
 OPTIONAL_COMMANDS='vim tmux fasd'
-DOTFILES_TO_LINK='gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc tmux.conf Xresources gemrc'
+DOTFILES_TO_LINK='gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc tmux.conf Xresources gemrc yaourtrc'
 
 ###
 # Variables
