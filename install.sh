@@ -79,9 +79,7 @@ createemptydirs () {
 cloneotherrepos () {
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	rm $BASEDIR/zprezto/.keep
-	git clone --recursive https://github.com/sorin-ionescu/prezto.git $BASEDIR/zprezto
-	touch $BASEDIR/zprezto/.keep
+	git --git-dir=$BASEDIR/.git --work-tree=$BASEDIR submodule update --init --recursive
 }
 
 init () {
