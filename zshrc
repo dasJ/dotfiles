@@ -65,6 +65,8 @@ alias oct2hex='cbase 8 16'
 if ! hash "find" 2>/dev/null; then
 	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 fi
+# Technically an alias
+if [ -f "/usr/bin/setxkbmap" ] && /usr/bin/setxkbmap -option "caps:swapescape"
 ###############
 ## Functions
 ################
