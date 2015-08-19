@@ -4,7 +4,7 @@
 # Configuration
 ###
 REQUIRED_COMMANDS='zsh git curl'
-OPTIONAL_COMMANDS='vim tmux fasd yaourt htop'
+OPTIONAL_COMMANDS='vim tmux fasd yaourt htop xsel'
 DOTFILES_TO_LINK='gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc tmux.conf Xresources gemrc yaourtrc xsession'
 
 ###
