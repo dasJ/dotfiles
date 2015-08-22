@@ -39,7 +39,7 @@ checkcommands () {
 		while true; do
 			read -p "Not all optional commands were found. Continue anyway? [yn] " yn
 			case $yn in
-				[Yy]* ) ;;
+				[Yy]* ) break ;;
 				[Nn]* ) exit 1 ;;
 			esac
 		done
