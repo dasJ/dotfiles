@@ -158,6 +158,12 @@ a2disite() {
 	sudo apachectl graceful
 }
 
+###############
+## zsh syntax higlighting
+################
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ###############
 ## Try to launch tmux
