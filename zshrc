@@ -20,6 +20,7 @@ export LS_COLORS="di=36;40:ln=35;40:so=32;40:pi=34;40:ex=31;40:bd=34;46:cd=34;43
 export EDITOR=vim
 export SYSTEMD_EDITOR=$EDITOR
 export REPORTTIME=5
+export LESSHISTFILE=/dev/null
 
 ###############
 ## zsh options
@@ -67,6 +68,7 @@ alias oct2hex='cbase 8 16'
 if ! hash "tree" 2>/dev/null; then
 	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 fi
+alias slapdebug='/usr/bin/slapd -u ldap -g ldap -h "ldapi:// ldap://[::1] ldaps://" -d -1'
 ###############
 ## Functions
 ################
@@ -169,34 +171,47 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ## Try to launch tmux
 ################
 
-# Parts of this are taken from http://mutelight.org/practical-tmux
 if hash tmux 2>/dev/null; then
 	# Works because shell automatically trims
-	trim() { echo $1; }
-	# Check if tmux session exists
-	tmux_nb=$(trim `tmux ls | grep "^base" | wc -l`)
-	if [[ "$tmux_nb" == "0" ]]; then
+	trim() { return $1; }
+	# Outer tmux for mango
+	if [ "`hostname`" = "mango" ] && [[ -z "$TMUX" ]]; then
+		tmux start-server
+		session_id="outer-`date +%Y%m%d%H%M%S`"
+		tmux new-session -d -s "$session_id" "journalctl -f"
+		tmux set-option -t "$session_id" status off
+		tmux split-window -t "$session_id" -v -p 90 "`getent passwd $USER | cut -d: -f7`; tmux kill-session -t $session_id"
+		tmux set-option -t "$session_id" -s prefix M-y
+		tmux set-option -t "$session_id" -s mouse-resize-pane off
+		tmux set-option -t "$session_id" -s mouse-select-pane off
+		tmux set-option -t "$session_id" -s mouse-select-window off
+		tmux set-option -t "$session_id" -s pane-border-fg colour235
+		tmux set-option -t "$session_id" -s pane-active-border-fg colour235
+		#tmux unbind -t "$session_id" C-a
+		tmux attach-session -t "$session_id"
+		tmux kill-session -t "$session_id" 2>/dev/null
+		exit
+	fi
+	# Unset TMUX if we just spawned the outer session and want to spawn the inner session
+	session="`tmux display-message -p '#S'`"
+	if [ "`hostname`" = "mango" ] && [ "${session:0:5}" = "outer" ]; then
+		unset TMUX
+	fi
+	# TODO Kill old sessions
+	# Create new base session
+	if [[ `tmux ls | grep "^base" | wc -l` == 0 ]]; then
 		tmux new-session -s base
 		exit
 	else
-		# Make sure  we don't start tmux in tmux
+		# Base session exists, attach to it
+		# Don't spawn tmux inside the inner session
 		if [[ -z "$TMUX" ]]; then
-			# Kill defunct sessions first
-			old_sessions=$(tmux ls 2>/dev/null | egrep "^[0-9]{14}.*[0-9]+\)$" | cut -f 1 -d:)
-			for old_session_id in $old_sessions; do
-				tmux kill-session -t $old_session_id
-			done
-			# Session is is date and time to prevent conflict
 			session_id=`date +%Y%m%d%H%M%S`
-			# Create session and link to old one
 			tmux new-session -d -t base -s $session_id
-			# Attach to it
 			tmux attach-session -t $session_id
-			# When we detach, kill it
 			tmux kill-session -t $session_id
 			exit
 		fi
 	fi
 fi
-
 
