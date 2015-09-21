@@ -20,6 +20,7 @@ export LS_COLORS="di=36;40:ln=35;40:so=32;40:pi=34;40:ex=31;40:bd=34;46:cd=34;43
 export EDITOR=vim
 export SYSTEMD_EDITOR=$EDITOR
 export REPORTTIME=5
+export LESSHISTFILE=/dev/null
 
 ###############
 ## zsh options
