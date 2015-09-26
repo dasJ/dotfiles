@@ -34,6 +34,7 @@ setopt complete_in_word # Tab completion in word
 setopt braceccl # Expand stuff like {0-9} {a-z}
 bindkey "^R" history-incremental-search-backward # Ctrl+R for backwards search
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
+zstyle ':completion:*' rehash true
 # Fasd
 eval "$(fasd --init zsh-hook posix-alias zsh-ccomp zsh-wcomp zsh-ccomp-install zsh-wcomp-install)"
 
