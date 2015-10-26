@@ -184,9 +184,7 @@ if hash tmux 2>/dev/null; then
 		tmux set-option -t "$session_id" status off
 		tmux split-window -t "$session_id" -v -p 90 "`getent passwd $USER | cut -d: -f7`; tmux kill-session -t $session_id"
 		tmux set-option -t "$session_id" -s prefix M-y
-		tmux set-option -t "$session_id" -s mouse-resize-pane off
-		tmux set-option -t "$session_id" -s mouse-select-pane off
-		tmux set-option -t "$session_id" -s mouse-select-window off
+		tmux set-option -t "$session_id" -s mouse off
 		tmux set-option -t "$session_id" -s pane-border-fg colour235
 		tmux set-option -t "$session_id" -s pane-active-border-fg colour235
 		#tmux unbind -t "$session_id" C-a
