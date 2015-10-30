@@ -53,7 +53,7 @@ set t_Co=256 " Wow! Much color!
 " ###
 "
 filetype off
-set rtp+=~/.vim/bundle/vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Bundle 'scrooloose/nerdtree'

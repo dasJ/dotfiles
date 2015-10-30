@@ -2,3 +2,25 @@
 	path = zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
 	ignore = dirty
+[submodule "vundle/Vundle.vim"]
+	path = vundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim.git
+[submodule "vundle/molokai"]
+	path = vundle/molokai
+	url = https://github.com/tomasr/molokai.git
+[submodule "vundle/nerdtree"]
+	path = vundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vundle/tmux.vim"]
+	path = vundle/tmux.vim
+	url = https://github.com/Keithbsmiley/tmux.vim.git
+[submodule "vundle/vim-markdown"]
+	path = vundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown.git
+[submodule "vundle/vim-nerdtree-tabs"]
+	path = vundle/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs.git
+
+[submodule "tpm/tpm"]
+	path = tpm/tpm
+	url = https://github.com/tmux-plugins/tpm

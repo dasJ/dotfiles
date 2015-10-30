@@ -4,19 +4,34 @@
 # Configuration
 ###
 REQUIRED_COMMANDS='zsh git'
-OPTIONAL_COMMANDS='vim tmux fasd yaourt htop xsel curl'
-DOTFILES_TO_LINK='gitconfig zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc Xresources gemrc xsession'
+OPTIONAL_COMMANDS='vim tmux fasd yaourt htop xsel curl urxvt'
+
+# file|requirement|graphical?
 cmdfiles=(
-	"vimrc|vim"
-	"tmux.conf|tmux"
-	"yaourtrc|yaourt"
+	"$HOME/.gemrc|zsh|no"
+	"$HOME/.gitconfig|git|no"
+	"$HOME/.zprezto|zsh|no"
+	"$HOME/.zlogin|zsh|no"
+	"$HOME/.zlogout|zsh|no"
+	"$HOME/.zpreztorc|zsh|no"
+	"$HOME/.zprofile|zsh|no"
+	"$HOME/.zshenv|zsh|no"
+	"$HOME/.zshrc|zsh|no"
+	"$HOME/.vimrc|vim|no"
+	"$HOME/.tmux.conf|tmux|no"
+	"$HOME/.yaourtrc|yaourt|no"
+	"$HOME/.Xresources|urxvt|yes"
+	"$HOME/.xsession|zsh|yes"
+	"$HOME/.config/htop/htoprc|htop|no"
+	"$HOME/.vim/bundle:vundle|vim|no"
+	"$HOME/.tmux/plugins:tpm|tmux|no"
 )
 mkdirs=(
-	"~/.vim|vim"
-	"~/.vim/backup|vim"
-	"~/.vim/swap|vim"
-	"~/.tmux/plugins|tmux"
-	"~/.config/htop|htop"
+	"$HOME/.vim|vim|no"
+	"$HOME/.vim/backup|vim|no"
+	"$HOME/.vim/swap|vim|no"
+	"$HOME/.tmux|tmux|no"
+	"$HOME/.config/htop|htop|no"
 )
 
 ###
@@ -63,49 +78,51 @@ checkcommands () {
 }
 
 creategitconfig () {
-	if ! [ -f ~/.dotfiles/gitcustom ]; then
+	if ! [ -f $HOME/.dotfiles/gitcustom ]; then
 		read -p "Please enter your name for the Git config: " name
 		read -p "Please enter your mail for the Git config: " email
-		echo -e "[user]\n\tname = ${name}\n\temail = ${email}\n" > ~/.dotfiles/gitcustom
+		echo -e "[user]\n\tname = ${name}\n\temail = ${email}\n" > $HOME/.dotfiles/gitcustom
 	else
 		echo "Git configuration already exists."
 	fi
 }
 
-linktohome () {
-	for toLink in $DOTFILES_TO_LINK; do
-		ln -sv $BASEDIR/$toLink ~/.$toLink
-	done
+link () {
 	for file in "${cmdfiles[@]}"; do
-		if hash `echo "$mkdir" | awk -F "|" '{print $2}'` 2>/dev/null; then
-			filename=`echo "$mkdir" | awk -F "|" '{print $1}'`
-			ln -sv $BASEDIR/$filename ~/.$filename
+		if hash `echo "$file" | awk -F "|" '{print $2}'` 2>/dev/null; then
+			filename=`echo "$file" | awk -F "|" '{print $1}'`
+			linkfrom=`basename "$filename" | sed 's/^\.\(.*\)/\1/'`
+			if [[ "$filename" == *":"* ]]; then
+				linkfrom=`echo "$filename" | awk -F ":" '{print $2}'`
+				filename=`echo "$filename" | awk -F ":" '{print $1}'`
+			fi
+			if [ `echo "$file" | awk -F "|" '{print $3}'` == "yes" ]; then
+				if [ -f $BASEDIR/graphical ]; then
+					ln -svT $BASEDIR/$linkfrom $filename
+				fi
+			else
+				ln -svT $BASEDIR/$linkfrom $filename
+			fi
 		fi
 	done
-}
-
-linkotherstuff () {
-	ln -sv $BASEDIR/prompt_janne_setup $BASEDIR/zprezto/modules/prompt/functions/prompt_janne_setup
-	if hash htop 2>/dev/null; then
-		ln -sv $BASEDIR/htoprc ~/.config/htop/htoprc
-	fi
+	ln -svT $BASEDIR/prompt_janne_setup $BASEDIR/zprezto/modules/prompt/functions/prompt_janne_setup
 }
 
 createemptydirs () {
 	for mkdir in "${mkdirs[@]}"; do
 		if hash `echo "$mkdir" | awk -F "|" '{print $2}'` 2>/dev/null; then
-			mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
+			if [ `echo "$mkdir" | awk -F "|" '{print $3}'` == "yes" ]; then
+				if [ -f $BASEDIR/graphical ]; then
+					mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
+				fi
+			else
+				mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
+			fi
 		fi
 	done
 }
 
-cloneotherrepos () {
-	if hash vim 2>/dev/null; then
-		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
-	fi
-	if hash tmux 2>/dev/null; then
-		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	fi
+updaterepos () {
 	git --git-dir=$BASEDIR/.git --work-tree=$BASEDIR submodule update --init --recursive
 }
 
@@ -116,8 +133,14 @@ init () {
 }
 
 main () {
-	if ! [ -f ~/.dotfiles/graphical ] && ! [ -f ~/.dotfiles/nographical ]; then
-		echo "build"
+	if ! [ -f $BASEDIR/graphical ] && ! [ -f $BASEDIR/nographical ]; then
+		read -p "Installing in a graphical environment? [yN] " -n 1 -r
+		echo
+		if [[ "$REPLY" =~ ^[Yy] ]]; then
+			touch $BASEDIR/graphical
+		else
+			touch $BASEDIR/nographical
+		fi
 	fi
 	echo ":: Checking requirements..."
 	checkcommands true $REQUIRED_COMMANDS
@@ -126,12 +149,10 @@ main () {
 	creategitconfig
 	echo ":: Create empty directories..."
 	createemptydirs
-	echo ":: Cloning other repositories..."
-	cloneotherrepos
-	echo ":: Linking to home..."
-	linktohome
-	echo ":: Create more links..."
-	linkotherstuff
+	echo ":: Updating repositories..."
+	updaterepos
+	echo ":: Linking..."
+	link
 	echo ":: Running post-installation stuff..."
 	init
 	echo ":: Think about chshing to zsh"
