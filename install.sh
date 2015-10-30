@@ -114,7 +114,7 @@ link () {
 createemptydirs () {
 	for mkdir in "${mkdirs[@]}"; do
 		if hash `echo "$mkdir" | awk -F "|" '{print $2}'` 2>/dev/null; then
-			if [ `echo "$mkdir" | awk -F "|" '{print $3}'` == "yes" ]; then
+			if [ "`echo "$mkdir" | awk -F "|" '{print $3}'`" == "yes" ]; then
 				if [ -f $BASEDIR/graphical ]; then
 					mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
 				fi
