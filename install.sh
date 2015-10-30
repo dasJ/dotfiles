@@ -127,6 +127,7 @@ createemptydirs () {
 
 updaterepos () {
 	git --git-dir=$BASEDIR/.git --work-tree=$BASEDIR submodule update --init --recursive
+	git submodule foreach git pull origin master
 }
 
 init () {
