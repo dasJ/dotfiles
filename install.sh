@@ -3,9 +3,21 @@
 ###
 # Configuration
 ###
-REQUIRED_COMMANDS='zsh git curl'
-OPTIONAL_COMMANDS='vim tmux fasd yaourt htop xsel'
-DOTFILES_TO_LINK='gitconfig vimrc zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc tmux.conf Xresources gemrc yaourtrc xsession'
+REQUIRED_COMMANDS='zsh git'
+OPTIONAL_COMMANDS='vim tmux fasd yaourt htop xsel curl'
+DOTFILES_TO_LINK='gitconfig zprezto zlogin zlogout zpreztorc zprofile zshenv zshrc Xresources gemrc xsession'
+cmdfiles=(
+	"vimrc|vim"
+	"tmux.conf|tmux"
+	"yaourtrc|yaourt"
+)
+mkdirs=(
+	"~/.vim|vim"
+	"~/.vim/backup|vim"
+	"~/.vim/swap|vim"
+	"~/.tmux/plugins|tmux"
+	"~/.config/htop|htop"
+)
 
 ###
 # Variables
@@ -22,7 +34,11 @@ checkcommands () {
 	shift
 	
 	for cmd in $@; do
-		echo -ne ":: [ .... ] Checking for $cmd"
+		if $everythingRequired; then
+			echo -ne ":: [ .... ] Checking for $cmd"
+		else
+			echo -ne ":: [ .... ] Checking for $cmd (optional)"
+		fi
 		if hash $cmd 2>/dev/null; then
 			echo -ne "\r:: [ \e[00;32mokay\e[00m ]\v\r"
 		else
@@ -32,7 +48,7 @@ checkcommands () {
 	done
 
 	if ! $everythingFound; then
-		if [ $everythingRequired -eq 1 ]; then
+		if $everythingRequired; then
 			echo "Could not find all dependencies."
 			exit 1
 		fi
@@ -60,36 +76,52 @@ linktohome () {
 	for toLink in $DOTFILES_TO_LINK; do
 		ln -sv $BASEDIR/$toLink ~/.$toLink
 	done
+	for file in "${cmdfiles[@]}"; do
+		if hash `echo "$mkdir" | awk -F "|" '{print $2}'` 2>/dev/null; then
+			filename=`echo "$mkdir" | awk -F "|" '{print $1}'`
+			ln -sv $BASEDIR/$filename ~/.$filename
+		fi
+	done
 }
 
 linkotherstuff () {
 	ln -sv $BASEDIR/prompt_janne_setup $BASEDIR/zprezto/modules/prompt/functions/prompt_janne_setup
-	ln -sv $BASEDIR/htoprc ~/.config/htop/htoprc
+	if hash htop 2>/dev/null; then
+		ln -sv $BASEDIR/htoprc ~/.config/htop/htoprc
+	fi
 }
 
 createemptydirs () {
-	mkdir -vp ~/.vim
-	mkdir -vp ~/.vim/backup
-	mkdir -vp ~/.vim/swap
-	mkdir -vp ~/.tmux
-	mkdir -vp ~/.tmux/plugins
-	mkdir -vp ~/.config/htop
+	for mkdir in "${mkdirs[@]}"; do
+		if hash `echo "$mkdir" | awk -F "|" '{print $2}'` 2>/dev/null; then
+			mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
+		fi
+	done
 }
 
 cloneotherrepos () {
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	if hash vim 2>/dev/null; then
+		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
+	fi
+	if hash tmux 2>/dev/null; then
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	fi
 	git --git-dir=$BASEDIR/.git --work-tree=$BASEDIR submodule update --init --recursive
 }
 
 init () {
-	echo | vim +PluginInstall +qall
+	if hash vim 2>/dev/null; then
+		echo | vim +PluginInstall +qall
+	fi
 }
 
 main () {
+	if ! [ -f ~/.dotfiles/graphical ] && ! [ -f ~/.dotfiles/nographical ]; then
+		echo "build"
+	fi
 	echo ":: Checking requirements..."
-	checkcommands 1 $REQUIRED_COMMANDS
-	checkcommands 0 $OPTIONAL_COMMANDS
+	checkcommands true $REQUIRED_COMMANDS
+	checkcommands false $OPTIONAL_COMMANDS
 	echo ":: Asking for configuration..."
 	creategitconfig
 	echo ":: Create empty directories..."
