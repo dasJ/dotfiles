@@ -25,6 +25,7 @@ cmdfiles=(
 	"$HOME/.config/htop/htoprc|htop|no"
 	"$HOME/.vim/bundle:vundle|vim|no"
 	"$HOME/.tmux/plugins:tpm|tmux|no"
+	"$HOME/.gtkrc-2.0|zsh|yes"
 )
 mkdirs=(
 	"$HOME/.vim|vim|no"
