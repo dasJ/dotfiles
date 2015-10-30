@@ -26,6 +26,7 @@ cmdfiles=(
 	"$HOME/.vim/bundle:vundle|vim|no"
 	"$HOME/.tmux/plugins:tpm|tmux|no"
 	"$HOME/.gtkrc-2.0|zsh|yes"
+	"$HOME/.config/gtk-3.0/settings.ini:gtkrc-3.0|zsh|yes"
 )
 mkdirs=(
 	"$HOME/.vim|vim|no"
@@ -33,6 +34,7 @@ mkdirs=(
 	"$HOME/.vim/swap|vim|no"
 	"$HOME/.tmux|tmux|no"
 	"$HOME/.config/htop|htop|no"
+	"$HOME/.config/gtk-3.0|yes"
 )
 
 ###
