@@ -34,7 +34,7 @@ mkdirs=(
 	"$HOME/.vim/swap|vim|no"
 	"$HOME/.tmux|tmux|no"
 	"$HOME/.config/htop|htop|no"
-	"$HOME/.config/gtk-3.0|yes"
+	"$HOME/.config/gtk-3.0|zsh|yes"
 )
 
 ###
@@ -99,7 +99,7 @@ link () {
 				linkfrom=`echo "$filename" | awk -F ":" '{print $2}'`
 				filename=`echo "$filename" | awk -F ":" '{print $1}'`
 			fi
-			if [ `echo "$file" | awk -F "|" '{print $3}'` == "yes" ]; then
+			if [ "`echo "$file" | awk -F "|" '{print $3}'`" == "yes" ]; then
 				if [ -f $BASEDIR/graphical ]; then
 					ln -svT $BASEDIR/$linkfrom $filename
 				fi
