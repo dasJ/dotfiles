@@ -24,3 +24,6 @@
 [submodule "tpm/tpm"]
 	path = tpm/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "vundle/tagbar"]
+	path = vundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
