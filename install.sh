@@ -4,7 +4,7 @@
 # Configuration
 ###
 REQUIRED_COMMANDS='zsh git'
-OPTIONAL_COMMANDS='vim tmux fasd yaourt htop xsel curl urxvt'
+OPTIONAL_COMMANDS='vim tmux fasd yaourt htop xsel curl urxvt ctags'
 
 # file|requirement|graphical?
 cmdfiles=(
