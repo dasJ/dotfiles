@@ -4,7 +4,7 @@
 # Configuration
 ###
 REQUIRED_COMMANDS='zsh git'
-OPTIONAL_COMMANDS='vim tmux fasd yaourt htop xsel curl urxvt ctags'
+OPTIONAL_COMMANDS='vim tmux fasd pacaur htop xsel curl urxvt ctags'
 
 # file|requirement|graphical?
 cmdfiles=(
@@ -19,7 +19,6 @@ cmdfiles=(
 	"$HOME/.zshrc|zsh|no"
 	"$HOME/.vimrc|vim|no"
 	"$HOME/.tmux.conf|tmux|no"
-	"$HOME/.yaourtrc|yaourt|no"
 	"$HOME/.Xresources|urxvt|yes"
 	"$HOME/.xsession|zsh|yes"
 	"$HOME/.config/htop/htoprc|htop|no"
@@ -27,6 +26,7 @@ cmdfiles=(
 	"$HOME/.tmux/plugins:tpm|tmux|no"
 	"$HOME/.gtkrc-2.0|zsh|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:gtkrc-3.0|zsh|yes"
+	"$HOME/.config/pacaur/config:pacaur|pacaur|no"
 )
 mkdirs=(
 	"$HOME/.vim|vim|no"
@@ -35,6 +35,7 @@ mkdirs=(
 	"$HOME/.tmux|tmux|no"
 	"$HOME/.config/htop|htop|no"
 	"$HOME/.config/gtk-3.0|zsh|yes"
+	"$HOME/.config/pacaur|pacaur|yes"
 )
 
 ###
