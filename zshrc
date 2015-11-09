@@ -6,6 +6,8 @@
 #
 
 # Source Prezto.
+fpath=(${ZDOTDIR:-$HOME}/.dotfiles/zsh-completions/src $fpath)
+plugins+=(zsh-completions)
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi

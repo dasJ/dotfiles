@@ -8,5 +8,8 @@
 [include]
 	path = ~/.dotfiles/gitcustom
 
-[url "git@github.com:"]
+[url "https://dasJ:8e0ccfbcf1ad1cac593c89fe8513dc180ca183be@github.com/"]
 	insteadOf = https://github.com/
+
+[url "https://dasJ:8e0ccfbcf1ad1cac593c89fe8513dc180ca183be@github.com/"]
+	insteadOf = git@github.com:
