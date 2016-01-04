@@ -1,16 +1,28 @@
 #
 # Executes commands at the start of an interactive session.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
-fpath=(${ZDOTDIR:-$HOME}/.dotfiles/zsh-completions/src $fpath)
-plugins+=(zsh-completions)
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+#fpath=(${ZDOTDIR:-$HOME}/.dotfiles/zsh-completions/src $fpath)
+#plugins+=(zsh-completions)
+#if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+#fi
+
+# Source antigen
+source $HOME/.dotfiles/antigen/antigen.zsh
+
+export USE_CCACHE=1
+
+antigen use oh-my-zsh
+antigen bundle common-aliases
+antigen bundle fasd
+antigen bundle git
+antigen bundle golang
+antigen bundle systemd
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions src
+antigen theme dasJ/zsh-theme themes/janne
+antigen apply
 
 ###############
 ## Variables
@@ -38,7 +50,7 @@ bindkey "^R" history-incremental-search-backward # Ctrl+R for backwards search
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
 zstyle ':completion:*' rehash true
 # Fasd
-eval "$(fasd --init zsh-hook posix-alias zsh-ccomp zsh-wcomp zsh-ccomp-install zsh-wcomp-install)"
+#eval "$(fasd --init zsh-hook posix-alias zsh-ccomp zsh-wcomp zsh-ccomp-install zsh-wcomp-install)"
 
 ###############
 ## Aliases
@@ -174,7 +186,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ###############
 ## Try to launch tmux
 ################
-
 if hash tmux 2>/dev/null; then
 	# Works because shell automatically trims
 	trim() { return $1; }
@@ -190,8 +201,8 @@ if hash tmux 2>/dev/null; then
 		tmux set-option -t "$session_id" -s pane-border-fg colour235
 		tmux set-option -t "$session_id" -s pane-active-border-fg colour235
 		#tmux unbind -t "$session_id" C-a
-		tmux attach-session -t "$session_id"
-		tmux kill-session -t "$session_id" 2>/dev/null
+		exec tmux attach-session -t "$session_id"
+		#tmux kill-session -t "$session_id" 2>/dev/null
 		exit
 	fi
 	# Unset TMUX if we just spawned the outer session and want to spawn the inner session
@@ -210,8 +221,8 @@ if hash tmux 2>/dev/null; then
 		if [[ -z "$TMUX" ]]; then
 			session_id=`date +%Y%m%d%H%M%S`
 			tmux new-session -d -t base -s $session_id
-			tmux attach-session -t $session_id
-			tmux kill-session -t $session_id
+			exec tmux attach-session -t $session_id
+			#tmux kill-session -t $session_id
 			exit
 		fi
 	fi
