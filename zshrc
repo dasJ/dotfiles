@@ -11,8 +11,6 @@
 # Source antigen
 source $HOME/.dotfiles/antigen/antigen.zsh
 
-export USE_CCACHE=1
-
 antigen use oh-my-zsh
 antigen bundle common-aliases
 antigen bundle fasd
@@ -21,6 +19,7 @@ antigen bundle golang
 antigen bundle systemd
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
+antigen bundle Tarrasch/zsh-autoenv
 antigen theme dasJ/zsh-theme themes/janne
 antigen apply
 
@@ -35,6 +34,7 @@ export EDITOR=vim
 export SYSTEMD_EDITOR=$EDITOR
 export REPORTTIME=5
 export LESSHISTFILE=/dev/null
+export USE_CCACHE=1
 
 ###############
 ## zsh options
