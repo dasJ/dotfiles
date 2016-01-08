@@ -3,8 +3,25 @@
 ###
 # Configuration
 ###
-REQUIRED_COMMANDS='zsh git'
-OPTIONAL_COMMANDS='vim tmux fasd pacaur htop xsel curl urxvt ctags'
+# name|required?|graphical?|test|testparam
+dependencies=(
+	# Requirements
+	"zsh|yes|no|command|zsh"
+	"git|yes|no|command|git"
+	# Optional stuff
+	"vim|no|no|command|vim"
+	"tmux|no|no|command|tmux"
+	"pacaur|no|no|command|pacaur"
+	"ctags for vim|no|no|command|ctags"
+	"htop|no|no|command|htop"
+	# Graphical stuff
+	"st|no|yes|command|st"
+	"Anonymous Pro font|no|yes|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
+	"numix theme|no|yes|file|/usr/share/themes/Numix/index.theme"
+	# Stuff I like
+	"curl|no|no|command|curl"
+)
+
 
 # file|requirement|graphical?
 cmdfiles=(
@@ -47,32 +64,62 @@ BASEDIR=$(readlink -f $(dirname $0))
 # Functions
 ###
 
-checkcommands () {
-	local everythingFound=true
-	local everythingRequired=$1
-	shift
-	
-	for cmd in $@; do
-		if $everythingRequired; then
-			echo -ne ":: [ .... ] Checking for $cmd"
-		else
-			echo -ne ":: [ .... ] Checking for $cmd (optional)"
+checkDependencies() {
+	local optionalMissing=0
+	local requiredMissing=0
+
+	for dependency in "${dependencies[@]}"; do
+		if [ -f $BASEDIR/nographical ]; then
+			if [ `echo $dependency | awk -F '|' '{ print $3 }'` == "yes" ]; then
+				continue
+			fi
 		fi
-		if hash $cmd 2>/dev/null; then
+		prettyname=`echo $dependency | awk -F '|' '{ print $1 }'`
+		test `echo $dependency | awk -F '|' '{ print $2 }'` == "yes"
+		optional=$?
+		if [ $optional -eq 0 ]; then
+			echo -ne ":: [ .... ] Checking for $prettyname"
+		else
+			echo -ne ":: [ .... ] Checking for $prettyname (optional)"
+		fi
+		# Perform the actual check
+		okay=0
+		arg=`echo $dependency | awk -F '|' '{ print $5 }'`
+		if [ `echo $dependency | awk -F '|' '{ print $4 }'` == "command" ]; then
+			hash $arg 2>/dev/null
+			okay=$?
+		fi
+		if [ `echo $dependency | awk -F '|' '{ print $4 }'` == "file" ]; then
+			test -f "$arg"
+			okay=$?
+		fi
+		if [ `echo $dependency | awk -F '|' '{ print $4 }'` == "exec" ]; then
+			$arg &> /dev/null
+			okay=$?
+		fi
+		# Process check result
+		if [ $okay -eq 0 ]; then
 			echo -ne "\r:: [ \e[00;32mokay\e[00m ]\v\r"
 		else
 			echo -ne "\r:: [ \e[00;31mfail\e[00m ]\v\r"
-			everythingFound=false
+			if [ $optional -eq 0 ]; then
+				requiredMissing=1
+			else
+				optionalMissing=1
+			fi
 		fi
 	done
-
-	if ! $everythingFound; then
-		if $everythingRequired; then
-			echo "Could not find all dependencies."
-			exit 1
+	# Output stuff
+	if [ $requiredMissing -eq 1 ]; then
+		echo "Could not find all required depdendencies."
+		if [ $optionalMissing -eq 1 ]; then
+			echo "Some optional dependencies are missing as well."
 		fi
+		exit 1
+	fi
+	if [ $optionalMissing -eq 1 ]; then
 		while true; do
-			read -p "Not all optional commands were found. Continue anyway? [yn] " yn
+			read -p "Not all optional dependencies were found. Continue anyway? [yn] " yn
 			case $yn in
 				[Yy]* ) break ;;
 				[Nn]* ) exit 1 ;;
@@ -148,8 +195,7 @@ main () {
 		fi
 	fi
 	echo ":: Checking requirements..."
-	checkcommands true $REQUIRED_COMMANDS
-	checkcommands false $OPTIONAL_COMMANDS
+	checkDependencies
 	echo ":: Asking for configuration..."
 	creategitconfig
 	echo ":: Create empty directories..."
