@@ -1,12 +1,6 @@
 #
 # Executes commands at the start of an interactive session.
 #
-# Source Prezto.
-#fpath=(${ZDOTDIR:-$HOME}/.dotfiles/zsh-completions/src $fpath)
-#plugins+=(zsh-completions)
-#if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-#  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-#fi
 
 # Source antigen
 export ADOTDIR=$HOME/.dotfiles/antigen
@@ -36,6 +30,7 @@ export SYSTEMD_EDITOR=$EDITOR
 export REPORTTIME=5
 export LESSHISTFILE=/dev/null
 export USE_CCACHE=1
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 ###############
 ## zsh options
@@ -50,8 +45,6 @@ setopt braceccl # Expand stuff like {0-9} {a-z}
 bindkey "^R" history-incremental-search-backward # Ctrl+R for backwards search
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
 zstyle ':completion:*' rehash true
-# Fasd
-#eval "$(fasd --init zsh-hook posix-alias zsh-ccomp zsh-wcomp zsh-ccomp-install zsh-wcomp-install)"
 
 ###############
 ## Aliases
@@ -179,12 +172,6 @@ a2disite() {
 	sudo apachectl graceful
 }
 
-###############
-## zsh syntax higlighting
-################
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ###############
 ## Try to launch tmux
