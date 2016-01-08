@@ -112,19 +112,6 @@ function extract () {
 	fi
 }
 
-function gi() {
-	curl https://www.gitignore.io/api/$@ ;
-}
-
-function dcvpn() {
-	sudo truecrypt -t -k "" -m ro ~/.dcvpn.tc /mnt/tcdcvpn
-	CURRENTPATH=`pwd`
-	cd /mnt/tcdcvpn
-	sudo openvpn client.ovpn
-	cd $CURRENTPATH
-	sudo truecrypt -d ~/.dcvpn.tc
-}
-
 function cbase() {
 	echo "obase=$2;ibase=$1;$3" | bc
 }
@@ -159,19 +146,6 @@ deps() {
 	fi
 	objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
 }
-
-a2ensite() {
-	[[ $1 ]] || return 1
-	sudo ln -sv /etc/httpd/conf/sites-available/$1 /etc/httpd/conf/sites-enabled/$1
-	sudo apachectl graceful
-}
-
-a2disite() {
-	[[ $1 ]] || return 1
-	sudo rm -v /etc/httpd/conf/sites-enabled/$1
-	sudo apachectl graceful
-}
-
 
 ###############
 ## Try to launch tmux
