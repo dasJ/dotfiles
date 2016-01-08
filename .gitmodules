@@ -27,3 +27,6 @@
 [submodule "vundle/tagbar"]
 	path = vundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+[submodule "antigen/antigen"]
+	path = antigen/antigen
+	url = https://github.com/zsh-users/antigen
