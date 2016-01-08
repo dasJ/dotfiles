@@ -194,6 +194,6 @@ echo ":: Creating empty directories..."
 makedirs
 echo ":: Updating submodules..."
 updaterepos
-cho ":: Linking..."
+echo ":: Linking..."
 link
 
