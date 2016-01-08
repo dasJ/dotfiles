@@ -3,6 +3,7 @@
 ###
 # Configuration
 ###
+
 # name|required?|graphical?|test|testparam
 dependencies=(
 	# Requirements
@@ -45,14 +46,14 @@ cmdfiles=(
 	"$HOME/.config/gtk-3.0/settings.ini:gtkrc-3.0|zsh|yes"
 	"$HOME/.config/pacaur/config:pacaur|pacaur|no"
 )
+# dir|graphical?
 mkdirs=(
-	"$HOME/.vim|vim|no"
-	"$HOME/.vim/backup|vim|no"
-	"$HOME/.vim/swap|vim|no"
-	"$HOME/.tmux|tmux|no"
-	"$HOME/.config/htop|htop|no"
-	"$HOME/.config/gtk-3.0|zsh|yes"
-	"$HOME/.config/pacaur|pacaur|yes"
+	"$HOME/.vim/backup|no"
+	"$HOME/.vim/swap|no"
+	"$HOME/.tmux|no"
+	"$HOME/.config/htop|no"
+	"$HOME/.config/gtk-3.0|yes"
+	"$HOME/.config/pacaur|yes"
 )
 
 ###
@@ -128,17 +129,29 @@ checkDependencies() {
 	fi
 }
 
-creategitconfig () {
-	if ! [ -f $HOME/.dotfiles/gitcustom ]; then
-		read -p "Please enter your name for the Git config: " name
-		read -p "Please enter your mail for the Git config: " email
+creategitconfig() {
+	if ! [ -f $BASEDIR/gitcustom ]; then
+		read -p "Please enter your name for the git config: " name
+		read -p "Please enter your mail for the git config: " email
 		echo -e "[user]\n\tname = ${name}\n\temail = ${email}\n" > $HOME/.dotfiles/gitcustom
 	else
-		echo "Git configuration already exists."
+		echo ":: git configuration already exists."
 	fi
 }
 
-link () {
+makedirs() {
+	for mkdir in "${mkdirs[@]}"; do
+		if [ "`echo "$mkdir" | awk -F "|" '{print $2}'`" == "yes" ]; then
+			if [ -f $BASEDIR/graphical ]; then
+				mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
+			fi
+		else
+			mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
+		fi
+	done
+}
+
+link() {
 	for file in "${cmdfiles[@]}"; do
 		if hash `echo "$file" | awk -F "|" '{print $2}'` 2>/dev/null; then
 			filename=`echo "$file" | awk -F "|" '{print $1}'`
@@ -156,58 +169,31 @@ link () {
 			fi
 		fi
 	done
-	ln -svT $BASEDIR/prompt_janne_setup $BASEDIR/zprezto/modules/prompt/functions/prompt_janne_setup
 }
 
-createemptydirs () {
-	for mkdir in "${mkdirs[@]}"; do
-		if hash `echo "$mkdir" | awk -F "|" '{print $2}'` 2>/dev/null; then
-			if [ "`echo "$mkdir" | awk -F "|" '{print $3}'`" == "yes" ]; then
-				if [ -f $BASEDIR/graphical ]; then
-					mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
-				fi
-			else
-				mkdir -pv `echo "$mkdir" | awk -F "|" '{print $1}'`
-			fi
-		fi
-	done
-}
-
-updaterepos () {
+updaterepos() {
 	git --git-dir=$BASEDIR/.git --work-tree=$BASEDIR submodule update --init --recursive
-	git submodule foreach git pull origin master
+	git --git-dir=$BASEDIR/.git --work-tree=$BASEDIR submodule foreach git pull origin master
 }
 
-init () {
-	if hash vim 2>/dev/null; then
-		echo | vim +PluginInstall +qall
+# Graphical question
+if ! [ -f $BASEDIR/graphical ] && ! [ -f $BASEDIR/nographical ]; then
+	read -p "Installing in a graphical environment? [yN] " -n 1 -r
+	echo
+if [[ "$REPLY" =~ ^[Yy] ]]; then
+		touch $BASEDIR/graphical
+	else
+		touch $BASEDIR/nographical
 	fi
-}
-
-main () {
-	if ! [ -f $BASEDIR/graphical ] && ! [ -f $BASEDIR/nographical ]; then
-		read -p "Installing in a graphical environment? [yN] " -n 1 -r
-		echo
-		if [[ "$REPLY" =~ ^[Yy] ]]; then
-			touch $BASEDIR/graphical
-		else
-			touch $BASEDIR/nographical
-		fi
-	fi
-	echo ":: Checking requirements..."
-	checkDependencies
-	echo ":: Asking for configuration..."
-	creategitconfig
-	echo ":: Create empty directories..."
-	createemptydirs
-	echo ":: Updating repositories..."
-	updaterepos
-	echo ":: Linking..."
-	link
-	echo ":: Running post-installation stuff..."
-	init
-	echo ":: Think about chshing to zsh"
-}
-
-main
+fi
+echo ":: Checking requirements..."
+checkDependencies
+echo ":: Asking for configuration..."
+creategitconfig
+echo ":: Creating empty directories..."
+makedirs
+echo ":: Updating submodules..."
+updaterepos
+cho ":: Linking..."
+link
 
