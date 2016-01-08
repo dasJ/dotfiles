@@ -9,7 +9,8 @@
 #fi
 
 # Source antigen
-source $HOME/.dotfiles/antigen/antigen.zsh
+export ADOTDIR=$HOME/.dotfiles/antigen
+source $HOME/.dotfiles/antigen/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 antigen bundle common-aliases
@@ -55,6 +56,8 @@ zstyle ':completion:*' rehash true
 ###############
 ## Aliases
 ################
+alias zpool='sudo zpool'
+alias ls='ls -h --color'
 alias duh='du -h' # Human readable output
 alias rcp='rsync -avP'
 alias rmv='rcp --remove-source-files'
