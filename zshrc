@@ -64,6 +64,8 @@ alias dd='dd status=progress'
 alias slapdebug='/usr/bin/slapd -u ldap -g ldap -h "ldapi:// ldap://[::1] ldaps://" -d -1'
 alias tmuxsess='eval $(tmux switch-client \; show-environment -s)'
 unalias sl 2> /dev/null # SL
+alias sl='sl -a'
+unalias G # Why?
 # Math stuff
 alias bin2dec='cbase 2 10'
 alias bin2hex='cbase 2 16'
