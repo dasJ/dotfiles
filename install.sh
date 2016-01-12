@@ -15,6 +15,7 @@ dependencies=(
 	"pacaur|no|no|command|pacaur"
 	"ctags for vim|no|no|command|ctags"
 	"htop|no|no|command|htop"
+	"fpp|no|no|command|fpp"
 	# Graphical stuff
 	"st|no|yes|command|st"
 	"Anonymous Pro font|no|yes|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"

@@ -33,3 +33,6 @@
 [submodule "tpm/tmux-prefix-highlight"]
 	path = tpm/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight
+[submodule "tpm/tmux-fpp"]
+	path = tpm/tmux-fpp
+	url = https://github.com/tmux-plugins/tmux-fpp
