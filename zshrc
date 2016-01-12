@@ -50,7 +50,7 @@ zstyle ':completion:*' rehash true
 ## Aliases
 ################
 alias zpool='sudo zpool'
-alias ls='ls -h --color'
+alias ls='ls -h --color --group-directories-first'
 alias duh='du -h' # Human readable output
 alias rcp='rsync -avP'
 alias rmv='rcp --remove-source-files'
