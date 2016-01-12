@@ -151,6 +151,11 @@ deps() {
 	objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
 }
 
+rebuildDev() {
+	udevadm control --reload-rules
+	udevadm trigger
+}
+
 ###############
 ## Try to launch tmux
 ################
