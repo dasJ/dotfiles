@@ -56,12 +56,12 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'tomasr/molokai'
-Bundle 'Keithbsmiley/tmux.vim'
-Bundle 'tpope/vim-markdown'
+Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-markdown'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'tmux-plugins/vim-tmux'
 call vundle#end()
 filetype plugin indent on
 

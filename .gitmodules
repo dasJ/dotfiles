@@ -11,9 +11,6 @@
 [submodule "vundle/nerdtree"]
 	path = vundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vundle/tmux.vim"]
-	path = vundle/tmux.vim
-	url = https://github.com/Keithbsmiley/tmux.vim.git
 [submodule "vundle/vim-markdown"]
 	path = vundle/vim-markdown
 	url = https://github.com/tpope/vim-markdown.git
@@ -36,3 +33,6 @@
 [submodule "tpm/tmux-fpp"]
 	path = tpm/tmux-fpp
 	url = https://github.com/tmux-plugins/tmux-fpp
+[submodule "vundle/vim-tmux"]
+	path = vundle/vim-tmux
+	url = https://github.com/tmux-plugins/vim-tmux
