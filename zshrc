@@ -63,7 +63,6 @@ alias subl=subl3
 alias tmux='tmux -2' # Color support
 alias fuck='sudo $(fc -nl -1)'
 alias dd='dd status=progress'
-alias slapdebug='/usr/bin/slapd -u ldap -g ldap -h "ldapi:// ldap://[::1] ldaps://" -d -1'
 alias tmuxsess='eval $(tmux switch-client \; show-environment -s)'
 alias yay='echo "\\(^o^)/"'
 unalias sl 2> /dev/null # SL
