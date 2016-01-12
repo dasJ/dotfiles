@@ -30,3 +30,6 @@
 [submodule "antigen/antigen"]
 	path = antigen/antigen
 	url = https://github.com/zsh-users/antigen
+[submodule "tpm/tmux-prefix-highlight"]
+	path = tpm/tmux-prefix-highlight
+	url = https://github.com/tmux-plugins/tmux-prefix-highlight
