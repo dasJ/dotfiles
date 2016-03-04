@@ -42,6 +42,7 @@ setopt auto_cd # Allow omitting of cd
 setopt function_arg_zero # Function name instead of zsh when using $0
 setopt complete_in_word # Tab completion in word
 setopt braceccl # Expand stuff like {0-9} {a-z}
+setopt completealiases
 bindkey "^R" history-incremental-search-backward # Ctrl+R for backwards search
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
 zstyle ':completion:*' rehash true
@@ -50,6 +51,7 @@ zstyle ':completion:*' rehash true
 ## Aliases
 ################
 alias zpool='sudo zpool'
+alias zfs='sudo zfs'
 alias ls='ls -h --color --group-directories-first'
 alias ll='ls -lF'
 alias la='ll -a'
@@ -154,7 +156,7 @@ deps() {
 ###############
 ## SSH Agent
 ################
-if [ ! -z "$SSH_AUTH_SOCK" ]; then
+if [ -z "$SSH_AUTH_SOCK" ]; then
 	mkdir -p "$HOME/.ssh"
 	export SSH_AUTH_SOCK="$HOME/.ssh/.auth_socket"
 fi
