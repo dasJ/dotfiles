@@ -36,3 +36,6 @@
 [submodule "vundle/vim-tmux"]
 	path = vundle/vim-tmux
 	url = https://github.com/tmux-plugins/vim-tmux
+[submodule "vundle/vim-airline"]
+	path = vundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
