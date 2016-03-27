@@ -70,6 +70,7 @@ alias yay='echo "\\(^o^)/"'
 unalias sl 2> /dev/null # SL
 alias sl='sl -a'
 unalias 'G' # Why?
+alias spotifycover="gdbus call --session --dest org.mpris.MediaPlayer2.spotify --object-path /org/mpris/MediaPlayer2 --method org.freedesktop.DBus.Properties.Get org.mpris.MediaPlayer2.Player Metadata | egrep -o 'https://open.spotify.com/image/[a-fA-F0-9]*'"
 # Math stuff
 alias bin2dec='cbase 2 10'
 alias bin2hex='cbase 2 16'
