@@ -81,6 +81,12 @@ set pastetoggle=<F12> " Sane indentation on pastes with F12
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
 cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
 nmap <F8> :TagbarToggle<CR>
+" Disable stuff
+for prefix in ['i', 'n', 'v']
+	for key in ['<Up>', '<Down>', '<Left>', '<Right>', '<Home>', '<End>', '<PageUp>', '<PageDown>', '<Del>']
+		exe prefix . "noremap" . key . " <Nop>"
+	endfor
+endfor
 
 " ###
 " Folding
