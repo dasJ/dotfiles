@@ -8,3 +8,5 @@
 [include]
 	path = ~/.dotfiles/gitcustom
 
+[color]
+	ui = auto
