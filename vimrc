@@ -72,6 +72,7 @@ filetype plugin indent on
 let maplocalleader=","
 let mapleader=","
 let g:molokai_original=1
+let g:airline#extensions#tabline#enabled = 1
 
 " ###
 " Keymappings
