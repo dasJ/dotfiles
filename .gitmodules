@@ -39,3 +39,21 @@
 [submodule "vundle/vim-airline"]
 	path = vundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions.git"]
+	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions.git
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-syntax-highlighting.git"]
+	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-syntax-highlighting.git
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git"]
+	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git"]
+	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git
+	url = https://github.com/robbyrussell/oh-my-zsh
+[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-Tarrasch-SLASH-zsh-autoenv.git"]
+	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-Tarrasch-SLASH-zsh-autoenv.git
+	url = https://github.com/Tarrasch/zsh-autoenv
+[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git"]
+	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git
+	url = https://github.com/dasJ/zsh-theme
