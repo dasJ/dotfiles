@@ -14,6 +14,7 @@ antigen bundle golang
 antigen bundle systemd
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
+antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle Tarrasch/zsh-autoenv
 antigen theme dasJ/zsh-theme themes/janne
 antigen apply
@@ -67,9 +68,8 @@ alias fuck='sudo $(fc -nl -1)'
 alias dd='dd status=progress'
 alias tmuxsess='eval $(tmux switch-client \; show-environment -s)'
 alias yay='echo "\\(^o^)/"'
-unalias sl 2> /dev/null # SL
+unalias sl 2> /dev/null # sl
 alias sl='sl -a'
-unalias 'G' # Why?
 alias spotifycover="gdbus call --session --dest org.mpris.MediaPlayer2.spotify --object-path /org/mpris/MediaPlayer2 --method org.freedesktop.DBus.Properties.Get org.mpris.MediaPlayer2.Player Metadata | egrep -o 'https://open.spotify.com/image/[a-fA-F0-9]*'"
 # Math stuff
 alias bin2dec='cbase 2 10'
