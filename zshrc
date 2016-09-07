@@ -22,16 +22,18 @@ antigen apply
 ###############
 ## Variables
 ###############
-export HISTSIZE=500
+export HISTSIZE=500 # Size of history
 export SAVEHIST=$HISTSIZE
 export LSCOLORS="gxfxcxexbxegedabagacad" # http://geoff.greer.fm/lscolors/
 export LS_COLORS="di=36;40:ln=35;40:so=32;40:pi=34;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
-export EDITOR=vim
-export SYSTEMD_EDITOR=$EDITOR
-export REPORTTIME=5
-export LESSHISTFILE=/dev/null
-export USE_CCACHE=1
+export EDITOR=vim # Default editor
+export SYSTEMD_EDITOR=$EDITOR # Editor for systemctl edit
+export REPORTTIME=5 # Report time after 5 secs of command run time
+export LESSHISTFILE=/dev/null # Disable less history
+export USE_CCACHE=1 # Enable ccache for android
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+export KEYTIMEOUT=1 # No lag when switching vi modes (0.1 secs)
+export MINICOM='-D /dev/ttyUSB0 -b 115200 -c on -t linux'
 
 ###############
 ## zsh options
@@ -45,8 +47,10 @@ setopt complete_in_word # Tab completion in word
 setopt braceccl # Expand stuff like {0-9} {a-z}
 setopt completealiases
 bindkey "^R" history-incremental-search-backward # Ctrl+R for backwards search
+bindkey -M vicmd v edit-command-line # v command for opening in $EDITOR
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
-zstyle ':completion:*' rehash true
+zstyle ':completion:*' rehash true # Rehash every time
+bindkey -v # vim keybindings
 
 ###############
 ## Aliases
@@ -70,6 +74,9 @@ alias tmuxsess='eval $(tmux switch-client \; show-environment -s)'
 alias yay='echo "\\(^o^)/"'
 unalias sl 2> /dev/null # sl
 alias sl='sl -a'
+alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,LABEL,FSTYPE,MOUNTPOINT'
+unalias rm # No annoying question for EVERY file
+alias rm='rm -I' # Less intrusive interactive mode
 alias spotifycover="gdbus call --session --dest org.mpris.MediaPlayer2.spotify --object-path /org/mpris/MediaPlayer2 --method org.freedesktop.DBus.Properties.Get org.mpris.MediaPlayer2.Player Metadata | egrep -o 'https://open.spotify.com/image/[a-fA-F0-9]*'"
 # Math stuff
 alias bin2dec='cbase 2 10'
