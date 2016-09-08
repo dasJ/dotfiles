@@ -170,6 +170,7 @@ man() {
 		LESS_TERMCAP_so=$'\e'"[1;44;33m" \
 		LESS_TERMCAP_ue=$'\e'"[0m" \
 		LESS_TERMCAP_us=$'\e'"[1;32m" \
+		LESS='-FiMqRWx4' \
 		command man "$@"
 }
 
