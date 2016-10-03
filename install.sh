@@ -1,4 +1,5 @@
 #/usr/bin/zsh
+set -o nounset
 
 ###
 # Configuration
@@ -26,6 +27,7 @@ dependencies=(
 	"xz|no|no|command|unlzma"
 	"cabextract|no|no|command|cabextract"
 	"binutils|no|no|command|objdump"
+	"sl|no|no|file|/usr/bin/sl"
 	# Graphical stuff
 	"st|no|yes|command|st"
 	"Anonymous Pro font|no|yes|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
@@ -99,13 +101,15 @@ checkDependencies() {
 		case "${checktype}" in
 			'command')
 				hash "${checkarg}" &>/dev/null
+				okay="${?}"
 				;;
 			'file')
-				test -f "${arg}"
+				test -f "${checkarg}"
+				okay="${?}"
 				;;
 			'exec')
-				${arg} &>/dev/null
-				okay=$?
+				${checkarg} &>/dev/null
+				okay="${?}"
 				;;
 			*)
 				okay=255
