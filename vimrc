@@ -62,6 +62,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-markdown'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tmux-plugins/vim-tmux'
+Bundle 'rkitover/vimpager'
 Plugin 'vim-airline/vim-airline'
 call vundle#end()
 filetype plugin indent on

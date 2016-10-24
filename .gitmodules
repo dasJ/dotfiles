@@ -57,3 +57,6 @@
 [submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git"]
 	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git
 	url = https://github.com/dasJ/zsh-theme
+[submodule "vundle/vimpager"]
+	path = vundle/vimpager
+	url = https://github.com/rkitover/vimpager

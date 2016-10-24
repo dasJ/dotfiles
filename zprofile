@@ -8,7 +8,7 @@
 
 export EDITOR='vim'
 export VISUAL='vim'
-export PAGER='less'
+export PAGER='vimpager'
 
 #
 # Language
@@ -34,6 +34,7 @@ typeset -gU cdpath fpath mailpath path
 path=(
 	/usr/bin
 	$HOME/bin
+	$HOME/.dotfiles/vundle/vimpager
 	$path
 )
 

@@ -26,6 +26,8 @@ dependencies=(
 	"xz|no|no|command|unlzma"
 	"cabextract|no|no|command|cabextract"
 	"binutils|no|no|command|objdump"
+	# Vimpager
+	"pandoc|no|no|command|pandoc"
 	# Graphical stuff
 	"st|no|yes|command|st"
 	"Anonymous Pro font|no|yes|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
