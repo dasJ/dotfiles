@@ -78,6 +78,7 @@ alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,UUID,LABEL,FSTYPE,MOUNTPOINT'
 unalias rm # No annoying question for EVERY file
 alias rm='rm -I' # Less intrusive interactive mode
 alias spotifycover="gdbus call --session --dest org.mpris.MediaPlayer2.spotify --object-path /org/mpris/MediaPlayer2 --method org.freedesktop.DBus.Properties.Get org.mpris.MediaPlayer2.Player Metadata | egrep -o 'https://open.spotify.com/image/[a-fA-F0-9]*'"
+alias userctl='systemctl --user'
 # Math stuff
 alias bin2dec='cbase 2 10'
 alias bin2hex='cbase 2 16'
