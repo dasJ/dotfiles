@@ -74,7 +74,7 @@ alias tmuxsess='eval $(tmux switch-client \; show-environment -s)'
 alias yay='echo "\\(^o^)/"'
 unalias sl 2> /dev/null # sl
 alias sl='sl -a'
-alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,LABEL,FSTYPE,MOUNTPOINT'
+alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,UUID,LABEL,FSTYPE,MOUNTPOINT'
 unalias rm # No annoying question for EVERY file
 alias rm='rm -I' # Less intrusive interactive mode
 alias spotifycover="gdbus call --session --dest org.mpris.MediaPlayer2.spotify --object-path /org/mpris/MediaPlayer2 --method org.freedesktop.DBus.Properties.Get org.mpris.MediaPlayer2.Player Metadata | egrep -o 'https://open.spotify.com/image/[a-fA-F0-9]*'"
