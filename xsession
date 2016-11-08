@@ -6,5 +6,5 @@ for file in `find .config/autostart -executable -type f -or -type l -executable`
 	$file &
 done &
 
-exec /usr/bin/awesome
+exec /usr/bin/i3
 
