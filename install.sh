@@ -28,6 +28,7 @@ dependencies=(
 	"cabextract|no|no|command|cabextract"
 	"binutils|no|no|command|objdump"
 	"sl|no|no|file|/usr/bin/sl"
+	"vlock|no|no|command|vlock"
 	# Vimpager
 	"pandoc|no|no|command|pandoc"
 	# Graphical stuff

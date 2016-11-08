@@ -196,6 +196,7 @@ fi
 ## Try to launch tmux
 ################
 if hash tmux 2>/dev/null; then
+	export TERM='screen-256color'
 	# Works because shell automatically trims
 	trim() { return $1; }
 	# Outer tmux for mango
