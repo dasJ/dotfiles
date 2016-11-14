@@ -26,9 +26,8 @@ export HISTSIZE=500 # Size of history
 export SAVEHIST=$HISTSIZE
 export LSCOLORS="gxfxcxexbxegedabagacad" # http://geoff.greer.fm/lscolors/
 export LS_COLORS="di=36;40:ln=35;40:so=32;40:pi=34;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
-export EDITOR=vim # Default editor
 export SYSTEMD_EDITOR=$EDITOR # Editor for systemctl edit
-export REPORTTIME=5 # Report time after 5 secs of command run time
+export REPORTTIME=3 # Report time after 5 secs of command run time
 export LESSHISTFILE=/dev/null # Disable less history
 export USE_CCACHE=1 # Enable ccache for android
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
