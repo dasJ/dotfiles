@@ -91,6 +91,7 @@ alias hex2oct='cbase 16 8'
 alias oct2bin='cbase 8 2'
 alias oct2dec='cbase 8 10'
 alias oct2hex='cbase 8 16'
+export PAGER='vimpager' # Workaround for oh-my-zsh #5231
 alias more="$PAGER"
 alias less="$PAGER"
 alias zless="$PAGER"
