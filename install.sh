@@ -207,7 +207,8 @@ link() {
 }
 
 updatevim() {
-	vim +PlugInstall +qall
+	vim +PlugUpdate +qall
+	vim +PlugClean! +qall
 }
 
 updaterepos() {
