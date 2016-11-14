@@ -2,28 +2,9 @@
 	path = zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
 	ignore = dirty
-[submodule "vundle/Vundle.vim"]
-	path = vundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "vundle/molokai"]
-	path = vundle/molokai
-	url = https://github.com/tomasr/molokai.git
-[submodule "vundle/nerdtree"]
-	path = vundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vundle/vim-markdown"]
-	path = vundle/vim-markdown
-	url = https://github.com/tpope/vim-markdown.git
-[submodule "vundle/vim-nerdtree-tabs"]
-	path = vundle/vim-nerdtree-tabs
-	url = https://github.com/jistr/vim-nerdtree-tabs.git
-
 [submodule "tpm/tpm"]
 	path = tpm/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "vundle/tagbar"]
-	path = vundle/tagbar
-	url = https://github.com/majutsushi/tagbar.git
 [submodule "antigen/antigen"]
 	path = antigen/antigen
 	url = https://github.com/zsh-users/antigen
@@ -33,12 +14,6 @@
 [submodule "tpm/tmux-fpp"]
 	path = tpm/tmux-fpp
 	url = https://github.com/tmux-plugins/tmux-fpp
-[submodule "vundle/vim-tmux"]
-	path = vundle/vim-tmux
-	url = https://github.com/tmux-plugins/vim-tmux
-[submodule "vundle/vim-airline"]
-	path = vundle/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
 [submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions.git"]
 	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions.git
 	url = https://github.com/zsh-users/zsh-autosuggestions
@@ -57,6 +32,6 @@
 [submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git"]
 	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git
 	url = https://github.com/dasJ/zsh-theme
-[submodule "vundle/vimpager"]
-	path = vundle/vimpager
-	url = https://github.com/rkitover/vimpager
+[submodule "vim-plug"]
+	path = vim-plug
+	url = https://github.com/junegunn/vim-plug

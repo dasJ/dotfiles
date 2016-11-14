@@ -34,7 +34,7 @@ typeset -gU cdpath fpath mailpath path
 path=(
 	/usr/bin
 	$HOME/bin
-	$HOME/.dotfiles/vundle/vimpager
+	$HOME/.vim/plugged/vimpager
 	$path
 )
 

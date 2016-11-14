@@ -53,18 +53,16 @@ set t_Co=256 " Wow! Much color!
 " ###
 "
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tomasr/molokai'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-markdown'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'tmux-plugins/vim-tmux'
-Bundle 'rkitover/vimpager'
-Plugin 'vim-airline/vim-airline'
-call vundle#end()
+call plug#begin('~/.vim/plugged')
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-markdown'
+Plug 'rkitover/vimpager', { 'on': 'NeverCallThis' }
+Plug 'DrawIt'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Visual things
+Plug 'tomasr/molokai'
+Plug 'vim-airline/vim-airline'
+call plug#end()
 filetype plugin indent on
 
 " ###
@@ -155,7 +153,10 @@ endfunction
 " ###
 syntax enable
 highlight clear LinNr
-colorscheme molokai
+try
+	colorscheme molokai
+catch /^Vim\%((\a\+)\)\=:E185/
+endtry
 
 if &term =~ '256color'
 	" disable Background Color Erase (BCE) so that color schemes

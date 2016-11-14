@@ -56,14 +56,15 @@ linkfiles=(
 	"$HOME/.Xresources|yes"
 	"$HOME/.xsession|yes"
 	"$HOME/.config/htop/htoprc|no"
-	"$HOME/.vim/bundle:vundle|no"
 	"$HOME/.tmux/plugins:tpm|no"
 	"$HOME/.gtkrc-2.0|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:gtkrc-3.0|yes"
 	"$HOME/.config/pacaur/config:pacaur|no"
+	"$HOME/.vim/autoload/plug.vim:vim-plug/plug.vim|no"
 )
 # dir|graphical?
 mkdirs=(
+	"$HOME/.vim/autoload|no"
 	"$HOME/.vim/backup|no"
 	"$HOME/.vim/swap|no"
 )
@@ -205,6 +206,10 @@ link() {
 	done
 }
 
+updatevim() {
+	vim +PlugInstall +qall
+}
+
 updaterepos() {
 	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule update --init --recursive
 	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule foreach git pull origin master
@@ -221,4 +226,5 @@ echo ":: Updating submodules..."
 updaterepos
 echo ":: Linking..."
 link
-
+echo ":: Updating vim plugins..."
+updatevim
