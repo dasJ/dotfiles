@@ -50,6 +50,7 @@ bindkey -M vicmd v edit-command-line # v command for opening in $EDITOR
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
 zstyle ':completion:*' rehash true # Rehash every time
 bindkey -v # vim keybindings
+umask 027
 
 ###############
 ## Aliases
