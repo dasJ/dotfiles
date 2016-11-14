@@ -54,14 +54,12 @@ set t_Co=256 " Wow! Much color!
 "
 filetype off
 call plug#begin('~/.vim/plugged')
-Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-markdown'
+Plug 'majutsushi/tagbar' " Can not be loaded on demand because airline needs it
 Plug 'rkitover/vimpager', { 'on': 'NeverCallThis' }
-Plug 'DrawIt'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Visual things
-Plug 'tomasr/molokai'
-Plug 'vim-airline/vim-airline'
+Plug 'tomasr/molokai' " Not loaded on demand because I always need it
+Plug 'vim-airline/vim-airline' " See molokai
 call plug#end()
 filetype plugin indent on
 
@@ -102,6 +100,11 @@ if has ('folding')
 	onoremap <F9> <C-C>za
 	vnoremap <F9> zf
 endif
+
+" ###
+" Filetypes
+" ###
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " ###
 " Hex Mode (RO)
