@@ -10,12 +10,8 @@ fi
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='vimpager'
+path+="$HOME/bin"
+path+="$HOME/.vim/plugged/vimpager"
 
-path=(
-	/usr/bin
-	"$HOME/bin"
-	"$HOME/.vim/plugged/vimpager"
-	"$path"
-)
-
+readonly PATH
 export PATH
