@@ -57,6 +57,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'majutsushi/tagbar' " Can not be loaded on demand because airline needs it
 Plug 'rkitover/vimpager', { 'on': 'NeverCallThis' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 " Visual things
 Plug 'tomasr/molokai' " Not loaded on demand because I always need it
 Plug 'vim-airline/vim-airline' " See molokai
