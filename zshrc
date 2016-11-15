@@ -15,7 +15,7 @@ antigen bundle systemd
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle Tarrasch/zsh-autoenv
+antigen bundle kennethreitz/autoenv
 antigen theme dasJ/zsh-theme themes/janne
 antigen apply
 
