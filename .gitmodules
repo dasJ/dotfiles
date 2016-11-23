@@ -35,3 +35,6 @@
 [submodule "vim-plug"]
 	path = vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule "zsh/antigen/antigen"]
+	path = zsh/antigen/antigen
+	url = https://github.com/zsh-users/antigen

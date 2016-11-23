@@ -2,7 +2,7 @@
 gitcustom
 graphical
 nographical
-antigen/revert-info
-antigen/.cache
-antigen/antigen.log
 /thisislocal
+
+/zsh/antigen/.cache
+/zsh/antigen/repos

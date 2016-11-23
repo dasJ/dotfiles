@@ -3,8 +3,8 @@
 #
 
 # Source antigen
-export ADOTDIR=$HOME/.dotfiles/antigen
-source $HOME/.dotfiles/antigen/antigen/antigen.zsh
+export ADOTDIR=$HOME/.dotfiles/zsh/antigen
+source $ADOTDIR/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 antigen bundle common-aliases

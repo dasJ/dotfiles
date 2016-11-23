@@ -44,13 +44,11 @@ dependencies=(
 linkfiles=(
 	"$HOME/.gemrc|no"
 	"$HOME/.gitconfig|no"
-	"$HOME/.zprezto|no"
-	"$HOME/.zlogin|no"
-	"$HOME/.zlogout|no"
-	"$HOME/.zpreztorc|no"
-	"$HOME/.zprofile|no"
-	"$HOME/.zshenv|no"
-	"$HOME/.zshrc|no"
+	"$HOME/.zlogin:zsh/zlogin|no"
+	"$HOME/.zlogout:zsh/zlogout|no"
+	"$HOME/.zprofile:zsh/zprofile|no"
+	"$HOME/.zshenv:zsh/zshenv|no"
+	"$HOME/.zshrc:zsh/zshrc|no"
 	"$HOME/.vimrc|no"
 	"$HOME/.tmux.conf|no"
 	"$HOME/.Xresources|yes"
@@ -206,9 +204,10 @@ link() {
 	done
 }
 
-updatevim() {
+updatesw() {
 	vim +PlugUpdate +qall
 	vim +PlugClean! +qall
+	antigen update
 }
 
 updaterepos() {
@@ -227,5 +226,5 @@ echo ":: Updating submodules..."
 updaterepos
 echo ":: Linking..."
 link
-echo ":: Updating vim plugins..."
-updatevim
+echo ":: Updating plugins..."
+updatesw
