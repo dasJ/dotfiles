@@ -63,7 +63,7 @@ setopt mark_dirs # Append trailing / to all globbed directories
 setopt nomatch # Warn when nothing matched
 setopt rc_expand_param # foo=(a b c); foo${foo}bar -> fooabar foobbar foocbar
 setopt rematch_pcre # =~ will use PCRE expressions
-setopt warn_create_global # Warn when creating a global parameter in a function (disabled with typeset -g)
+#setopt warn_create_global # Warn when creating a global parameter in a function (disabled with typeset -g). Useful for testing scripts but annoying in normal shell operation.
 # History
 setopt append_history # Append to history instead of replacing it
 setopt hist_fcntl_lock # Use fcntl to lock history while writing
