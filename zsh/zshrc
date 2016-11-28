@@ -2,6 +2,12 @@
 # Executes commands at the start of an interactive session.
 #
 
+# Restore PATH
+if [ ! -z "$PATHBACKUP" ]; then
+	PATH="$PATHBACKUP"
+	export PATH
+fi
+
 # Source antigen
 export ADOTDIR=$HOME/.dotfiles/zsh/antigen
 source $ADOTDIR/antigen/antigen.zsh

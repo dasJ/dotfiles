@@ -13,5 +13,7 @@ export PAGER='vimpager'
 path+="$HOME/bin"
 path+="$HOME/.vim/plugged/vimpager"
 
-readonly PATH
+PATHBACKUP="$PATH"
+
+export PATHBACKUP
 export PATH
