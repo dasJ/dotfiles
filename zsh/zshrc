@@ -81,8 +81,6 @@ setopt check_jobs # Remind user of remaining jobs when quitting
 setopt long_list_jobs # List jobs in long format by default
 # Scripts and functions
 setopt function_arg_zero # Function name instead of zsh when using $0
-# Shell emulation
-setopt bsd_echo # Ignore backslashed escapes unless -e is specified
 
 bindkey "^R" history-incremental-search-backward # Ctrl+R for backwards search
 bindkey -M vicmd v edit-command-line # v command for opening in $EDITOR
