@@ -13,7 +13,6 @@ export ADOTDIR=$HOME/.dotfiles/zsh/antigen
 source $ADOTDIR/antigen/antigen.zsh
 
 antigen use oh-my-zsh
-antigen bundle golang
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-autosuggestions
@@ -52,7 +51,7 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 
 ###############
 ## Aliases
-################
+###############
 # ls
 alias ls='ls -h --color --group-directories-first'
 alias ll='ls -lF'
