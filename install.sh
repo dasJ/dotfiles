@@ -55,8 +55,8 @@ linkfiles=(
 	"$HOME/.xsession|yes"
 	"$HOME/.config/htop/htoprc|no"
 	"$HOME/.tmux/plugins:tpm|no"
-	"$HOME/.gtkrc-2.0|yes"
-	"$HOME/.config/gtk-3.0/settings.ini:gtkrc-3.0|yes"
+	"$HOME/.gtkrc-2.0:x11/gtkrc-2.0|yes"
+	"$HOME/.config/gtk-3.0/settings.ini:x11/gtkrc-3.0|yes"
 	"$HOME/.config/pacaur/config:pacaur|no"
 	"$HOME/.vim/autoload/plug.vim:vim-plug/plug.vim|no"
 )
