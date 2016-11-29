@@ -4,5 +4,7 @@ graphical
 nographical
 /thisislocal
 
+/zsh/antigen/antigen.log
 /zsh/antigen/.cache
 /zsh/antigen/repos
+/zsh/antigen/revert-info
