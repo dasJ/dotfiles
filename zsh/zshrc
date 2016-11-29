@@ -13,7 +13,6 @@ export ADOTDIR=$HOME/.dotfiles/zsh/antigen
 source $ADOTDIR/antigen/antigen.zsh
 
 antigen use oh-my-zsh
-antigen bundle common-aliases
 antigen bundle fasd
 antigen bundle golang
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -37,6 +36,7 @@ export USE_CCACHE=1 # Enable ccache for android
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 export KEYTIMEOUT=1 # No lag when switching vi modes (0.1 secs)
 export MINICOM='-D /dev/ttyUSB0 -b 115200 -c on -t linux'
+export PAGER='vimpager' # Workaround for oh-my-zsh #5231
 
 ###############
 ## zsh options
@@ -86,38 +86,40 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
 zstyle ':completion:*' rehash true # Rehash every time
 bindkey -v # vim keybindings
 umask 027 # More restrictive umask
+# Parse known_hosts for ssh completion
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 ###############
 ## Aliases
 ################
-alias zpool='sudo zpool'
-alias zfs='sudo zfs'
+# ls
 alias ls='ls -h --color --group-directories-first'
 alias ll='ls -lF'
 alias la='ll -a'
-alias duh='du -h' # Human readable output
-alias rcp='rsync -avP'
-alias rmv='rcp --remove-source-files'
+# other common things
+alias grep='grep --color'
 alias vi=vim
-alias p='ping -c4'
 alias why='whence -fa'
-alias subl=subl3
-alias tmux='tmux -2' # Color support
 alias fuck='sudo $(fc -nl -1)'
 alias dd='dd status=progress'
-alias tmuxsess='eval $(tmux switch-client \; show-environment -s)'
 alias yay='echo "\\(^o^)/"'
 unalias sl 2> /dev/null # sl
 alias sl='sl -a'
 alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,UUID,LABEL,FSTYPE,MOUNTPOINT'
-unalias rm # No annoying question for EVERY file
-alias rm='rm -I' # Less intrusive interactive mode
 alias userctl='systemctl --user'
-export PAGER='vimpager' # Workaround for oh-my-zsh #5231
+# rm
+alias rm='rm -I' # Less intrusive interactive mode
+# tmux
+alias tmux='tmux -2' # Color support
+alias tmuxsess='eval $(tmux switch-client \; show-environment -s)'
+# pager
 alias more="$PAGER"
 alias less="$PAGER"
 alias zless="$PAGER"
-
+# find
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+# git aliases
 source $HOME/.dotfiles/zsh/include/git-aliases.zsh
 
 if ! hash "tree" 2>/dev/null; then
