@@ -15,7 +15,6 @@ source $ADOTDIR/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle common-aliases
 antigen bundle fasd
-antigen bundle git
 antigen bundle golang
 antigen bundle systemd
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -132,6 +131,8 @@ export PAGER='vimpager' # Workaround for oh-my-zsh #5231
 alias more="$PAGER"
 alias less="$PAGER"
 alias zless="$PAGER"
+
+source $HOME/.dotfiles/zsh/include/git-aliases.zsh
 
 if ! hash "tree" 2>/dev/null; then
 	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
