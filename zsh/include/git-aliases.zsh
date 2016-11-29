@@ -8,7 +8,7 @@ alias gc='git commit -v'
 alias gc!='gc --amend'
 
 # git checkout
-alias gc='git checkout'
+alias gco='git checkout'
 
 # git branch
 alias gb='git branch'
