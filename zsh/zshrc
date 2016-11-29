@@ -16,7 +16,6 @@ antigen use oh-my-zsh
 antigen bundle common-aliases
 antigen bundle fasd
 antigen bundle golang
-antigen bundle systemd
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-autosuggestions
