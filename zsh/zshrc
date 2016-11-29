@@ -113,19 +113,6 @@ alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,UUID,LABEL,FSTYPE,MOUNTPOINT'
 unalias rm # No annoying question for EVERY file
 alias rm='rm -I' # Less intrusive interactive mode
 alias userctl='systemctl --user'
-# Math stuff
-alias bin2dec='cbase 2 10'
-alias bin2hex='cbase 2 16'
-alias bin2oct='cbase 2 8'
-alias dec2bin='cbase 10 2'
-alias dec2hex='cbase 10 16'
-alias dec2oct='cbase 10 8'
-alias hex2bin='cbase 16 2'
-alias hex2dec='cbase 16 10'
-alias hex2oct='cbase 16 8'
-alias oct2bin='cbase 8 2'
-alias oct2dec='cbase 8 10'
-alias oct2hex='cbase 8 16'
 export PAGER='vimpager' # Workaround for oh-my-zsh #5231
 alias more="$PAGER"
 alias less="$PAGER"
@@ -165,10 +152,6 @@ function extract () {
 	else
 		echo "'$1' is not a valid file"
 	fi
-}
-
-function cbase() {
-	echo "obase=$2;ibase=$1;$3" | bc
 }
 
 mkcd() {
