@@ -40,3 +40,5 @@ setopt check_jobs # Remind user of remaining jobs when quitting
 setopt long_list_jobs # List jobs in long format by default
 # Scripts and functions
 setopt function_arg_zero # Function name instead of zsh when using $0
+# Prompt
+setopt prompt_subst # Allow variables in prompt

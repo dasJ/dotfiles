@@ -2,119 +2,63 @@
 # Executes commands at the start of an interactive session.
 #
 
+###############
+## Prepare stuff
+###############
 # Restore PATH
 if [ ! -z "$PATHBACKUP" ]; then
 	PATH="$PATHBACKUP"
 	export PATH
 fi
-
+# This will be needed later
+zshconf="$HOME/.dotfiles/zsh"
+zshincl="$zshconf/include"
+# autoad stuff as early as possible
+source "$zshincl/autoload.zsh"
 # Source antigen
-export ADOTDIR=$HOME/.dotfiles/zsh/antigen
-source $ADOTDIR/antigen/antigen.zsh
-
-antigen use oh-my-zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions src
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle kennethreitz/autoenv
-antigen theme dasJ/zsh-theme themes/janne
-antigen apply
+source "$zshincl/antigen.zsh"
 
 ###############
-## Variables
+## Settings
 ###############
-export HISTSIZE=500 # Size of history
-export SAVEHIST=$HISTSIZE
-export LSCOLORS="gxfxcxexbxegedabagacad" # http://geoff.greer.fm/lscolors/
+# Nicer ls colors
 export LS_COLORS="di=36;40:ln=35;40:so=32;40:pi=34;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
-export SYSTEMD_EDITOR=$EDITOR # Editor for systemctl edit
-export REPORTTIME=3 # Report time after 5 secs of command run time
-export LESSHISTFILE=/dev/null # Disable less history
-export USE_CCACHE=1 # Enable ccache for android
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-export KEYTIMEOUT=1 # No lag when switching vi modes (0.1 secs)
+# Set systemd's editor
+export SYSTEMD_EDITOR=$EDITOR
+# Default settings for minicom
 export MINICOM='-D /dev/ttyUSB0 -b 115200 -c on -t linux'
-export PAGER='vimpager' # Workaround for oh-my-zsh #5231
+# More restrictive umask
+umask 027
+# Aliases
+source "$zshincl/aliases.zsh"
+# SSH agent
+source "$zshincl/ssh-agent.zsh"
 
 ###############
 ## zsh options
 ###############
-source $HOME/.dotfiles/zsh/include/setopt.zsh
-bindkey "^R" history-incremental-search-backward # Ctrl+R for backwards search
-bindkey -M vicmd v edit-command-line # v command for opening in $EDITOR
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # ls colors
-zstyle ':completion:*' rehash true # Rehash every time
-bindkey -v # vim keybindings
-umask 027 # More restrictive umask
-# Parse known_hosts for ssh completion
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+# setopts
+source "$zshincl/setopt.zsh"
+# Set terminal title
+source "$zshincl/title.zsh"
+# Configure keys
+source "$zshincl/keys.zsh"
+# Configure completion
+source "$zshincl/completion.zsh"
+# Highlighters
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+# History file
+HISTFILE=~/.zsh_history
+# Size of history
+HISTSIZE=1000
+SAVEHIST="$HISTSIZE"
+# Report time after 3 secs of command run time TODO Why is this not working anymore
+REPORTTIME=3
 
-###############
-## Aliases
-###############
-# ls
-alias ls='ls -h --color --group-directories-first'
-alias ll='ls -lF'
-alias la='ll -a'
-# other common things
-alias grep='grep --color'
-alias vi=vim
-alias why='whence -fa'
-alias fuck='sudo $(fc -nl -1)'
-alias dd='dd status=progress'
-alias yay='echo "\\(^o^)/"'
-unalias sl 2> /dev/null # sl
-alias sl='sl -a'
-alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,UUID,LABEL,FSTYPE,MOUNTPOINT'
-alias userctl='systemctl --user'
-# rm
-alias rm='rm -I' # Less intrusive interactive mode
-# tmux
-alias tmux='tmux -2' # Color support
-alias tmuxsess='eval $(tmux switch-client \; show-environment -s)'
-# pager
-alias more="$PAGER"
-alias less="$PAGER"
-alias zless="$PAGER"
-# find
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
-# git aliases
-source $HOME/.dotfiles/zsh/include/git-aliases.zsh
-
-if ! hash "tree" 2>/dev/null; then
-	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
-fi
 ###############
 ## Functions
 ################
-
-function extract () {
-	if [ -f $1 ] ; then
-		case $1 in
-			*.tar.bz2) tar xjf $1 ;;
-			*.tar.gz) tar xzf $1 ;;
-			*.tar.xz) tar xJf $1 ;;
-			*.bz2) bunzip2 $1 ;;
-			*.rar) unrar x $1 ;;
-			*.gz) gunzip $1 ;;
-			*.tar) tar xf $1 ;;
-			*.tbz2) tar xjf $1 ;;
-			*.tgz) tar xzf $1 ;;
-			*.zip) unzip $1 ;;
-			*.Z) uncompress $1 ;;
-			*.war) unzip $1 ;;
-			*.7z) 7z x $1 ;;
-			*.wim) 7z x $1 ;;
-			*.lzma) unlzma $1 ;;
-			*.xz) unxz $1 ;;
-			*.exe) cabextract $1 ;;
-			*) echo "'$1' cannot be extracted via extract()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
-}
+source "$zshincl/extract.zsh"
 
 mkcd() {
 	[[ $1 ]] || return 0
@@ -148,24 +92,11 @@ deps() {
 }
 
 ###############
-## SSH Agent
-################
-if [ -z "$SSH_AUTH_SOCK" ]; then
-	mkdir -p "$HOME/.ssh"
-	export SSH_AUTH_SOCK="$HOME/.ssh/.auth_socket"
-fi
-if [ ! -S "$SSH_AUTH_SOCK" ]; then
-	`ssh-agent -a $SSH_AUTH_SOCK` > /dev/null 2>&1
-	echo $SSH_AGENT_PID > $HOME/.ssh/.auth_pid
-fi
-if [ -z "$SSH_AGENT_PID" ]; then
-	export SSH_AGENT_PID=`cat $HOME/.ssh/.auth_pid`
-fi
-
-###############
 ## Try to launch tmux
 ################
+# TODO Move this to an own file
 if hash tmux 2>/dev/null; then
+	alias tmux='tmux -2' # Color support
 	export TERM='screen-256color'
 	# Works because shell automatically trims
 	trim() { return $1; }
