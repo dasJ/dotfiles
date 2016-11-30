@@ -206,7 +206,7 @@ link() {
 updatesw() {
 	vim +PlugUpdate +qall
 	vim +PlugClean! +qall
-	antigen update
+	zsh -c "zshconf=${BASEDIR}/zsh; source ${BASEDIR}/zsh/include/antigen.zsh && antigen update"
 }
 
 updaterepos() {
