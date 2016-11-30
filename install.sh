@@ -210,6 +210,7 @@ updatesw() {
 }
 
 updaterepos() {
+	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule init
 	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule update --init --recursive
 	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule foreach git pull origin master
 }
