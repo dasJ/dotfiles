@@ -51,7 +51,7 @@ linkfiles=(
 	"$HOME/.zshrc:zsh/zshrc|no"
 	"$HOME/.vimrc|no"
 	"$HOME/.tmux.conf|no"
-	"$HOME/.xsession:x11/xsession|yes"
+	"$HOME/.xinitrc:x11/xinitrc|yes"
 	"$HOME/.config/htop/htoprc|no"
 	"$HOME/.tmux/plugins:tpm|no"
 	"$HOME/.gtkrc-2.0:x11/gtkrc-2.0|yes"
