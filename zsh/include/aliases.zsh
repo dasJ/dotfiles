@@ -46,6 +46,7 @@ alias dd='dd status=progress'
 alias yay='echo "\\(^o^)/"'
 alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,UUID,LABEL,FSTYPE,MOUNTPOINT'
 alias userctl='systemctl --user'
+alias :q='exit'
 
 # Includes
 source "$zshincl/git-aliases.zsh"
