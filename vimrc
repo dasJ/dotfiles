@@ -169,3 +169,9 @@ if &term =~ '256color'
 	set t_ut=
 endif
 
+if exists("vimpager") && vimpager == 1
+	set nofoldenable
+	set nonumber
+	let g:airline#extensions#tabline#enabled = 0
+endif
+
