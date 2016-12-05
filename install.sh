@@ -49,7 +49,7 @@ linkfiles=(
 	"$HOME/.zprofile:zsh/zprofile|no"
 	"$HOME/.zshenv:zsh/zshenv|no"
 	"$HOME/.zshrc:zsh/zshrc|no"
-	"$HOME/.vimrc|no"
+	"$HOME/.vimrc:vim/vimrc|no"
 	"$HOME/.tmux.conf|no"
 	"$HOME/.xinitrc:x11/xinitrc|yes"
 	"$HOME/.config/htop/htoprc|no"
@@ -57,7 +57,7 @@ linkfiles=(
 	"$HOME/.gtkrc-2.0:x11/gtkrc-2.0|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:x11/gtkrc-3.0|yes"
 	"$HOME/.config/pacaur/config:pacaur|no"
-	"$HOME/.vim/autoload/plug.vim:vim-plug/plug.vim|no"
+	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
 )
 # dir|graphical?
 mkdirs=(

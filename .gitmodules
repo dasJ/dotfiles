@@ -33,7 +33,7 @@
 	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git
 	url = https://github.com/dasJ/zsh-theme
 [submodule "vim-plug"]
-	path = vim-plug
+	path = vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
 [submodule "zsh/antigen/antigen"]
 	path = zsh/antigen/antigen
