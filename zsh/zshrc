@@ -33,6 +33,8 @@ export MINICOM='-D /dev/ttyUSB0 -b 115200 -c on -t linux'
 umask 027
 # Aliases
 source "$zshincl/aliases.zsh"
+# Functions
+source "$zshincl/functions.zsh"
 # SSH agent
 source "$zshincl/ssh-agent.zsh"
 
@@ -56,40 +58,4 @@ HISTSIZE=1000
 SAVEHIST="$HISTSIZE"
 # Report time after 3 secs of command run time TODO Why is this not working anymore
 REPORTTIME=3
-
-###############
-## Functions
-################
-source "$zshincl/extract.zsh"
-
-mkcd() {
-	[[ $1 ]] || return 0
-	[[ -d $1 ]] || mkdir -vp "$1"
-	[[ -d $1 ]] && builtin cd "$1"
-}
-
-kopt() {
-	[[ $1 ]] || return 1
-	zgrep -i "${1}" /proc/config.gz
-}
-
-deps() {
-	local bin dir
-	if [[ -f "$1" ]]; then
-		bin=$1
-	elif bin=$(type -P "$1"); then
-		:
-	else
-		# maybe its a lib?
-		[[ -f /usr/lib/$1 ]] && bin=/usr/lib/$1
-	fi
-	if [[ $bin && $1 != "$bin" ]]; then
-		printf '%s => %s\n\n' "$1" "$bin"
-	fi
-	if [[ -z $bin ]]; then
-		echo "error: binary not found: $1"
-		return 1
-	fi
-	objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
-}
 
