@@ -13,6 +13,8 @@ fi
 # This will be needed later
 zshconf="$HOME/.dotfiles/zsh"
 zshincl="$zshconf/include"
+# Start tmux asap so there is a low delay
+source "$zshincl/tmux.zsh"
 # autoad stuff as early as possible
 source "$zshincl/autoload.zsh"
 # Source antigen
@@ -91,50 +93,3 @@ deps() {
 	objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
 }
 
-###############
-## Try to launch tmux
-################
-# TODO Move this to an own file
-if hash tmux 2>/dev/null; then
-	alias tmux='tmux -2' # Color support
-	export TERM='screen-256color'
-	# Works because shell automatically trims
-	trim() { return $1; }
-	# Outer tmux for mango
-	if [ "`hostname`" = "mango" ] && [[ -z "$TMUX" ]]; then
-		tmux start-server
-		session_id="outer-`date +%Y%m%d%H%M%S`"
-		tmux new-session -d -s "$session_id" "journalctl -f"
-		tmux set-option -t "$session_id" status off
-		tmux split-window -t "$session_id" -v -p 90 "`getent passwd $USER | cut -d: -f7`; tmux kill-session -t $session_id"
-		tmux set-option -t "$session_id" -s prefix M-y
-		tmux set-option -t "$session_id" -s mouse off
-		tmux set-option -t "$session_id" -s pane-border-fg colour235
-		tmux set-option -t "$session_id" -s pane-active-border-fg colour235
-		#tmux unbind -t "$session_id" C-a
-		exec tmux attach-session -t "$session_id"
-		#tmux kill-session -t "$session_id" 2>/dev/null
-		exit
-	fi
-	# Unset TMUX if we just spawned the outer session and want to spawn the inner session
-	session="`tmux display-message -p '#S'`"
-	if [ "`hostname`" = "mango" ] && [ "${session:0:5}" = "outer" ]; then
-		unset TMUX
-	fi
-	# TODO Kill old sessions
-	# Create new base session
-	if [[ `tmux ls | grep "^base" | wc -l` == 0 ]]; then
-		tmux new-session -s base
-		exit
-	else
-		# Base session exists, attach to it
-		# Don't spawn tmux inside the inner session
-		if [[ -z "$TMUX" ]]; then
-			session_id=`date +%Y%m%d%H%M%S`
-			tmux new-session -d -t base -s $session_id
-			exec tmux attach-session -t $session_id
-			#tmux kill-session -t $session_id
-			exit
-		fi
-	fi
-fi

@@ -37,6 +37,10 @@ alias -g T='| tail'
 alias -g G='| grep'
 alias -g NUL='&>/dev/null'
 
+# tmux
+alias tmux='tmux -2' # Colors
+alias outertmux='tmux -L "$tmuxname"'
+
 # Misc. stuff
 alias vi=vim
 alias nano=vim
