@@ -58,4 +58,6 @@ HISTSIZE=1000
 SAVEHIST="$HISTSIZE"
 # Report time after 3 secs of command run time TODO Why is this not working anymore
 REPORTTIME=3
+# local options
+test -f "$zshincl/local.zsh" && source "$_"
 
