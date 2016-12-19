@@ -5,38 +5,11 @@ set -o nounset
 # Configuration
 ###
 
-# name|required?|graphical?|test|testparam
+# name|test|testparam
 dependencies=(
-	# Requirements
-	"zsh|yes|no|command|zsh"
-	"git|yes|no|command|git"
-	# Optional stuff
-	"vim|no|no|command|vim"
-	"tmux|no|no|command|tmux"
-	"pacaur|no|no|command|pacaur"
-	"ctags for vim|no|no|command|ctags"
-	"htop|no|no|command|htop"
-	"fpp|no|no|command|fpp"
-	"bc|no|no|command|bc"
-	"tar|no|no|command|tar"
-	"bzip2|no|no|command|bunzip2"
-	"unrar|no|no|command|unrar"
-	"gzip|no|no|command|gunzip"
-	"unzip|no|no|command|unzip"
-	"p7zip|no|no|command|7z"
-	"xz|no|no|command|unlzma"
-	"cabextract|no|no|command|cabextract"
-	"binutils|no|no|command|objdump"
-	"sl|no|no|file|/usr/bin/sl"
-	"vlock|no|no|command|vlock"
-	# Vimpager
-	"pandoc|no|no|command|pandoc"
-	# Graphical stuff
-	"st|no|yes|command|st"
-	"Anonymous Pro font|no|yes|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
-	"numix theme|no|yes|file|/usr/share/themes/Numix/index.theme"
-	# Stuff I like
-	"curl|no|no|command|curl"
+	"zsh|command|zsh"
+	"git|command|git"
+	"vim|command|vim"
 )
 
 
@@ -76,27 +49,16 @@ BASEDIR="$(readlink -f $(dirname $0))"
 ###
 
 checkDependencies() {
-	local optionalMissing=0
 	local requiredMissing=0
 
 	for dependency in "${dependencies[@]}"; do
 		# Parse this dependency
 		prettyname="`echo "${dependency}" | awk -F '|' '{ print $1 }'`"
-		isoptional="`echo "${dependency}" | awk -F '|' '{ print $2 }'`"
-		isgraphical="`echo "${dependency}" | awk -F '|' '{ print $3 }'`"
-		checktype="`echo "${dependency}" | awk -F '|' '{ print $4 }'`"
-		checkarg="`echo "${dependency}" | awk -F '|' '{ print $5 }'`"
-		# Ignore if not graphical
-		if [ -f "${BASEDIR}/nographical" ]; then
-			if [ "${isgraphical}" == 'yes' ]; then
-				continue
-			fi
-		fi
+		checktype="`echo "${dependency}" | awk -F '|' '{ print $2 }'`"
+		checkarg="`echo "${dependency}" | awk -F '|' '{ print $3 }'`"
 		# Print a nice message
 		msgsuffix=''
-		test "${isgraphical}" == 'yes' && msgsuffix="${msgsuffix} (graphical)"
-		test "${isoptional}" != 'yes' && msgsuffix="${msgsuffix} (optional)"
-		echo -ne ":: [ .... ] Checking for ${prettyname} ${msgsuffix}"
+		echo -ne ":: [ .... ] Checking for ${prettyname}"
 		# Perform the actual check
 		okay=0
 		case "${checktype}" in
@@ -120,29 +82,13 @@ checkDependencies() {
 			echo -ne "\r:: [ \e[00;32mokay\e[00m ]\v\r"
 		else
 			echo -ne "\r:: [ \e[00;31mfail\e[00m ]\v\r"
-			if [ "${isoptional}" == 'yes' ]; then
-				requiredMissing=1
-			else
-				optionalMissing=1
-			fi
+			requiredMissing=1
 		fi
 	done
 	# Output results
 	if [ "${requiredMissing}" -eq 1 ]; then
 		echo "Could not find all required depdendencies."
-		if [ "${optionalMissing}" -eq 1 ]; then
-			echo "Some optional dependencies are missing as well."
-		fi
 		exit 1
-	fi
-	if [ "${optionalMissing}" -eq 1 ]; then
-		while true; do
-			read -p "Not all optional dependencies were found. Continue anyway? [yn] " yn
-			case "${yn}" in
-				[Yy]* ) break ;;
-				[Nn]* ) exit 1 ;;
-			esac
-		done
 	fi
 }
 
