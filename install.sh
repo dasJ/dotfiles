@@ -140,11 +140,11 @@ link() {
 		if [ "`echo "$file" | awk -F '|' '{print $2}'`" == 'yes' ]; then
 			if [ -f "${BASEDIR}/graphical" ]; then
 				mkdir -pv "`dirname "${filename}"`"
-				ln -svT "${BASEDIR}/${linkfrom}" "${filename}"
+				ln -svTf "${BASEDIR}/${linkfrom}" "${filename}"
 			fi
 		else
 			mkdir -pv "`dirname "${filename}"`"
-			ln -svT "${BASEDIR}/${linkfrom}" "${filename}"
+			ln -svTf "${BASEDIR}/${linkfrom}" "${filename}"
 		fi
 	done
 }
