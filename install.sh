@@ -37,6 +37,7 @@ mkdirs=(
 	"$HOME/.vim/autoload|no"
 	"$HOME/.vim/backup|no"
 	"$HOME/.vim/swap|no"
+	"$HOME/.config/systemd/user"
 )
 
 ###
@@ -147,6 +148,16 @@ link() {
 			ln -svTf "${BASEDIR}/${linkfrom}" "${filename}"
 		fi
 	done
+	# systemd user units
+	for file in ${BASEDIR}/systemd/*; do
+		ln -svTf "${file}" "${HOME}/.config/systemd/user/$(basename "${file}")"
+	done
+	if [ -f "${BASEDIR}/graphical" ]; then
+		ln -svTf 'graphical.target' "${HOME}/.config/systemd/user/default.target"
+	else
+		ln -svTf 'headless.target' "${HOME}/.config/systemd/user/default.target"
+	fi
+	systemctl --user daemon-reload
 }
 
 updatesw() {

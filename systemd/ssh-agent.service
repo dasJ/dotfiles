@@ -1,0 +1,12 @@
+[Unit]
+Description=SSH Agent
+ConditionFileIsExecutable=/usr/bin/ssh-agent
+
+[Service]
+Type=forking
+ExecStart=/bin/sh -c %h/.dotfiles/bin/start-ssh-agent
+PIDFile=%h/.ssh/.auth_pid
+Restart=on-failure
+
+[Install]
+WantedBy=basic.target
