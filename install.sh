@@ -51,6 +51,38 @@ units=(
 BASEDIR="$(readlink -f $(dirname $0))"
 
 ###
+# Colors, taken from makepkg
+###
+if tput setaf 0 &>/dev/null; then
+	ALL_OFF="$(tput sgr0)"
+	BOLD="$(tput bold)"
+	BLUE="${BOLD}$(tput setaf 4)"
+	GREEN="${BOLD}$(tput setaf 2)"
+	RED="${BOLD}$(tput setaf 1)"
+else
+	ALL_OFF="\e[0m"
+	BOLD="\e[1m"
+	BLUE="${BOLD}\e[34m"
+	GREEN="${BOLD}\e[32m"
+	RED="${BOLD}\e[31m"
+fi
+msg() {
+	local mesg="${1}"
+	shift
+	printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
+}
+msg2() {
+	local mesg="${1}"
+	shift
+	printf "${BLUE}  ->${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
+}
+error() {
+	local mesg="${1}"
+	shift
+	printf "${RED}==> ERROR:${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&2
+}
+
+###
 # Functions
 ###
 
@@ -64,7 +96,7 @@ checkDependencies() {
 		checkarg="`echo "${dependency}" | awk -F '|' '{ print $3 }'`"
 		# Print a nice message
 		msgsuffix=''
-		echo -ne ":: [ .... ] Checking for ${prettyname}"
+		echo -ne "    [ .... ] Checking for ${prettyname}${ALL_OFF}"
 		# Perform the actual check
 		okay=0
 		case "${checktype}" in
@@ -85,26 +117,26 @@ checkDependencies() {
 		esac
 		# Process check result
 		if [ "${okay}" -eq 0 ]; then
-			echo -ne "\r:: [ \e[00;32mokay\e[00m ]\v\r"
+			echo -ne "\r    [ ${GREEN}okay${ALL_OFF} ]\v\r"
 		else
-			echo -ne "\r:: [ \e[00;31mfail\e[00m ]\v\r"
+			echo -ne "\r    [ ${RED}fail${ALL_OFF} ]\v\r"
 			requiredMissing=1
 		fi
 	done
 	# Output results
 	if [ "${requiredMissing}" -eq 1 ]; then
-		echo "Could not find all required depdendencies."
+		error "Could not find all required depdendencies."
 		exit 1
 	fi
 }
 
 creategitconfig() {
 	if ! [ -f "${BASEDIR}/gitcustom" ]; then
-		read -p "Please enter your name for the git config: " name
-		read -p "Please enter your mail for the git config: " email
+		read -p "    Please enter your name for the git config: " name
+		read -p "    Please enter your mail for the git config: " email
 		echo -e "[user]\n\tname = ${name}\n\temail = ${email}\n" > "${BASEDIR}/gitcustom"
 	else
-		echo ":: git configuration already exists."
+		msg2 "git configuration already exists."
 	fi
 }
 
@@ -157,19 +189,23 @@ link() {
 
 systemd() {
 	# Link
+	msg2 'Link'
 	for file in ${BASEDIR}/systemd/*; do
 		ln -svTf "${file}" "${HOME}/.config/systemd/user/$(basename "${file}")"
 	done
 	# Default target
 	# `systemctl set-default` can not be used because graphical.target and headless.target are symlinks
+	msg2 'Default'
 	if [ -f "${BASEDIR}/graphical" ]; then
 		ln -svTf 'graphical.target' "${HOME}/.config/systemd/user/default.target"
 	else
 		ln -svTf 'headless.target' "${HOME}/.config/systemd/user/default.target"
 	fi
 	# Reload
+	msg2 'Reload'
 	systemctl --user daemon-reload
 	# Enable units
+	msg2 'Enable'
 	for line in "${units[@]}"; do
 		unit="`echo "${line}" | awk -F '|' '{print $1}'`"
 		graphical="`echo "${line}" | awk -F '|' '{print $2}'`"
@@ -184,8 +220,10 @@ systemd() {
 }
 
 updatesw() {
+	msg2 'vim'
 	vim +PlugUpdate +qall
 	vim +PlugClean! +qall
+	msg2 'zsh'
 	zsh -c "zshconf=${BASEDIR}/zsh; source ${BASEDIR}/zsh/include/antigen.zsh && antigen update"
 }
 
@@ -195,18 +233,18 @@ updaterepos() {
 	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule foreach git pull origin master
 }
 
-echo ":: Asking for configuration..."
+msg "Asking for configuration..."
 creategitconfig
 creategraphicalconfig
-echo ":: Checking requirements..."
+msg "Checking requirements..."
 checkDependencies
-echo ":: Creating empty directories..."
+msg "Creating empty directories..."
 makedirs
-echo ":: Updating submodules..."
+msg "Updating submodules..."
 updaterepos
-echo ":: Linking..."
+msg " Linking..."
 link
-echo ":: Configuring systemd..."
+msg "Configuring systemd..."
 systemd
-echo ":: Updating plugins..."
+msg "Updating plugins..."
 updatesw
