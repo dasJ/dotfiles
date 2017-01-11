@@ -40,6 +40,11 @@ mkdirs=(
 	"$HOME/.config/systemd/user"
 )
 
+# unit|graphical?
+units=(
+	'ssh-agent.service|no'
+)
+
 ###
 # Variables
 ###
@@ -148,16 +153,34 @@ link() {
 			ln -svTf "${BASEDIR}/${linkfrom}" "${filename}"
 		fi
 	done
-	# systemd user units
+}
+
+systemd() {
+	# Link
 	for file in ${BASEDIR}/systemd/*; do
 		ln -svTf "${file}" "${HOME}/.config/systemd/user/$(basename "${file}")"
 	done
+	# Default target
+	# `systemctl set-default` can not be used because graphical.target and headless.target are symlinks
 	if [ -f "${BASEDIR}/graphical" ]; then
 		ln -svTf 'graphical.target' "${HOME}/.config/systemd/user/default.target"
 	else
 		ln -svTf 'headless.target' "${HOME}/.config/systemd/user/default.target"
 	fi
+	# Reload
 	systemctl --user daemon-reload
+	# Enable units
+	for line in "${units[@]}"; do
+		unit="`echo "${line}" | awk -F '|' '{print $1}'`"
+		graphical="`echo "${line}" | awk -F '|' '{print $2}'`"
+		if [ "${graphical}" == 'yes' ]; then
+			if [ -f "${BASEDIR}/graphical" ]; then
+				systemctl --user enable "${unit}"
+			fi
+		else
+			systemctl --user enable "${unit}"
+		fi
+	done
 }
 
 updatesw() {
@@ -183,5 +206,7 @@ echo ":: Updating submodules..."
 updaterepos
 echo ":: Linking..."
 link
+echo ":: Configuring systemd..."
+systemd
 echo ":: Updating plugins..."
 updatesw
