@@ -88,11 +88,11 @@ for sw in "${software[@]}"; do
 	# Print a nice message
 	msgsuffix=''
 	test "${isgraphical}" == 'yes' && msgsuffix="${msgsuffix} (graphical)"
-	echo -ne ":: [ ${_color_bold}....${_color_none} ] Checking for ${_color_bold}${prettyname}${_color_none}${msgsuffix}"
+	echo -ne "    [ ${_color_bold}....${_color_none} ] Checking for ${_color_bold}${prettyname}${_color_none}${msgsuffix}"
 	# Ignore if not graphical
 	if [ -f "$(readlink -f $(dirname "$0"))/nographical" ]; then
 		if [ "${isgraphical}" == 'yes' ]; then
-			echo -ne "\r:: [ ${_color_yellow}skip${_color_none}\v\r"
+			echo -ne "\r    [ ${_color_yellow}skip${_color_none}\v\r"
 			continue
 		fi
 	fi
@@ -116,8 +116,8 @@ for sw in "${software[@]}"; do
 	esac
 	# Process check result
 	if [ "${okay}" -eq 0 ]; then
-		echo -ne "\r:: [ ${_color_green}okay${_color_none}\v\r"
+		echo -ne "\r    [ ${_color_green}okay${_color_none}\v\r"
 	else
-		echo -ne "\r:: [ ${_color_red}miss${_color_none}\v\r"
+		echo -ne "\r    [ ${_color_red}miss${_color_none}\v\r"
 	fi
 done
