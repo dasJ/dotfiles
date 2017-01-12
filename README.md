@@ -22,3 +22,25 @@ Note to self:
 - `x11/` - Configuration for graphical tools
 - `zsh/` - zsh configuration and plugin manager
 
+##systemd user units
+```
++------------------+ +-----------------+
+|                  | |                 |
+| graphical.target | | headless.target |
+|                  | |                 |
++--------+---------+ +--------------+--+
+         |                          |
+         |   +--------------+       |
+         |   |              |       |
+         +-->| basic.target |<------+
+             |              |
+             +------+-------+
+                    |
+         +----------+
+         v
++-------------------+
+|                   |
+| ssh-agent.service |
+|                   |
++-------------------+
+```
