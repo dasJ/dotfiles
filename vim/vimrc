@@ -176,3 +176,4 @@ if exists("vimpager")
 	let g:airline#extensions#tabline#enabled = 0
 endif
 
+source ~/.dotfiles/local/vim

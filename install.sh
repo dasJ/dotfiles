@@ -130,24 +130,29 @@ checkDependencies() {
 		exit 1
 	fi
 }
+createlocalconfig() {
+	mkdir -pv "${BASEDIR}/local"
+	touch "${BASEDIR}/local/zsh"
+	touch "${BASEDIR}/local/vim"
+}
 
 creategitconfig() {
-	if ! [ -f "${BASEDIR}/gitcustom" ]; then
+	if ! [ -f "${BASEDIR}/local/gitcustom" ]; then
 		read -p "    Please enter your name for the git config: " name
 		read -p "    Please enter your mail for the git config: " email
-		echo -e "[user]\n\tname = ${name}\n\temail = ${email}\n" > "${BASEDIR}/gitcustom"
+		echo -e "[user]\n\tname = ${name}\n\temail = ${email}\n" > "${BASEDIR}/local/gitcustom"
 	else
 		msg2 "git configuration already exists."
 	fi
 }
 
 creategraphicalconfig() {
-	if ! [ -f "${BASEDIR}/graphical" ] && ! [ -f "${BASEDIR}/nographical" ]; then
+	if ! [ -f "${BASEDIR}/local/graphical" ] && ! [ -f "${BASEDIR}/local/nographical" ]; then
 		read -p "Installing in a graphical environment? [yN] " -n 1 reply
 		if [[ "${reply}" =~ ^[YyJj] ]]; then
-			touch "${BASEDIR}/graphical"
+			touch "${BASEDIR}/local/graphical"
 		else
-			touch "${BASEDIR}/nographical"
+			touch "${BASEDIR}/local/nographical"
 		fi
 	fi
 }
@@ -157,7 +162,7 @@ makedirs() {
 		path="`echo "${mkdir}" | awk -F '|' '{print $1}'`"
 		graphical="`echo "${mkdir}" | awk -F '|' '{print $2}'`"
 		if [ "${graphical}" == 'yes' ]; then
-			if [ -f "${BASEDIR}/graphical" ]; then
+			if [ -f "${BASEDIR}/local/graphical" ]; then
 				mkdir -pv "${path}"
 			fi
 		else
@@ -177,7 +182,7 @@ link() {
 		fi
 		# Ensure directory exists
 		if [ "`echo "$file" | awk -F '|' '{print $2}'`" == 'yes' ]; then
-			if [ -f "${BASEDIR}/graphical" ]; then
+			if [ -f "${BASEDIR}/local/graphical" ]; then
 				mkdir -pv "`dirname "${filename}"`"
 				ln -svTf "${BASEDIR}/${linkfrom}" "${filename}"
 			fi
@@ -197,7 +202,7 @@ systemd() {
 	# Default target
 	# `systemctl set-default` can not be used because graphical.target and headless.target are symlinks
 	msg2 'Default'
-	if [ -f "${BASEDIR}/graphical" ]; then
+	if [ -f "${BASEDIR}/local/graphical" ]; then
 		ln -svTf 'graphical.target' "${HOME}/.config/systemd/user/default.target"
 	else
 		ln -svTf 'headless.target' "${HOME}/.config/systemd/user/default.target"
@@ -211,7 +216,7 @@ systemd() {
 		unit="`echo "${line}" | awk -F '|' '{print $1}'`"
 		graphical="`echo "${line}" | awk -F '|' '{print $2}'`"
 		if [ "${graphical}" == 'yes' ]; then
-			if [ -f "${BASEDIR}/graphical" ]; then
+			if [ -f "${BASEDIR}/local/graphical" ]; then
 				systemctl --user enable "${unit}"
 			fi
 		else
@@ -237,6 +242,8 @@ updaterepos() {
 	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule foreach git pull origin master
 }
 
+msg "Creating local configuration..."
+createlocalconfig
 msg "Asking for configuration..."
 creategitconfig
 creategraphicalconfig

@@ -1,7 +1,4 @@
-.directory
-gitcustom
-graphical
-nographical
+/local/
 /thisislocal
 
 /zsh/antigen/antigen.log

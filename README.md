@@ -12,3 +12,13 @@ Note to self:
 	git clone --recursive https://github.com/dasJ/dotfiles.git ~/.dotfiles
 	~/.dotfiles/install.sh
 
+##Directories
+- `bin/` - Helper scripts, not supposed to be added to $PATH
+- `local/` - Local configuration, excluded from git
+- `misc/` - Single configuration files
+- `systemd/` - systemd user units
+- `tmux/` - tmux configuration and plugin manager
+- `vim/` - vim configuration and plugin manager
+- `x11/` - Configuration for graphical tools
+- `zsh/` - zsh configuration and plugin manager
+
