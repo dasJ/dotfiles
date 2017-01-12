@@ -15,8 +15,8 @@ dependencies=(
 
 # file|graphical?
 linkfiles=(
-	"$HOME/.gemrc|no"
-	"$HOME/.gitconfig|no"
+	"$HOME/.gemrc:misc/gemrc|no"
+	"$HOME/.gitconfig:misc/gitconfig|no"
 	"$HOME/.zlogin:zsh/zlogin|no"
 	"$HOME/.zlogout:zsh/zlogout|no"
 	"$HOME/.zprofile:zsh/zprofile|no"
@@ -25,11 +25,11 @@ linkfiles=(
 	"$HOME/.vimrc:vim/vimrc|no"
 	"$HOME/.tmux.conf:tmux/tmux.conf|no"
 	"$HOME/.xinitrc:x11/xinitrc|yes"
-	"$HOME/.config/htop/htoprc|no"
+	"$HOME/.config/htop/htoprc:misc/htoprc|no"
 	"$HOME/.tmux/plugins/tpm:tmux/tpm|no"
 	"$HOME/.gtkrc-2.0:x11/gtkrc-2.0|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:x11/gtkrc-3.0|yes"
-	"$HOME/.config/pacaur/config:pacaur|no"
+	"$HOME/.config/pacaur/config:misc/pacaur|no"
 	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
 )
 # dir|graphical?
