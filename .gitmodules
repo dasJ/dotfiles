@@ -1,15 +1,9 @@
-[submodule "tpm/tpm"]
-	path = tpm/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule "tpm/tmux-prefix-highlight"]
-	path = tpm/tmux-prefix-highlight
-	url = https://github.com/tmux-plugins/tmux-prefix-highlight
-[submodule "tpm/tmux-fpp"]
-	path = tpm/tmux-fpp
-	url = https://github.com/tmux-plugins/tmux-fpp
 [submodule "vim-plug"]
 	path = vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
 [submodule "zsh/antigen/antigen"]
 	path = zsh/antigen/antigen
 	url = https://github.com/zsh-users/antigen
+[submodule "tmux/tpm"]
+	path = tmux/tpm
+	url = https://github.com/tmux-plugins/tpm
