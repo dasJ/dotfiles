@@ -1,37 +1,12 @@
-[submodule "zprezto"]
-	path = zprezto
-	url = https://github.com/sorin-ionescu/prezto.git
-	ignore = dirty
 [submodule "tpm/tpm"]
 	path = tpm/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "antigen/antigen"]
-	path = antigen/antigen
-	url = https://github.com/zsh-users/antigen
 [submodule "tpm/tmux-prefix-highlight"]
 	path = tpm/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight
 [submodule "tpm/tmux-fpp"]
 	path = tpm/tmux-fpp
 	url = https://github.com/tmux-plugins/tmux-fpp
-[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions.git"]
-	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions.git
-	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-syntax-highlighting.git"]
-	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-syntax-highlighting.git
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git"]
-	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git
-	url = https://github.com/zsh-users/zsh-completions
-[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git"]
-	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git
-	url = https://github.com/robbyrussell/oh-my-zsh
-[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-Tarrasch-SLASH-zsh-autoenv.git"]
-	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-Tarrasch-SLASH-zsh-autoenv.git
-	url = https://github.com/Tarrasch/zsh-autoenv
-[submodule "antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git"]
-	path = antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-dasJ-SLASH-zsh-theme.git
-	url = https://github.com/dasJ/zsh-theme
 [submodule "vim-plug"]
 	path = vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
