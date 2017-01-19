@@ -31,6 +31,7 @@ linkfiles=(
 	"$HOME/.config/gtk-3.0/settings.ini:x11/gtkrc-3.0|yes"
 	"$HOME/.config/pacaur/config:misc/pacaur|no"
 	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
+	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
 )
 # dir|graphical?
 mkdirs=(
@@ -39,11 +40,13 @@ mkdirs=(
 	"$HOME/.vim/swap|no"
 	"$HOME/.config/systemd/user"
 	"$HOME/.tmux/plugins"
+	"$HOME/.gnupg"
 )
 
 # unit|graphical?
 units=(
 	'ssh-agent.service|no'
+	'dirmngr.socket|no'
 )
 
 ###

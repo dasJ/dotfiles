@@ -21,6 +21,7 @@ software=(
 	"gawk|no|command|awk"
 	"iptuils|no|command|ip"
 	"binutils|no|command|objdump"
+	"gpg|no|command|gpg"
 
 	"SECTION|vim"
 	"vim|no|command|vim"
