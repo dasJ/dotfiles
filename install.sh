@@ -10,8 +10,8 @@ dependencies=(
 	"zsh|command|zsh"
 	"git|command|git"
 	"vim|command|vim"
+	"curl|command|curl"
 )
-
 
 # file|graphical?
 linkfiles=(
@@ -233,7 +233,14 @@ updatesw() {
 	vim +PlugUpdate +qall
 	vim +PlugClean! +qall
 	msg2 'zsh'
-	zsh -c "zshconf=${BASEDIR}/zsh; source ${BASEDIR}/zsh/include/antigen.zsh && antigen update"
+	if [ ! -f "${BASEDIR}/bin/antibody" ]; then
+		# TODO How to update??
+		curl -sL https://github.com/getantibody/antibody/releases/download/v2.2.4/antibody_Linux_x86_64.tar.gz | tar xzvC "${BASEDIR}/bin" antibody
+	fi
+	# Install
+	zsh -c "zshconf=\"${BASEDIR}/zsh\" source \"${BASEDIR}/zsh/include/antibody.zsh\""
+	# Update
+	ANTIBODY_HOME="${BASEDIR}/zsh/antibody/repos" "${BASEDIR}/bin/antibody" update
 	msg2 'tmux'
 	"${HOME}/.tmux/plugins/tpm/bin/install_plugins"
 	"${HOME}/.tmux/plugins/tpm/bin/update_plugins" all

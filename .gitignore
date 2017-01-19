@@ -1,7 +1,5 @@
 /local/
 /thisislocal
+/bin/antibody
 
-/zsh/antigen/antigen.log
-/zsh/antigen/.cache
-/zsh/antigen/repos
-/zsh/antigen/revert-info
+/zsh/antibody/repos

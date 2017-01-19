@@ -17,8 +17,8 @@ zshincl="$zshconf/include"
 source "$zshincl/tmux.zsh"
 # autoad stuff as early as possible
 source "$zshincl/autoload.zsh"
-# Source antigen
-source "$zshincl/antigen.zsh"
+# Source antibody
+source "$zshincl/antibody.zsh"
 
 ###############
 ## Settings
