@@ -3,6 +3,7 @@
 ###############
 
 # Initialize completions with dump
+autoload -Uz compinit
 compinit -i -d "$HOME/.cache/zsh/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 
 # Rehash with every completion
