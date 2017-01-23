@@ -2,7 +2,7 @@
 ## tmux-friendly SSH agent
 ###############
 
-if [ -z "${SSH_AGENT_PID}" ]; then
+if [ -z "${SSH_AGENT_PID}" -a -f "${HOME}/.ssh/.auth_pid" ]; then
 	export SSH_AGENT_PID="$(cat "${HOME}/.ssh/.auth_pid")"
 fi
 
