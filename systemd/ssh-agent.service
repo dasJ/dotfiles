@@ -1,6 +1,7 @@
 [Unit]
 Description=SSH Agent
 ConditionFileIsExecutable=/usr/bin/ssh-agent
+ConditionPathExists=!%h/.ssh/.auth_socket
 
 [Service]
 Type=forking
