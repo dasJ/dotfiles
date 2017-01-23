@@ -80,6 +80,7 @@ map <LocalLeader>t <Esc>:tabnew<CR>
 set pastetoggle=<F12> " Sane indentation on pastes with F12
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
 cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+cnoreabbrev <expr> X ((getcmdtype() is# ':' && getcmdline() is# 'X')?('x'):('X'))
 nmap <F8> :TagbarToggle<CR>
 " Disable stuff
 for prefix in ['i', 'n', 'v']
