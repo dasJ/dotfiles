@@ -30,3 +30,6 @@ alias gp='git push'
 
 # git status
 alias gst='git status'
+
+# git log
+alias glo='git log'
