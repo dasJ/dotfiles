@@ -59,6 +59,8 @@ Plug 'rkitover/vimpager', { 'on': 'NeverCallThis' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'kopischke/vim-fetch' " Can not be loaded on demand
+" Syntax highlightings
+Plug 'PotatoesMaster/i3-vim-syntax'
 " Visual things
 Plug 'tomasr/molokai' " Not loaded on demand because I always need it
 Plug 'vim-airline/vim-airline' " See molokai
