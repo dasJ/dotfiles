@@ -83,3 +83,6 @@ bindkey "^r" history-incremental-search-backward
 
 # v command for opening in $EDITOR
 bindkey -M vicmd v edit-command-line
+
+# b command to push line
+bindkey -M vicmd b push-line-or-edit
