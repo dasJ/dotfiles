@@ -46,10 +46,11 @@ set linespace=0 " No space between the characters
 set shiftwidth=4 " Indent with 4 spaces
 set clipboard=unnamed " Default clipboard
 set t_Co=256 " Wow! Much color!
+set cursorline " Highlight current line
 
 
 " ###
-" Vundle
+" Plugins
 " ###
 "
 filetype off
