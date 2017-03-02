@@ -36,3 +36,4 @@ deps() {
 }
 
 source "$zshincl/extract.zsh"
+source "$zshincl/ldapid.zsh"
