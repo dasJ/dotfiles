@@ -133,9 +133,5 @@ ldapid() {
 }
 
 for cmd in ldapadd ldapcompare ldapdelete ldapexop ldapmodify ldapmodrdn ldappasswd ldapsearch ldapurl ldapwhoami; do
-	if hash "${cmd}"; then
-		${cmd}() {
-			command "${cmd}" ${LDAPID} $@
-		}
-	fi
+	hash "${cmd}" && eval "${cmd}() { command "${cmd}" \${LDAPID} \$@ }"
 done
