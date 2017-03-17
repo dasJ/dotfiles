@@ -53,6 +53,8 @@ source "$zshincl/keys.zsh"
 source "$zshincl/completion.zsh"
 # Highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=cyan'
 # History file
 HISTFILE=~/.zsh_history
 # Size of history
