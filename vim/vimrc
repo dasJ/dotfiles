@@ -55,10 +55,14 @@ set cursorline " Highlight current line
 "
 filetype off
 call plug#begin('~/.vim/plugged')
+" Main plugs
 Plug 'majutsushi/tagbar' " Can not be loaded on demand because airline needs it
 Plug 'rkitover/vimpager', { 'on': 'NeverCallThis' }
-Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'kopischke/vim-fetch' " Can not be loaded on demand
+" Language-specific plugs
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'godlygeek/tabular', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Syntax highlightings
 Plug 'PotatoesMaster/i3-vim-syntax'
 " Visual things
