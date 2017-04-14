@@ -8,18 +8,6 @@ bindkey -v
 # No lag when switching vi modes (0.1 secs)
 KEYTIMEOUT=1
 
-# Configure zle
-if [[ -n ${terminfo[smkx]} ]] && [[ -n ${terminfo[rmkx]} ]]; then
-	function zle-line-init() {
-		echoti smkx
-	}
-	function zle-line-finish() {
-		echoti rmkx
-	}
-	zle -N zle-line-init
-	zle -N zle-line-finish
-fi
-
 # Arrow up for history
 if [[ "${terminfo[kpp]}" != "" ]]; then
 	bindkey "${terminfo[kpp]}" up-line-or-history
