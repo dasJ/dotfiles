@@ -252,6 +252,17 @@ updaterepos() {
 	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule foreach git pull origin master
 }
 
+gitfilters() {
+	sum="$(sha512sum "${BASEDIR}/.git/config")"
+	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" config filter.vars.smudge "${BASEDIR}/util/smudge-filter"
+	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" config filter.vars.clean "${BASEDIR}/util/clean-filter"
+	if [ "${sum}" != "$(sha512sum "${BASEDIR}/.git/config")" ]; then
+		git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" checkout .
+	fi
+}
+
+msg "Configuring git filters..."
+gitfilters
 msg "Creating local configuration..."
 createlocalconfig
 msg "Asking for configuration..."

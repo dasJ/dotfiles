@@ -1,0 +1,4 @@
+#!/bin/sh -e
+dotfiles="$(dirname "$(dirname "$(readlink -f "${0}")")")"
+
+sed "s:$dotfiles:@DOTFILES@:g"
