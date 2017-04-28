@@ -21,7 +21,6 @@ software=(
 	"gawk|no|command|awk"
 	"iptuils|no|command|ip"
 	"binutils|no|command|objdump"
-	"gpg|no|command|gpg"
 
 	"SECTION|vim"
 	"vim|no|command|vim"
@@ -53,10 +52,15 @@ software=(
 	"xz|no|command|unlzma"
 	"cabextract|no|command|cabextract"
 
+	"SECTION|Stuff"
+	"gpg|no|command|gpg"
+	"libcaca|no|command|cacaview"
+
 	"SECTION|Graphical stuff"
 	"st|yes|command|st"
 	"Anonymous Pro font|yes|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
 	"numix theme|yes|file|/usr/share/themes/Numix/index.theme"
+	"feh|yes|command|feh"
 )
 
 

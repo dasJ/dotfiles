@@ -31,6 +31,8 @@ linkfiles=(
 	"$HOME/.config/gtk-3.0/settings.ini:x11/gtkrc-3.0|yes"
 	"$HOME/.config/pacaur/config:misc/pacaur|no"
 	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
+	"$HOME/.gnupg/gpg.conf:gpg/gpg.conf|no"
+	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
 )
 # dir|graphical?

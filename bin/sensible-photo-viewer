@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ -z "${DISPLAY}" ]; then
+	exec /usr/bin/cacaview ${@}
+else
+	exec /usr/bin/feh ${@}
+fi
+
