@@ -55,6 +55,8 @@ software=(
 	"SECTION|Stuff"
 	"gpg|no|command|gpg"
 	"libcaca|no|command|cacaview"
+	"bind-tools|no|command|dig"
+	"whois|no|command|whois"
 
 	"SECTION|Graphical stuff"
 	"st|yes|command|st"
