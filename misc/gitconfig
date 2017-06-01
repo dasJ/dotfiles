@@ -13,3 +13,5 @@
 	ui = auto
 [diff]
 	tool = vimdiff
+[grep]
+	lineNumber = true
