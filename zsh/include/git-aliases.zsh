@@ -27,6 +27,7 @@ alias gdc='git diff --cached'
 # git push/pull
 alias gl='git pull'
 alias gp='git push'
+alias gp!='gp --force'
 
 # git status
 alias gst='git status'
