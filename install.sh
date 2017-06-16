@@ -34,6 +34,7 @@ linkfiles=(
 	"$HOME/.gnupg/gpg.conf:gpg/gpg.conf|no"
 	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
+	"$HOME/.curlrc:misc/curlrc|no"
 )
 # dir|graphical?
 mkdirs=(
