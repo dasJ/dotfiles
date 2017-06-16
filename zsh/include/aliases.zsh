@@ -52,6 +52,7 @@ alias yay='echo "\\(^o^)/"'
 alias lsblk='lsblk -o NAME,MAJ:MIN,SIZE,TYPE,UUID,LABEL,FSTYPE,MOUNTPOINT'
 alias userctl='systemctl --user'
 alias :q='exit'
+alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # Includes
 source "$zshincl/git-aliases.zsh"
