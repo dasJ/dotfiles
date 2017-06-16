@@ -10,9 +10,17 @@
 	path = ~/.dotfiles/local/gitcustom
 [color]
 	ui = auto
-[diff]
-	tool = vimdiff
-[grep]
-	lineNumber = true
 [help]
 	autocorrect = -1
+[diff]
+	tool = vimdiff
+	renames = copies
+[grep]
+	lineNumber = true
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+	log = true
+[mergetool]
+	prompt = false
+	keepBackup = false
