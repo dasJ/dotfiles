@@ -3,7 +3,7 @@
 ###############
 
 # ls
-alias ls='ls -h --color --group-directories-first'
+alias ls='ls -h --color --group-directories-first -F'
 alias ll='ls -lF'
 alias la='ll -a'
 alias sl='sl -a'
