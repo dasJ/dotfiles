@@ -42,6 +42,7 @@ alias tmux='tmux -2' # Colors
 alias outertmux='tmux -L "$tmuxname"'
 
 # Misc. stuff
+alias sudo='sudo ' # Use aliases with sudo
 alias vi=vim
 alias nano=vim
 alias why='whence -fa'
