@@ -3,9 +3,7 @@
 ###############
 
 # cd options
-setopt auto_cd # Allow omitting of cd
 setopt auto_pushd # cd behaves like pushd
-setopt chase_dots # foo/.. ends at the physical location of foo
 setopt pushd_to_home # pushd with no arguments -> pushd $HOME
 # Completion
 setopt auto_param_keys # Be smarter when completing whithin parameters
