@@ -23,10 +23,9 @@ linkfiles=(
 	"$HOME/.zshenv:zsh/zshenv|no"
 	"$HOME/.zshrc:zsh/zshrc|no"
 	"$HOME/.vimrc:vim/vimrc|no"
-	"$HOME/.tmux.conf:tmux/tmux.conf|no"
+	"$HOME/.tmux.conf:misc/tmux.conf|no"
 	"$HOME/.xinitrc:x11/xinitrc|yes"
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
-	"$HOME/.tmux/plugins/tpm:tmux/tpm|no"
 	"$HOME/.gtkrc-2.0:x11/gtkrc-2.0|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:x11/gtkrc-3.0|yes"
 	"$HOME/.config/pacaur/config:misc/pacaur|no"
@@ -42,7 +41,6 @@ mkdirs=(
 	"$HOME/.vim/backup|no"
 	"$HOME/.vim/swap|no"
 	"$HOME/.config/systemd/user"
-	"$HOME/.tmux/plugins"
 	"$HOME/.gnupg"
 )
 
@@ -244,9 +242,6 @@ updatesw() {
 	zsh -c "zshconf=\"${BASEDIR}/zsh\" source \"${BASEDIR}/zsh/include/antibody.zsh\""
 	# Update
 	ANTIBODY_HOME="${BASEDIR}/zsh/antibody/repos" "${BASEDIR}/bin/antibody" update
-	msg2 'tmux'
-	"${HOME}/.tmux/plugins/tpm/bin/install_plugins"
-	"${HOME}/.tmux/plugins/tpm/bin/update_plugins" all
 }
 
 updaterepos() {
