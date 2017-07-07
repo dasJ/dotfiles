@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -z "${DISPLAY}" ]; then
+if [ -z "${XAUTHORITY}" ]; then
 	exec /usr/bin/pinentry-tty
 else
 	exec /usr/bin/pinentry-gnome3
