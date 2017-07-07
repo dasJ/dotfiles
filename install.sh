@@ -24,6 +24,7 @@ linkfiles=(
 	"$HOME/.zshrc:zsh/zshrc|no"
 	"$HOME/.vimrc:vim/vimrc|no"
 	"$HOME/.tmux.conf:misc/tmux.conf|no"
+	"$HOME/.curlrc:misc/curlrc|no"
 	"$HOME/.xinitrc:x11/xinitrc|yes"
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
 	"$HOME/.gtkrc-2.0:x11/gtkrc-2.0|yes"
