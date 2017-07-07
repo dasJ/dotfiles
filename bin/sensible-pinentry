@@ -3,6 +3,6 @@
 if [ -z "${DISPLAY}" ]; then
 	exec /usr/bin/pinentry-tty
 else
-	exec /usr/bin/pinentry-gtk2
+	exec /usr/bin/pinentry-gnome3
 fi
 
