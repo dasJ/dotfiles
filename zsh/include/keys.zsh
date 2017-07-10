@@ -74,3 +74,11 @@ bindkey -M vicmd v edit-command-line
 
 # b command to push line
 bindkey -M vicmd b push-line-or-edit
+
+# Do nothing when using scroll wheel
+nop() {
+	:
+}
+zle -N nop
+bindkey ^Y nop
+bindkey ^E nop
