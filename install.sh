@@ -236,9 +236,9 @@ updatesw() {
 	vim +PlugUpdate +qall
 	vim +PlugClean! +qall
 	msg2 'zsh'
-	if [ ! -f "${BASEDIR}/bin/antibody" ]; then
+	if [ ! -f "${BASEDIR}/scripts/antibody" ]; then
 		# TODO How to update??
-		curl -sL https://github.com/getantibody/antibody/releases/download/v2.2.4/antibody_Linux_x86_64.tar.gz | tar xzvC "${BASEDIR}/bin" antibody
+		curl -sL https://github.com/getantibody/antibody/releases/download/v2.2.4/antibody_Linux_x86_64.tar.gz | tar xzvC "${BASEDIR}/scripts" antibody
 	fi
 	# Install
 	zsh -c "zshconf=\"${BASEDIR}/zsh\" source \"${BASEDIR}/zsh/include/antibody.zsh\""
