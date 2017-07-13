@@ -25,17 +25,18 @@ linkfiles=(
 	"$HOME/.vimrc:vim/vimrc|no"
 	"$HOME/.tmux.conf:misc/tmux.conf|no"
 	"$HOME/.curlrc:misc/curlrc|no"
-	"$HOME/.xinitrc:x11/xinitrc|yes"
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
-	"$HOME/.gtkrc-2.0:x11/gtkrc-2.0|yes"
-	"$HOME/.gtk-bookmarks:x11/gtk-bookmarks|yes"
-	"$HOME/.config/gtk-3.0/settings.ini:x11/gtkrc-3.0|yes"
 	"$HOME/.config/pacaur/config:misc/pacaur|no"
 	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
 	"$HOME/.gnupg/gpg.conf:gpg/gpg.conf|no"
 	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
 	"$HOME/.curlrc:misc/curlrc|no"
+	# Graphical stuff
+	"$HOME/.xinitrc:x11/xinitrc|yes"
+	"$HOME/.gtkrc-2.0:graphical/gtk/gtkrc-2.0|yes"
+	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
+	"$HOME/.config/gtk-3.0/bookmarks:graphical/gtk/gtk-bookmarks|yes"
 )
 # dir|graphical?
 mkdirs=(

@@ -6,5 +6,4 @@ font_name = "Sans 10"
 widget_class "*" style "schrift"
 gtk-font-name = "Sans 10"
 
-#gtk-theme-name = "Numix"
 gtk-icon-theme-name = "Numix"
