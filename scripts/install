@@ -33,7 +33,7 @@ linkfiles=(
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
 	"$HOME/.curlrc:misc/curlrc|no"
 	# Graphical stuff
-	"$HOME/.xinitrc:x11/xinitrc|yes"
+	"$HOME/.xinitrc:graphical/xinitrc|yes"
 	"$HOME/.gtkrc-2.0:graphical/gtk/gtkrc-2.0|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
 	"$HOME/.config/gtk-3.0/bookmarks:graphical/gtk/gtk-bookmarks|yes"
@@ -255,8 +255,8 @@ updaterepos() {
 
 gitfilters() {
 	sum="$(sha512sum "${BASEDIR}/.git/config")"
-	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" config filter.vars.smudge "${BASEDIR}/util/smudge-filter"
-	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" config filter.vars.clean "${BASEDIR}/util/clean-filter"
+	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" config filter.vars.smudge "${BASEDIR}/scripts/smudge-filter"
+	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" config filter.vars.clean "${BASEDIR}/scripts/clean-filter"
 	if [ "${sum}" != "$(sha512sum "${BASEDIR}/.git/config")" ]; then
 		rm -r ${BASEDIR}/*
 		git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" checkout .

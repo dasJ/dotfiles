@@ -14,12 +14,12 @@ git clone --recursive https://github.com/dasJ/dotfiles.git ~/.dotfiles
 ## Directories
 
 - `gpg/` - GPG configuration
+- `graphical/` - Configuration for graphical tools
 - `local/` - Local configuration, excluded from git
 - `misc/` - Single configuration files
 - `scripts/` - Helper scripts, not supposed to be added to $PATH
 - `systemd/` - systemd user units
 - `vim/` - vim configuration and plugin manager
-- `x11/` - Configuration for graphical tools
 - `zsh/` - zsh configuration and plugin manager
 
 ## Stuff
