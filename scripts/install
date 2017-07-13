@@ -55,7 +55,7 @@ units=(
 ###
 # Variables
 ###
-BASEDIR="$(readlink -f $(dirname $0))"
+BASEDIR="$(dirname "$(dirname "$(readlink -f "${0}")")")"
 
 ###
 # Colors, taken from makepkg
@@ -243,7 +243,7 @@ updatesw() {
 	# Install
 	zsh -c "zshconf=\"${BASEDIR}/zsh\" source \"${BASEDIR}/zsh/include/antibody.zsh\""
 	# Update
-	ANTIBODY_HOME="${BASEDIR}/zsh/antibody/repos" "${BASEDIR}/bin/antibody" update
+	ANTIBODY_HOME="${BASEDIR}/zsh/antibody/repos" "${BASEDIR}/scripts/antibody" update
 }
 
 updaterepos() {
