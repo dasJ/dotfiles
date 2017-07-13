@@ -28,6 +28,7 @@ linkfiles=(
 	"$HOME/.xinitrc:x11/xinitrc|yes"
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
 	"$HOME/.gtkrc-2.0:x11/gtkrc-2.0|yes"
+	"$HOME/.gtk-bookmarks:x11/gtk-bookmarks|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:x11/gtkrc-3.0|yes"
 	"$HOME/.config/pacaur/config:misc/pacaur|no"
 	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
