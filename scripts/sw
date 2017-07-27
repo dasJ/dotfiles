@@ -64,6 +64,7 @@ software=(
 	"numix theme|yes|file|/usr/share/themes/Numix/index.theme"
 	"feh|yes|command|feh"
 	"gtk3|yes|command|gtk-launch"
+	"openimageop|yes|command|iv"
 )
 
 
