@@ -38,6 +38,7 @@ linkfiles=(
 	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
 	"$HOME/.config/gtk-3.0/bookmarks:graphical/gtk/gtk-bookmarks|yes"
 	"$HOME/.config/dunst/dunstrc:graphical/dunstrc|yes"
+	"$HOME/.config/fontconfig/fonts.conf:graphical/fonts.conf|yes"
 )
 # dir|graphical?
 mkdirs=(
@@ -47,6 +48,7 @@ mkdirs=(
 	"$HOME/.config/systemd/user"
 	"$HOME/.config/gtk-3.0"
 	"$HOME/.config/dunst"
+	"$HOME/.config/fontconfig"
 	"$HOME/.gnupg"
 )
 
