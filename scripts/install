@@ -166,6 +166,7 @@ createlocalconfig() {
 	mkdir -pv "${BASEDIR}/local"
 	touch "${BASEDIR}/local/zsh"
 	touch "${BASEDIR}/local/vim"
+	touch "${HOME}/.ssh/config.local"
 }
 
 creategitconfig() {
