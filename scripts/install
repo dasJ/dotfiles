@@ -246,28 +246,16 @@ systemd() {
 		ln -svTf "${file}" "${HOME}/.config/systemd/user/$(basename "${file}")"
 	done
 	# Default target
-	# `systemctl set-default` can not be used because graphical.target and headless.target are symlinks
+	return
 	msg2 'Default'
-	if [ -f "${BASEDIR}/local/graphical" ]; then
-		ln -svTf 'graphical.target' "${HOME}/.config/systemd/user/default.target"
-	else
-		ln -svTf 'headless.target' "${HOME}/.config/systemd/user/default.target"
-	fi
+	systemctl --user set-default basic.target
 	# Reload
 	msg2 'Reload'
 	systemctl --user daemon-reload
 	# Enable units
 	msg2 'Enable'
-	for line in "${units[@]}"; do
-		unit="`echo "${line}" | awk -F '|' '{print $1}'`"
-		graphical="`echo "${line}" | awk -F '|' '{print $2}'`"
-		if [ "${graphical}" == 'yes' ]; then
-			if [ -f "${BASEDIR}/local/graphical" ]; then
-				systemctl --user enable "${unit}"
-			fi
-		else
-			systemctl --user enable "${unit}"
-		fi
+	for u in "${units[@]}"; do
+		systemctl --user enable "${u}"
 	done
 }
 

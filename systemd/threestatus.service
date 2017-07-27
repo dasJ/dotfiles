@@ -1,0 +1,5 @@
+[Unit]
+Description=threestatus daemon
+
+[Service]
+ExecStart=/home/janne/.config/i3/threestatus

@@ -1,4 +1,0 @@
-[Unit]
-Description=Headless operation
-After=basic.target
-Wants=basic.target
