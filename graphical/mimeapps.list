@@ -29,7 +29,7 @@ application/x-extension-rss=userapp-Thunderbird-9TZ96X.desktop
 
 [Added Associations]
 image/gif=firefox.desktop;
-application/pdf=foxitreader.desktop;FoxitReader.desktop;firefox.desktop;
+application/pdf=foxitreader.desktop;firefox.desktop;
 x-scheme-handler/mailto=userapp-Thunderbird-AYACSX.desktop;
 message/rfc822=userapp-Thunderbird-AYACSX.desktop;
 application/x-extension-eml=userapp-Thunderbird-AYACSX.desktop;
