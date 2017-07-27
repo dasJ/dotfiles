@@ -43,6 +43,7 @@ linkfiles=(
 	"$HOME/.config/OpenImageIO/iv.conf:graphical/iv.conf|yes"
 	"$HOME/.config/rofi/config:graphical/rofi|yes"
 	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
+	"$HOME/.config/redshift.conf:graphical/redshift.conf|yes"
 )
 # dir|graphical?
 mkdirs=(
