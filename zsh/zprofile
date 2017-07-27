@@ -31,3 +31,7 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 	mkdir -p "$TMPPREFIX"
 fi
 
+# Start X11
+if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -f "@DOTFILES@/local/graphical" ]; then
+	exec startx
+fi
