@@ -32,6 +32,7 @@ linkfiles=(
 	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
 	"$HOME/.curlrc:misc/curlrc|no"
+	"$HOME/.ssh/config:misc/ssh_config|no"
 	# Graphical stuff
 	"$HOME/.xinitrc:graphical/xinitrc|yes"
 	"$HOME/.gtkrc-2.0:graphical/gtk/gtkrc-2.0|yes"
@@ -59,6 +60,7 @@ mkdirs=(
 	"$HOME/.config/OpenImageIO"
 	"$HOME/.config/rofi"
 	"$HOME/.gnupg"
+	"$HOME/.ssh"
 )
 
 # unit|graphical?
