@@ -35,6 +35,7 @@ linkfiles=(
 	# Graphical stuff
 	"$HOME/.xinitrc:graphical/xinitrc|yes"
 	"$HOME/.gtkrc-2.0:graphical/gtk/gtkrc-2.0|yes"
+	"$HOME/.config/gtk-2.0/gtkfilechooser.ini:graphical/gtk/gtk2.0-filechooser.ini|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
 	"$HOME/.config/gtk-3.0/bookmarks:graphical/gtk/gtk-bookmarks|yes"
 	"$HOME/.config/dunst/dunstrc:graphical/dunstrc|yes"
@@ -46,6 +47,7 @@ mkdirs=(
 	"$HOME/.vim/backup|no"
 	"$HOME/.vim/swap|no"
 	"$HOME/.config/systemd/user"
+	"$HOME/.config/gtk-2.0"
 	"$HOME/.config/gtk-3.0"
 	"$HOME/.config/dunst"
 	"$HOME/.config/fontconfig"
