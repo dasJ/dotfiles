@@ -11,7 +11,7 @@ if [ ! -z "$PATHBACKUP" ]; then
 	export PATH
 fi
 # This will be needed later
-zshconf="$HOME/.dotfiles/zsh"
+zshconf="@DOTFILES@/zsh"
 zshincl="$zshconf/include"
 # Start tmux asap so there is a low delay
 source "$zshincl/tmux.zsh"
@@ -63,4 +63,4 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST="$HISTSIZE"
 # local options
-test -f "${HOME}/.dotfiles/local/zsh" && source "$_"
+test -f "@DOTFILES@/local/zsh" && source "$_"
