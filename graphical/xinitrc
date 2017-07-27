@@ -13,8 +13,9 @@ fi
 
 # Start user-defined programs
 while IFS='' read -r f; do
-	"${f}" &
-done <<<"$(find .config/autostart -executable -type f -or -type l)"
+	(gtk-launch "${f}" || :) &
+done <<<"$(find .config/autostart -type f -name '*.desktop' -printf '%f\n')"
+exit 0
 
 # Start window manager
 exec /usr/bin/i3
