@@ -1,0 +1,55 @@
+[global]
+	# Position and size
+	geometry = 400x6-5+25
+	follow = keyboard
+	padding = 10
+	horizontal_padding = 10
+
+	indicate_hidden = yes
+	separator_color = frame
+
+	# Contents
+	font = Noto Sans Regular 10
+	line_height = 1
+	markup = full
+	format = "<span size='small'>%a %p</span>\n<b>%s</b>\n%b"
+	alignment = left
+	show_indicators = yes
+	show_age_threshold = 30
+	icon_position = left
+	max_icon_size = 64
+	icon_folders = /usr/share/icons/Numix/32/status/:/usr/share/icons/Numix/32/devices/
+
+	# Frame
+	frame_width = 3
+	frame_color = "#444444"
+
+	# History
+	sticky_history = yes
+	history_length = 40
+
+	# External programs
+	dmenu = /usr/bin/rofi -dmenu -p dunst>
+	browser = /usr/bin/firefox
+
+[shortcuts]
+	#close = mod4+n
+	#history = mod4+m
+	#context = mod4+,
+
+[urgency_low]
+	foreground = "#888888"
+	background = "#222222"
+	timeout = 5
+
+[urgency_normal]
+	foreground = "#888888"
+	background = "#222222"
+	timeout = 5
+
+[urgency_critical]
+	foreground = "#222222"
+	background = "#bb0000"
+	timeout = 0
+
+# vi: ft=cfg
