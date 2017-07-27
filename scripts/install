@@ -42,6 +42,7 @@ linkfiles=(
 	"$HOME/.config/fontconfig/fonts.conf:graphical/fonts.conf|yes"
 	"$HOME/.config/OpenImageIO/iv.conf:graphical/iv.conf|yes"
 	"$HOME/.config/rofi/config:graphical/rofi|yes"
+	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
 )
 # dir|graphical?
 mkdirs=(
