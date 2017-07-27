@@ -221,6 +221,12 @@ link() {
 			ln -svTf "${BASEDIR}/${linkfrom}" "${filename}"
 		fi
 	done
+	if [ -f "${BASEDIR}/local/graphical" ]; then
+		mkdir -pv "${HOME}/.local/share/applications"
+		while IFS='' read -r f; do
+			ln -vfs "${f}" "${HOME}/.local/share/applications/"
+		done < <(find "${BASEDIR}/graphical/applications" -type f)
+	fi
 }
 
 astart() {

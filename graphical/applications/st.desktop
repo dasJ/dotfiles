@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=st
+Comment=Terminal Emulator
+TryExec=st
+Exec=st %u
+Icon=terminal
+Terminal=false
+StartupWMClass=st
+Type=Application
+Categories=Terminal;Terminal Emulator;
