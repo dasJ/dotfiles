@@ -41,6 +41,7 @@ linkfiles=(
 	"$HOME/.config/dunst/dunstrc:graphical/dunstrc|yes"
 	"$HOME/.config/fontconfig/fonts.conf:graphical/fonts.conf|yes"
 	"$HOME/.config/OpenImageIO/iv.conf:graphical/iv.conf|yes"
+	"$HOME/.config/rofi/config:graphical/rofi|yes"
 )
 # dir|graphical?
 mkdirs=(
@@ -53,6 +54,7 @@ mkdirs=(
 	"$HOME/.config/dunst"
 	"$HOME/.config/fontconfig"
 	"$HOME/.config/OpenImageIO"
+	"$HOME/.config/rofi"
 	"$HOME/.gnupg"
 )
 

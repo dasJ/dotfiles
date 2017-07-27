@@ -1,0 +1,8 @@
+rofi.matching: regex
+rofi.terminal: st
+rofi.disable-history: true
+
+rofi.color-normal: #222222, #888888, #222222, #333333, #f0544c
+rofi.color-urgent: #f0544c, #333333, #f0544c, #333333, #f0544c
+rofi.color-active: #5f676a, #333333, #5f676a, #333333, #f0544c
+rofi.color-window: #222222, #222222, #222222
