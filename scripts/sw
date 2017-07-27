@@ -63,6 +63,7 @@ software=(
 	"Anonymous Pro font|yes|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
 	"numix theme|yes|file|/usr/share/themes/Numix/index.theme"
 	"feh|yes|command|feh"
+	"gtk3|yes|command|gtk-launch"
 )
 
 
