@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -eu
+
+cat <<EOF
+-----------------------------
+
+  dotfiles bootstrap script
+
+-----------------------------
+
+EOF
+
+basedir="$(dirname "$(readlink -f "${0}")")"
+echo "-> Installing to ${basedir}"
+
+if [ -d "${basedir}/.git" ]; then
+	echo "-> Directory is a git repository"
+else
+	echo "-> Directory is not a git repository"
+	exit 1
+fi
+
+if [ -d "${basedir}/misc" ]; then
+	echo '-> Repository is already bootstrapped'
+	exit 0
+fi
+
+echo '-> Checking out filters'
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" reset HEAD -- scripts/smudge-filter
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" reset HEAD -- scripts/clean-filter
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" checkout HEAD -- scripts/smudge-filter
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" checkout HEAD -- scripts/clean-filter
+
+echo '-> Configuring git'
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" config filter.vars.smudge "${basedir}/scripts/smudge-filter"
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" config filter.vars.clean "${basedir}/scripts/clean-filter"
+
+echo '-> Checking out'
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" reset HEAD -- .
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" checkout -- .
+
+echo
+echo '-> Done, running installer now'
+exec "${basedir}/scripts/install"

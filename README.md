@@ -7,8 +7,9 @@ Feel free to use them as template for your own dotfiles, but remember: **Those a
 ## Installation
 
 ```
-git clone --recursive https://github.com/dasJ/dotfiles.git ~/.dotfiles
-~/.dotfiles/scripts/install
+git clone --recursive --no-checkout https://github.com/dasJ/dotfiles.git ~/.dotfiles
+cd .dotfiles
+git show HEAD:scripts/bootstrap | bash
 ```
 
 ## Directories

@@ -135,6 +135,7 @@ checkDependencies() {
 		exit 1
 	fi
 }
+
 createlocalconfig() {
 	mkdir -pv "${BASEDIR}/local"
 	touch "${BASEDIR}/local/zsh"
@@ -253,25 +254,13 @@ updaterepos() {
 	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule foreach git pull origin master
 }
 
-gitfilters() {
-	sum="$(sha512sum "${BASEDIR}/.git/config")"
-	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" config filter.vars.smudge "${BASEDIR}/scripts/smudge-filter"
-	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" config filter.vars.clean "${BASEDIR}/scripts/clean-filter"
-	if [ "${sum}" != "$(sha512sum "${BASEDIR}/.git/config")" ]; then
-		rm -r ${BASEDIR}/*
-		git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" checkout .
-	fi
-}
-
-msg "Configuring git filters..."
-gitfilters
+msg "Checking requirements..."
+checkDependencies
 msg "Creating local configuration..."
 createlocalconfig
 msg "Asking for configuration..."
 creategitconfig
 creategraphicalconfig
-msg "Checking requirements..."
-checkDependencies
 msg "Creating empty directories..."
 makedirs
 msg "Updating submodules..."
