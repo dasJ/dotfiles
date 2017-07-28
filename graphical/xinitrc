@@ -15,7 +15,6 @@ fi
 while IFS='' read -r f; do
 	(gtk-launch "${f}" || :) &
 done <<<"$(find .config/autostart -type f -name '*.desktop' -printf '%f\n')"
-exit 0
 
 # Start window manager
 exec /usr/bin/i3
