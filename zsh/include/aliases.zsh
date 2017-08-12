@@ -21,10 +21,11 @@ alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
 # Directories
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 alias -- -='cd -'
 alias 1='-'
 for i in {2..9}; do
