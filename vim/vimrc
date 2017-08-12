@@ -16,6 +16,7 @@ set ignorecase " Case insensitive search
 set incsearch " Search as you type
 set laststatus=2 " Always display status bar
 set number " Line numbers
+set relativenumber " Relative line numbers
 set ruler " Display position in file in status bar
 set scrolloff=5 " Keep cursor 5 lines away from the screen border
 set shiftwidth=4 " 4 spaces = 1 tab
