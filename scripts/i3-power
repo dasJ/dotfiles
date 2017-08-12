@@ -1,0 +1,31 @@
+#!/bin/bash
+
+out="$(echo 'Log Out
+Shut down
+Suspend
+Reboot
+Hibernate
+Hybrid sleep' | rofi -dmenu -p 'power> ')"
+
+[ -z "${out}" ] && exit
+
+case "${out}" in
+	'Log Out')
+		i3-msg exit
+	;;
+	'Shut down')
+		systemctl poweroff
+	;;
+	'Suspend')
+		systemctl suspend
+	;;
+	'Hibernate')
+		systemctl hibernate
+	;;
+	'Hybrid sleep')
+		systemctl hybrid-sleep
+	;;
+	'Reboot')
+		systemctl reboot
+	;;
+esac

@@ -33,9 +33,9 @@
 	browser = /usr/bin/firefox
 
 [shortcuts]
-	#close = mod4+n
-	#history = mod4+m
-	#context = mod4+,
+	close = mod4+odiaeresis
+	history = mod4+adiaeresis
+	context = mod4+udiaeresis
 
 [urgency_low]
 	foreground = "#888888"

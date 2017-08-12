@@ -1,0 +1,35 @@
+#!/bin/sh
+
+out="$(echo 'Select Area
+Current Window
+Current Screen
+Select Area (3s)
+Current Window (3s)
+Current Screen (3s)' | rofi -dmenu -p '> ')"
+
+# Cancel
+[ -z "${out}" ] && exit
+
+# Sleep
+s=0
+case "${out}" in
+	*'(3s)')
+		s=3
+		;;
+esac
+
+# Maim parameters
+params=''
+case "${out}" in
+	'Select Area'*)
+		params='-s'
+		;;
+	'Current Window'*)
+		params="-i $(xdotool getactivewindow)"
+		;;
+	'Current Screen'*)
+		params=''
+		;;
+esac
+
+maim -q -u -d "${s}" ${params[@]} | xclip -selection clipboard -t image/png

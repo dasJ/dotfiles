@@ -2,4 +2,4 @@
 Description=threestatus daemon
 
 [Service]
-ExecStart=/home/janne/.config/i3/threestatus
+ExecStart=/home/janne/.dotfiles/graphical/threestatus
