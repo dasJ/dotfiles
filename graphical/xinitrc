@@ -4,8 +4,9 @@
 xmodmap @DOTFILES@/graphical/Xmodmap &
 # Screen blanking
 if [ -f /usr/bin/xset ]; then
+	xset s 0 0
 	if -f [ '@DOTFILES@/local/dpms' ]; then
-		xset dpms "$(cat '@DOTFILES@/local/dpms')"
+		xset dpms $(< '@DOTFILES@/local/dpms')
 	else
 		xset dpms 0 0 0
 	fi
