@@ -1,4 +1,0 @@
-evdev:input:b0003v*p*e*-*
-evdev:atkbd:dmi:*
- KEYBOARD_KEY_01=58
- KEYBOARD_KEY_3a=1
