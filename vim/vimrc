@@ -30,7 +30,6 @@ set wildmenu " Command line completion
 set wildmode=list:longest,full " Show everything
 set encoding=utf-8 " Encoding
 set termencoding=utf-8 " Terminal Encoding
-"set mouse=a " Enable mouse support (full)
 set winminheight=0 " Windows can have no height
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap, too
 set list " Show whitespaces
