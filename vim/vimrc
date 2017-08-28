@@ -123,7 +123,8 @@ endif
 " ###
 " Filetypes
 " ###
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.md set ft=markdown
+autocmd Filetype yaml set ts=2 sw=2 et
 
 " ###
 " Hex Mode (RO)
