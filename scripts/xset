@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ -f /usr/bin/xset ]; then
+	# No screen blanking
+	xset s 0 0
+	if [ -f '/home/janne/.dotfiles/local/dpms' ]; then
+		xset dpms $(< '/home/janne/.dotfiles/local/dpms')
+	else
+		# Disable DPMS
+		xset dpms 0 0
+	fi
+fi
