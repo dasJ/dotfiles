@@ -7,6 +7,6 @@ if [ -f /usr/bin/xset ]; then
 		xset dpms $(< '@DOTFILES@/local/dpms')
 	else
 		# Disable DPMS
-		xset dpms 0 0
+		xset dpms 0 0 0
 	fi
 fi
