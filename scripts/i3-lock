@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sleep 1 # This works around the screen turning on immediately
+xset dpms 0 0 10 # Turn off after 10 seconds of inactivity
+xset dpms force off # Turn off screen now
+slock # Lock
+@DOTFILES@/scripts/xset # Reset DPMS
