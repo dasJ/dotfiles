@@ -32,6 +32,6 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 # Start X11
-if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -f "@DOTFILES@/local/graphical" ]; then
+if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ]; then
 	exec startx
 fi
