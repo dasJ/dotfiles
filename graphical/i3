@@ -125,6 +125,8 @@ bindsym --whole-window --border $mod+button4 exec ponymix increase 5
 bindsym --whole-window --border $mod+button5 exec ponymix decrease 5
 
 # No scrolling in title bar
+bindsym button1 nop
+bindsym button2 nop
 bindsym button4 nop
 bindsym button5 nop
 
@@ -190,6 +192,8 @@ bar {
 		urgent_workspace   #bb0000 #bb0000 #333333
 	}
 
+	bindsym button1 nop
+	bindsym button2 nop
 	wheel_up_cmd nop
 	wheel_down_cmd nop
 }
