@@ -37,6 +37,7 @@ linkfiles=(
 	# Graphical stuff
 	"$HOME/.xinitrc:graphical/xinitrc|yes"
 	"$HOME/.gtkrc-2.0:graphical/gtk/gtkrc-2.0|yes"
+	"$HOME/.mozilla/native-messaging-hosts/passff.json:graphical/firefox/passff.json|yes"
 	"$HOME/.config/gtk-2.0/gtkfilechooser.ini:graphical/gtk/gtk2.0-filechooser.ini|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
 	"$HOME/.config/gtk-3.0/bookmarks:graphical/gtk/gtk-bookmarks|yes"
@@ -64,6 +65,7 @@ mkdirs=(
 	"$HOME/.config/rofi|yes"
 	"$HOME/.gnupg"
 	"$HOME/.ssh"
+	"$HOME/.mozilla/native-messaging-hosts|yes"
 )
 
 # unit|graphical?
@@ -256,6 +258,8 @@ updatesw() {
 	zsh -c "zshconf=\"${BASEDIR}/zsh\" source \"${BASEDIR}/zsh/include/antibody.zsh\""
 	# Update
 	ANTIBODY_HOME="${BASEDIR}/zsh/antibody/repos" "${BASEDIR}/scripts/antibody" update
+	msg2 'Firefox'
+	"${BASEDIR}/scripts/ff-addon"
 }
 
 updaterepos() {

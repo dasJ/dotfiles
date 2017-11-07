@@ -2,4 +2,5 @@
 dotfiles="$(dirname "$(dirname "$(readlink -f "${0}")")")"
 
 sed "s:$dotfiles:@DOTFILES@:g" | \
+	sed "s:$HOME:@HOME@:g" | \
 	sed 's/^context=.*$//g'

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# This script searches for the default Firefox data directory
+
+if ! [ -f "${HOME}/.mozilla/firefox/profiles.ini" ]; then
+	echo "Firefox was never run for this user" >&2
+	exit 2
+fi
+# Find correct profile
+defaultProfile=''
+default=0
+path=''
+while IFS='' read -r line; do
+	# This is a new profile
+	if [[ "${line}" =~ ^[Profile ]]; then
+		if [ "${default}" = 1 ]; then
+			defaultProfile="${path}"
+		fi
+		default=0
+		path=''
+	fi
+	if [ "${line}" = 'Default=1' ]; then
+		default=1
+	fi
+	if [[ "${line}" =~ Path= ]]; then
+		path="$(echo "${line}" | cut -d'=' -f2)"
+	fi
+done < "${HOME}/.mozilla/firefox/profiles.ini"
+defaultProfile="${defaultProfile:-${path}}"
+if [ -z "${defaultProfile}" ]; then
+	echo "No profile is the default one" >&2
+	exit 2
+fi
+echo "${HOME}/.mozilla/firefox/${defaultProfile}"

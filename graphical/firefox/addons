@@ -1,0 +1,13 @@
+# vi: ft=sh
+
+# This is an array of all addons.
+# Each addon has the following structure:
+# <human readable name>:<name of the XPI without .xpi>:<download URL>
+addons=(
+	"Foxy Gestures:{e839c3f9-298e-4cd0-99e0-464431cb7c34}:https://addons.mozilla.org/firefox/downloads/file/761627/foxy_gestures-1.0.10-an+fx.xpi"
+	"HTTPS Everywhere:https-everywhere@eff.org:https://addons.mozilla.org/firefox/downloads/file/755432/https_everywhere-2017.10.30-an+fx.xpi"
+	"PassFF:passff@invicem.pro:https://addons.mozilla.org/firefox/downloads/file/721365/passff-1.0.3linux-an+fx-linux.xpi"
+	"Reddit Enhancement Suite:jid1-xUfzOsOFlzSOXg@jetpack:https://addons.mozilla.org/firefox/downloads/file/727847/reddit_enhancement_suite-5.8.6-an+fx.xpi"
+	"uBlock Origin:uBlock0@raymondhill.net:https://addons.mozilla.org/firefox/downloads/file/748887/ublock_origin-1.14.16-an+fx.xpi"
+	"Vimium-FF:{d7742d87-e61d-4b78-b8a1-b469842139fa}:https://addons.mozilla.org/firefox/downloads/file/753476/vimium_ff-1.61.1-an+fx.xpi"
+)
