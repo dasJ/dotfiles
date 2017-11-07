@@ -67,6 +67,8 @@ Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Syntax highlightings
 Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'vim-scripts/openvpn'
+Plug 'LnL7/vim-nix'
 " Visual things
 Plug 'tomasr/molokai' " Not loaded on demand because I always need it
 Plug 'vim-airline/vim-airline' " See molokai
