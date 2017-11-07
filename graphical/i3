@@ -124,9 +124,10 @@ bindsym XF86ScreenSaver exec --no-startup-id slock
 bindsym --whole-window --border $mod+button4 exec ponymix increase 5
 bindsym --whole-window --border $mod+button5 exec ponymix decrease 5
 
-# No scrolling in title bar
+# No mouse in title bar
 bindsym button1 nop
 bindsym button2 nop
+bindsym button3 nop
 bindsym button4 nop
 bindsym button5 nop
 
