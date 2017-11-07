@@ -35,5 +35,29 @@ deps() {
 	objdump -p "${bin}" | awk '/NEEDED/ { print $2 }'
 }
 
+tick() {
+	[ "${#}" -lt 2 ] && return 1
+	deadline="${1}"
+	shift
+	in +tickle wait:"${deadline}" "${@}"
+}
+
+alright() {
+	unset REPORTTIME
+	[ -z "${TMUX}" ] && TMUX="${OUTERTMUX}"
+	export TMUX
+	# Right side
+	tmux splitw -h -p 85 calcurse
+	# Left side
+	tmux splitw -v -l $((${LINES} - 7)) -t 1 tasksh
+	# Wait until tasksh started and clear screen
+	(sleep .2; tmux send-keys -t 2 ^L) &
+	# Go to calcurse and rename window
+	tmux select-pane -t 3
+	tmux rename-window 'My Day'
+	# Run status
+	exec @DOTFILES@/scripts/taskstatus
+}
+
 source "$zshincl/extract.zsh"
 source "$zshincl/ldapid.zsh"

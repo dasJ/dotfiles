@@ -38,6 +38,10 @@ alias -g T='| tail'
 alias -g G='| grep'
 alias -g NUL='&>/dev/null'
 
+# task
+alias in='task add +in'
+alias tctx='task context'
+
 # tmux
 alias tmux='tmux -2' # Colors
 alias outertmux='tmux -L "$tmuxname"'

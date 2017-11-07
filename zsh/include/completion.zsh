@@ -43,3 +43,11 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w 
 
 # Completion aliases
 compdef va='vagrant'
+
+# Custom completions
+compdef _taskw_ctx tctx
+_taskw_ctx() {
+	local -a contexts
+	contexts=(none $(task _context))
+	_describe 'command' contexts
+}

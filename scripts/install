@@ -33,6 +33,7 @@ linkfiles=(
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
 	"$HOME/.curlrc:misc/curlrc|no"
 	"$HOME/.ssh/config:misc/ssh_config|no"
+	"$HOME/.taskrc:misc/taskrc|no"
 	# Graphical stuff
 	"$HOME/.xinitrc:graphical/xinitrc|yes"
 	"$HOME/.gtkrc-2.0:graphical/gtk/gtkrc-2.0|yes"
@@ -143,6 +144,13 @@ createlocalconfig() {
 	touch "${BASEDIR}/local/zsh"
 	touch "${BASEDIR}/local/vim"
 	touch "${HOME}/.ssh/config.local"
+	if ! [ -f "${BASEDIR}/local/taskd" ]; then
+		{
+			echo '# vi:ft=taskrc'
+			echo taskd.server=
+			echo taskd.credentials=
+		} > "${BASEDIR}/local/taskd"
+	fi
 }
 
 creategitconfig() {

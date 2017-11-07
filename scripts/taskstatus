@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Gather colors. Shamelessly stolen from makepkg
+ALL_OFF="$(tput sgr0)"
+BOLD="$(tput bold)"
+BLUE="${BOLD}$(tput setaf 4)"
+RED="${BOLD}$(tput setaf 1)"
+
+print() { # Bad, Text, Amount
+	local col
+	[ "${1}" = 0 ] && col="${RED}"
+	printf " ${BLUE}==>${ALL_OFF} ${BOLD}${2} ${col}${3}${ALL_OFF}\n"
+}
+
+# Hide cursor
+trap 'tput cnorm; exit' INT TERM EXIT
+tput civis
+
+while :; do
+	clear
+	echo
+
+	# Context
+	ctx="$(task _get rc.context)"
+	ctxFilter="$(task _get "rc.context.${ctx}" | sed 's/\+@everywhere,//')"
+	[ -z "${ctxFilter}" ] || ctxFilter="(${ctxFilter})"
+	print 1 Context: "${ctx} ${ctxFilter}"
+
+	# Inbox
+	in="$(task rc.context= +in status:pending count 2>/dev/null)"
+	[ "${in}" -gt 0 ]
+	print "${?}" "In:     " "${in}"
+
+	# Inbox
+	next="$(task +next status:pending count 2>/dev/null)"
+	print 1 "Next:   " "${next}"
+
+	# Sync
+	syncout="$(task '/^$/' list 2>&1 | grep Sync)"
+	if [ -z "${syncout}" ]; then
+		print 1 "Synced: " Yes
+	else
+		print 0 "Synced: " No
+	fi
+
+	inotifywait "$(readlink ~/.taskrc)" ~/.task --recursive -e CREATE -e MODIFY -e MOVED_TO -e MOVED_FROM -e DELETE 2>/dev/null
+done &
+
+read -rn1
+kill %%
+exec "${0}" "${@}"
