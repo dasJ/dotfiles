@@ -148,8 +148,8 @@ bindsym $mod+e mode "resize"
 #####
 # Default workspaces
 #####
-workspace 2 output DVI-I-1
-workspace "♫" output DVI-I-1
+workspace 2 output DVI-D-0
+workspace "♫" output DVI-D-0
 assign [class="Spotify"] "♫"
 
 #####
