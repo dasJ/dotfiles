@@ -80,7 +80,7 @@ autostart=(
 	redshift-gtk
 	spotify
 	st
-	telegramdesktop
+	telegram-desktop
 )
 
 ###
