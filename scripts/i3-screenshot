@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 out="$(echo 'Select Area
 Current Window
@@ -32,4 +32,4 @@ case "${out}" in
 		;;
 esac
 
-maim -q -u -d "${s}" ${params[@]} | xclip -selection clipboard -t image/png
+maim -q -u -d "${s}" "${params[@]}" | xclip -selection clipboard -t image/png

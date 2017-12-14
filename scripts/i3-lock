@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sleep 1 # This works around the screen turning on immediately
 xset dpms 0 0 10 # Turn off after 10 seconds of inactivity

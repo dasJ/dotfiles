@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Gather colors. Shamelessly stolen from makepkg
 ALL_OFF="$(tput sgr0)"
