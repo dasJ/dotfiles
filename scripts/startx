@@ -1,0 +1,77 @@
+#!/usr/bin/env sh
+
+# Simplified version of startx.
+# Responsible for starting a proper X session
+
+unset SESSION_MANAGER
+set -o nounset
+set -e
+
+# Determine an unsused $DISPLAY
+display=0
+while :; do
+	[ -e "/tmp/.X${display}-lock" ] || break
+	display=$((${display} + 1))
+done
+display=":${display}"
+
+# When starting the default server start X on the current tty to avoid
+# the startx session being seen as inactive:
+tty="$(tty)"
+if expr match "${tty}" '^/dev/tty[0-9]\+$' > /dev/null; then
+	vtarg="vt$(echo "${tty}" | grep -oE '[0-9]+$')"
+fi
+
+# Set up Xauth
+if [ -z "$(hostname --version 2>&1 | grep GNU)" ]; then
+	hostname="$(hostname -f)"
+else
+	hostname="$(hostname)"
+fi
+mcookie="$(mcookie)"
+authfile="$(mktemp -p /tmp serverauth.XXXXXXXXXX)"
+dummy=0
+trap 'rm -f "${authfile}"' HUP INT QUIT ILL TRAP BUS TERM
+xauth -q -f "${authfile}" << EOF
+add :${dummy} . ${mcookie}
+EOF
+
+# Add the same credentials to the client authority file
+removelist=
+for displayname in "${display}" "${hostname}/unix${display}"; do
+	cookie="$(xauth list "${displayname}" |\
+		sed -n "s/.*${hostname}\/unix${display}[[:space:]*].*[[:space:]*]//p")" 2>/dev/null;
+	if [ -z "${cookie}" ]; then
+		xauth -q <<EOF
+add ${displayname} . ${mcookie}
+EOF
+		removelist="${displayname} ${removelist}"
+	else
+		dummy=$((dummy + 1))
+		xauth -q -f "${authfile}" <<EOF
+add :${dummy} . ${cookie}
+EOF
+	fi
+done
+
+# Find the configuration on NixOS
+if grep -q '^ID=nixos' /etc/os-release; then
+	conf="-config $(nix-store -q --referrers "$(which X)" | grep xserver.conf$)"
+fi
+
+# Run X
+if [ -z "${XAUTHORITY:-}" ]; then
+	export XAUTHORITY="${HOME}/.Xauthority"
+fi
+xinit @DOTFILES@/graphical/xinitrc -- "$(which X)" -nolisten tcp "${display}" "${vtarg}" -auth "${authfile}" ${conf:-}
+retval="${?}"
+
+if ! [ -z "${removelist}" ]; then
+	xauth remove "${removelist}"
+fi
+rm -f "${authfile}"
+
+if hash deallocvt >/dev/null 2>&1; then
+	deallocvt
+fi
+exit "${retval}"
