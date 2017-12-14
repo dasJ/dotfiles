@@ -27,7 +27,7 @@ software=(
 	"binutils|no|binutils|command|objdump"
 
 	"SECTION|vim"
-	"vim|no||command|vim"
+	"vim|no|vim|command|vim"
 	"ctags|no|ctags|command|ctags"
 	"pandoc|no|pandoc|command|pandoc"
 
@@ -68,7 +68,7 @@ software=(
 	"i3|yes|i3|command|i3"
 	"gtk3|yes|nixos.gnome3.gtk|command|gtk-launch"
 	# Other stuff
-	"st|yes||command|st"
+	"st|yes|st|command|st"
 	"Anonymous Pro font|yes|anonymousPro|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
 	"numix theme|yes|numix-gtk-theme|file|/usr/share/themes/Numix/index.theme"
 	"feh|yes|feh|command|feh"
