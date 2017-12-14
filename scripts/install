@@ -269,13 +269,13 @@ updaterepos() {
 
 msg "Checking requirements..."
 checkDependencies
+msg "Creating empty directories..."
+makedirs
 msg "Creating local configuration..."
 createlocalconfig
 msg "Asking for configuration..."
 creategitconfig
 creategraphicalconfig
-msg "Creating empty directories..."
-makedirs
 msg "Updating submodules..."
 updaterepos
 msg "Linking..."
