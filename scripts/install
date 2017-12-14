@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 set -o nounset
 
 ###
@@ -35,7 +35,6 @@ linkfiles=(
 	"$HOME/.ssh/config:misc/ssh_config|no"
 	"$HOME/.taskrc:misc/taskrc|no"
 	# Graphical stuff
-	"$HOME/.xinitrc:graphical/xinitrc|yes"
 	"$HOME/.gtkrc-2.0:graphical/gtk/gtkrc-2.0|yes"
 	"$HOME/.mozilla/native-messaging-hosts/passff.json:graphical/firefox/passff.json|yes"
 	"$HOME/.config/gtk-2.0/gtkfilechooser.ini:graphical/gtk/gtk2.0-filechooser.ini|yes"

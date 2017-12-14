@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -x /usr/bin/numlockx ] && /usr/bin/numlockx &
+hash numlockx >/dev/null 2>&1 && numlockx &
 xmodmap @DOTFILES@/graphical/Xmodmap &
 @DOTFILES@/scripts/xset
 
@@ -18,4 +18,4 @@ while IFS='' read -r f; do
 done <<<"$(find .config/autostart -type f -name '*.desktop' -printf '%f\n')"
 
 # Start window manager
-exec /usr/bin/i3
+exec i3

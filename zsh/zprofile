@@ -33,5 +33,5 @@ fi
 
 # Start X11
 if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ]; then
-	exec startx
+	exec @DOTFILES@/scripts/startx
 fi

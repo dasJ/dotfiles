@@ -1,90 +1,93 @@
-#/usr/bin/bash -o nounset
+#!/usr/bin/env bash
 # This script helps me to remember what to install
 #
+
+set -o nounset
+set -e
 
 ###
 # Configuration
 ###
 
-# name|graphical?|test|testparam
+# name|graphical?|nixpkg|test|testparam
 software=(
 	"SECTION|Basic things"
-	"zsh|no|command|zsh"
-	"git|no|command|git"
-	"pacaur|no|command|pacaur"
-	"htop|no|command|htop"
-	"curl|no|command|curl"
-	"sudo|no|command|sudo"
-	"systemd|no|command|systemctl"
-	"coreutils|no|command|cat"
-	"util-linux|no|command|lsblk"
-	"gawk|no|command|awk"
-	"iptuils|no|command|ip"
-	"binutils|no|command|objdump"
+	"zsh|no|zsh|command|zsh"
+	"git|no|git|command|git"
+	"pacaur|no|SKIP|command|pacaur"
+	"htop|no|htop|command|htop"
+	"curl|no|curl|command|curl"
+	"sudo|no||command|sudo"
+	"systemd|no||command|systemctl"
+	"coreutils|no|coreutils|command|cat"
+	"util-linux|no||command|lsblk"
+	"gawk|no|gawk|command|awk"
+	"iptuils|no|iputils|command|ping"
+	"iproute2|no|iproute2|command|ip"
+	"binutils|no|binutils|command|objdump"
 
 	"SECTION|vim"
-	"vim|no|command|vim"
-	"ctags|no|command|ctags"
-	"pandoc|no|command|pandoc"
+	"vim|no||command|vim"
+	"ctags|no|ctags|command|ctags"
+	"pandoc|no|pandoc|command|pandoc"
 
 	"SECTION|Alias targets from zshrc"
-	"sl|no|file|/usr/bin/sl"
-	"binutils|no|command|objdump"
-	"bc|no|command|bc"
-	"minicom|no|command|minicom"
-	"zfs|no|command|zfs"
-	"rsync|no|command|rsync"
-	"tree|no|command|tree"
-	"ssh-agent|no|command|ssh-agent"
+	"sl|no|sl|command|sl"
+	"bc|no|bc|command|bc"
+	"minicom|no|minicom|command|minicom"
+	"zfs|no||command|zfs"
+	"rsync|no|rsync|command|rsync"
 
 	"SECTION|tmux"
-	"tmux|no|command|tmux"
-	"fpp|no|command|fpp"
-	"vlock|no|command|vlock"
+	"tmux|no|tmux|command|tmux"
+	"vlock|no|vlock|command|vlock"
 
 	"SECTION|Archive extractors"
-	"tar|no|command|tar"
-	"bzip2|no|command|bunzip2"
-	"unrar|no|command|unrar"
-	"gzip|no|command|gunzip"
-	"unzip|no|command|unzip"
-	"p7zip|no|command|7z"
-	"xz|no|command|unlzma"
-	"cabextract|no|command|cabextract"
+	"tar|no|gnutar|command|tar"
+	"bzip2|no|bzip2|command|bunzip2"
+	"unrar|no|unrar|command|unrar"
+	"gzip|no|gzip|command|gunzip"
+	"unzip|no|unzip|command|unzip"
+	"p7zip|no|p7zip|command|7z"
+	"xz|no|xz|command|unlzma"
+	"cabextract|no|cabextract|command|cabextract"
 
 	"SECTION|Stuff"
-	"gpg|no|command|gpg"
-	"libcaca|no|command|cacaview"
-	"bind-tools|no|command|dig"
-	"whois|no|command|whois"
+	"gpg|no|gnupg|command|gpg"
+	"libcaca|no|libcaca|command|cacaview"
+	"bind-tools|no|bind|command|dig"
 
 	"SECTION|Graphical stuff"
-	"st|yes|command|st"
-	"Anonymous Pro font|yes|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
-	"numix theme|yes|file|/usr/share/themes/Numix/index.theme"
-	"feh|yes|command|feh"
-	"gtk3|yes|command|gtk-launch"
-	"dunst|yes|command|dunst"
-	"rofi|yes|command|rofi"
-	"firefox|yes|command|firefox"
-	"fontconfig|yes|command|fc-list"
-	"xdg-utils|yes|command|xdg-open"
-	"redshift-gtk|yes|command|redshift-gtk"
-	"xorg-xdmodmap|yes|command|xmodmap"
-	"numlockx|yes|command|numlockx"
-	"xorg-xset|yes|command|xset"
-	"i3|yes|command|i3"
-	"openimageio|yes|command|iv"
-	"xorg-xinit|yes|command|startx"
-	"xorg-xbacklight|yes|command|xbacklight"
-	"dbus|yes|command|dbus-send"
-	"spotify|yes|command|spotify"
-	"ponymix|yes|command|ponymix"
-	"xclip|yes|command|xclip"
-	"xdotool|yes|command|xdotool"
-	"slock|yes|command|slock"
-	"noto-fonts|yes|exec|[ ! `fc-list 'Noto Sans' | wc -l -eq 0 ]"
-	"noto-fonts-emoji|yes|exec|[ ! `fc-list 'Noto Color Emoji' | wc -l -eq 0 ]"
+	# startx and xinitrc
+	"xorg-xinit|yes|nixos.xorg.xinit|command|xinit"
+	"xorg-xmodmap|yes|nixos.xorg.xmodmap|command|xmodmap"
+	"xorg-xset|yes|nixos.xorg.xset|command|xset"
+	"xorg-xbacklight|yes|nixos.xorg.xbacklight|command|xbacklight"
+	"libevdev|yes|nixos.xorg.xf86inputevdev|file|${HOME}/.nix-profile/lib/xorg/modules/input/evdev_drv.so"
+	"numlockx|yes|numlockx|command|numlockx"
+	"i3|yes|i3|command|i3"
+	"gtk3|yes|nixos.gnome3.gtk|command|gtk-launch"
+	# Other stuff
+	"st|yes||command|st"
+	"Anonymous Pro font|yes|anonymousPro|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
+	"numix theme|yes|numix-gtk-theme|file|/usr/share/themes/Numix/index.theme"
+	"feh|yes|feh|command|feh"
+	"dunst|yes|dunst|command|dunst"
+	"rofi|yes|rofi|command|rofi"
+	"firefox|yes|firefox|command|firefox"
+	"fontconfig|yes|fontconfig|command|fc-list"
+	"xdg-utils|yes|xdg_utils|command|xdg-open"
+	"redshift-gtk|yes|redshift|command|redshift-gtk"
+	"openimageio|yes|openimageio|command|iv"
+	"dbus|yes|dbus|command|dbus-send"
+	"spotify|yes|spotify|command|spotify"
+	"ponymix|yes|ponymix|command|ponymix"
+	"xclip|yes|xclip|command|xclip"
+	"xdotool|yes|xdotool|command|xdotool"
+	"slock|yes|slock|command|slock"
+	"noto-fonts|yes|nixos.noto-fonts|exec|[ ! $(fc-list 'Noto Sans' | wc -l) -eq 0 ]"
+	"noto-fonts-emoji|yes|nixos.noto-fonts-emoji|exec|[ ! $(fc-list 'Noto Color Emoji' | wc -l) -eq 0 ]"
+	"telegram-desktop|yes|nixos.tdesktop|command|telegram-desktop"
 )
 
 
@@ -103,33 +106,52 @@ fi
 ###
 # Main
 ###
+isnix=0
+graphical=0
+nixpkgs=''
+fullNixpkgs=''
+if [ -f /etc/os-release ]; then
+	if [ "$(grep ^ID /etc/os-release)" = 'ID=nixos' ]; then
+		isnix=1
+	fi
+fi
+if which X &>/dev/null; then
+	graphical=1
+fi
+
+
 for sw in "${software[@]}"; do
 	# Parse this software
-	prettyname="`echo "${sw}" | awk -F '|' '{ print $1 }'`"
-	isgraphical="`echo "${sw}" | awk -F '|' '{ print $2 }'`"
+	prettyname="$(echo "${sw}" | cut -d'|' -f1)"
+	isgraphical="$(echo "${sw}" | cut -d'|' -f2)"
 	# Headings
 	if [ "${prettyname}" = "SECTION" ]; then
 		echo "${_color_green}==>${_color_none} ${_color_bold}${isgraphical}${_color_none}"
 		continue
 	fi
-	checktype="`echo "${sw}" | awk -F '|' '{ print $3 }'`"
-	checkarg="`echo "${sw}" | awk -F '|' '{ print $4 }'`"
-	# Print a nice message
+	nixpkg="$(echo "${sw}" | cut -d'|' -f3)"
+	checktype="$(echo "${sw}" | cut -d'|' -f4)"
+	checkarg="$(echo "${sw}" | cut -d'|' -f5-)"
+	# Prepare the message
 	msgsuffix=''
 	test "${isgraphical}" == 'yes' && msgsuffix="${msgsuffix} (graphical)"
-	echo -ne "    [ ${_color_bold}....${_color_none} ] Checking for ${_color_bold}${prettyname}${_color_none}${msgsuffix}"
 	# Ignore if not graphical
-	if [ -f "$(readlink -f $(dirname "$0"))/nographical" ]; then
-		if [ "${isgraphical}" == 'yes' ]; then
-			echo -ne "\r    [ ${_color_yellow}skip${_color_none}\v\r"
-			continue
-		fi
+	if [ "${graphical}" = 0 ] && [ "${isgraphical}" = yes ]; then
+		echo -e "    [ ${_color_yellow}skip${_color_none} ] ${prettyname}${msgsuffix}"
+		continue
 	fi
+	# Ignore arch-related packages on nix
+	if [ "${nixpkg}" = SKIP ] && [ "${isnix}" = 1 ]; then
+		echo -e "    [ ${_color_yellow}skip${_color_none} ] ${prettyname}${msgsuffix}"
+		continue
+	fi
+
 	# Perform the actual check
 	okay=0
+	set +e
 	case "${checktype}" in
 		'command')
-			hash "${checkarg}" &>/dev/null
+			which "${checkarg}" &>/dev/null
 			okay="${?}"
 			;;
 		'file')
@@ -143,10 +165,26 @@ for sw in "${software[@]}"; do
 		*)
 			okay=255
 	esac
+	set -e
 	# Process check result
 	if [ "${okay}" -eq 0 ]; then
-		echo -ne "\r    [ ${_color_green}okay${_color_none}\v\r"
+		echo -e "    [ ${_color_green}okay${_color_none} ] Checking for ${prettyname}${msgsuffix}"
 	else
-		echo -ne "\r    [ ${_color_red}miss${_color_none}\v\r"
+		echo -e "    [ ${_color_red}miss${_color_none} ] Checking for ${prettyname}${msgsuffix}"
+		if [ "${nixpkg}" != SKIP ] && ! [ -z "${nixpkg}" ]; then
+			if [[ "${nixpkg}" == *"."* ]]; then
+				fullNixpkgs="${fullNixpkgs} ${nixpkg}"
+			else
+				nixpkgs="${nixpkgs} ${nixpkg}"
+			fi
+		fi
 	fi
 done
+if [ "${isnix}" = 1 ] && ! [ -z "${nixpkgs}" ]; then
+	echo "${_color_green}==>${_color_none} ${_color_bold}Installing using nix-env${_color_none}"
+	nix-env -i ${nixpkgs}
+fi
+if [ "${isnix}" = 1 ] && ! [ -z "${fullNixpkgs}" ]; then
+	echo "${_color_green}==>${_color_none} ${_color_bold}Installing using nix-env${_color_none}"
+	nix-env -iA ${fullNixpkgs}
+fi
