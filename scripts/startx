@@ -54,16 +54,11 @@ EOF
 	fi
 done
 
-# Find the configuration on NixOS
-if grep -q '^ID=nixos' /etc/os-release; then
-	conf="-config $(nix-store -q --referrers "$(which X)" | grep xserver.conf$)"
-fi
-
 # Run X
 if [ -z "${XAUTHORITY:-}" ]; then
 	export XAUTHORITY="${HOME}/.Xauthority"
 fi
-xinit @DOTFILES@/graphical/xinitrc -- "$(which X)" -nolisten tcp "${display}" "${vtarg}" -auth "${authfile}" ${conf:-}
+xinit @DOTFILES@/graphical/xinitrc -- "$(which X)" -nolisten tcp "${display}" "${vtarg}" -auth "${authfile}"
 retval="${?}"
 
 if ! [ -z "${removelist}" ]; then
