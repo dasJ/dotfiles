@@ -71,6 +71,7 @@ software=(
 	"st|yes|st|command|st"
 	"Anonymous Pro font|yes|anonymousPro|exec|[ ! `fc-list "Anonymous Pro" | wc -l` -eq 0 ]"
 	"numix theme|yes|numix-gtk-theme|file|/usr/share/themes/Numix/index.theme"
+	"adwaita-icon-theme|yes|nixos.gnome3.adwaita-icon-theme|file|/usr/share/themes/Numix/index.theme"
 	"feh|yes|feh|command|feh"
 	"dunst|yes|dunst|command|dunst"
 	"rofi|yes|rofi|command|rofi"

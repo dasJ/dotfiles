@@ -48,6 +48,7 @@ linkfiles=(
 	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
 	"$HOME/.config/redshift.conf:graphical/redshift.conf|yes"
 	"$HOME/.config/yad.conf:graphical/yad.conf|yes"
+	"$HOME/.icons/default/index.theme:graphical/index.theme|yes"
 )
 # dir|graphical?
 mkdirs=(
@@ -62,9 +63,10 @@ mkdirs=(
 	"$HOME/.config/fontconfig|yes"
 	"$HOME/.config/OpenImageIO|es"
 	"$HOME/.config/rofi|yes"
-	"$HOME/.gnupg"
-	"$HOME/.ssh"
+	"$HOME/.gnupg|no"
+	"$HOME/.ssh|no"
 	"$HOME/.mozilla/native-messaging-hosts|yes"
+	"$HOME/.icons/default"
 )
 
 # unit|graphical?
