@@ -33,8 +33,8 @@ git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" checkout HEAD -- script
 git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" checkout HEAD -- scripts/clean-filter
 
 echo '-> Configuring git'
-git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" config filter.vars.smudge "${basedir}/scripts/smudge-filter"
-git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" config filter.vars.clean "${basedir}/scripts/clean-filter"
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" config filter.vars.smudge "${basedir}/scripts/smudge-filter %f"
+git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" config filter.vars.clean "${basedir}/scripts/clean-filter %f"
 
 echo '-> Checking out'
 git "--git-dir=${basedir}/.git" "--work-tree=${basedir}" reset HEAD -- .

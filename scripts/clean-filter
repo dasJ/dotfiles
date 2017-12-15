@@ -2,6 +2,10 @@
 set -e
 dotfiles="$(dirname "$(dirname "$(readlink -f "${0}")")")"
 
+if [ "$(basename "${1}")" = 'clean-filter' ] || [ "$(basename "${1}")" = 'smudge-filter' ]; then
+	exec cat
+fi
+
 sed "s:$dotfiles:@DOTFILES@:g" | \
 	sed "s:$HOME:@HOME@:g" | \
 	sed 's/^context=.*$//g'
