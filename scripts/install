@@ -73,7 +73,6 @@ mkdirs=(
 units=(
 	'dirmngr.socket'
 	'gpg-agent.socket'
-	'gpg-agent-ssh.socket'
 	'threestatus.socket'
 )
 

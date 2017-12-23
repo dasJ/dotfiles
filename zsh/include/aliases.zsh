@@ -60,6 +60,7 @@ alias :q='exit'
 alias privip="ip a | grep 'inet ' | awk -F' ' '{print $2}'"
 alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias path='echo -e ${PATH//:/\\n}'
+alias ssh="@DOTFILES@/scripts/pass2agent; ssh"
 alias va=vagrant
 
 # Includes
