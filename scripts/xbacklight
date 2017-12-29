@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+if [ "${#}" -ne 1 ]; then
+	echo "Usage: ${0} <+|->" 2>&1
+	exit 1
+fi
+
+step="${xbacklight_step:-5}"
+path="/sys/class/backlight/${xbacklight_device:-intel_backlight}"
+safeval="${xbacklight_safe:-50}"
+
+current_brightness="$(< "${path}/brightness")"
+
+max_brightness="$(< "${path}/max_brightness")"
+brightness_step="$(("${current_brightness}" / "${step}"))"
+
+new_brightness="$(("${current_brightness}" "${1}" "${brightness_step}"))"
+
+if [ "${new_brightness}" -gt "${max_brightness}" ]; then
+	new_brightness="${max_brightness}"
+fi
+if [ "${new_brightness}" -lt "${safeval}" ]; then
+	new_brightness="${safeval}"
+fi
+
+echo "${new_brightness}" | ${xbacklight_tee:-tee} "${path}/brightness" >/dev/null
