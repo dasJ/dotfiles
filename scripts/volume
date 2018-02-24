@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -e
+set -o nounset
+set -o pipefail
+
+if [ "${#}" -lt 1 ] || [ "${#}" -gt 2 ]; then
+	echo "Usage: ${0} <up|down|mute|unmute|toggle> [level]"
+	exit 1
+fi
+
+sinkid="$(pacmd list-sinks | grep '\* index' | cut -d' ' -f5)"
+amount="${2:-5}"
+
+case "${1}" in
+	up)
+		pactl set-sink-volume "${sinkid}" "+${amount}%"
+		;;
+	down)
+		pactl set-sink-volume "${sinkid}" "-${amount}%"
+		;;
+	mute)
+		pactl set-sink-mute "${sinkid}" 1
+		;;
+	unmute)
+		pactl set-sink-mute "${sinkid}" 0
+		;;
+	toggle)
+		pactl set-sink-mute "${sinkid}" toggle
+		;;
+	*)
+		echo "Invalid operation: ${1}"
+		exit 1
+		;;
+esac

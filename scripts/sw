@@ -82,7 +82,6 @@ software=(
 	"openimageio|yes|openimageio|command|iv"
 	"dbus|yes|dbus|command|dbus-send"
 	"spotify|yes|spotify|command|spotify"
-	"ponymix|yes|ponymix|command|ponymix"
 	"xclip|yes|xclip|command|xclip"
 	"xdotool|yes|xdotool|command|xdotool"
 	"slock|yes|slock|command|slock"
