@@ -29,10 +29,10 @@ else
 	hostname="$(hostname)"
 fi
 mcookie="$(mcookie)"
-authfile="$(mktemp -p /tmp serverauth.XXXXXXXXXX)"
+XAUTHORITY="$(mktemp -p /tmp serverauth.XXXXXXXXXX)"
 dummy=0
-trap 'rm -f "${authfile}"' HUP INT QUIT ILL TRAP BUS TERM
-xauth -q -f "${authfile}" << EOF
+trap 'rm -f "${XAUTHORITY}"' HUP INT QUIT ILL TRAP BUS TERM
+xauth -q -f "${XAUTHORITY}" << EOF
 add :${dummy} . ${mcookie}
 EOF
 
@@ -48,23 +48,21 @@ EOF
 		removelist="${displayname} ${removelist}"
 	else
 		dummy=$((dummy + 1))
-		xauth -q -f "${authfile}" <<EOF
+		xauth -q -f "${XAUTHORITY}" <<EOF
 add :${dummy} . ${cookie}
 EOF
 	fi
 done
 
 # Run X
-if [ -z "${XAUTHORITY:-}" ]; then
-	export XAUTHORITY="${HOME}/.Xauthority"
-fi
-xinit @DOTFILES@/graphical/xinitrc -- "$(which X)" -nolisten tcp "${display}" "${vtarg}" -auth "${authfile}"
+export XAUTHORITY
+xinit @DOTFILES@/graphical/xinitrc -- "$(which X)" "${display}" "${vtarg}" -auth "${XAUTHORITY}"
 retval="${?}"
 
 if ! [ -z "${removelist}" ]; then
 	xauth remove "${removelist}"
 fi
-rm -f "${authfile}"
+rm -f "${XAUTHORITY}"
 
 if hash deallocvt >/dev/null 2>&1; then
 	deallocvt
