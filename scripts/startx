@@ -20,6 +20,8 @@ display=":${display}"
 tty="$(tty)"
 if expr match "${tty}" '^/dev/tty[0-9]\+$' > /dev/null; then
 	vtarg="vt$(echo "${tty}" | grep -oE '[0-9]+$')"
+else
+	exit 77
 fi
 
 # Set up Xauth
