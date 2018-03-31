@@ -5,6 +5,7 @@ Shut down
 Suspend
 Reboot
 Hibernate
+Kexec
 Hybrid sleep' | rofi -dmenu -p 'power> ')"
 
 [ -z "${out}" ] && exit
@@ -27,5 +28,8 @@ case "${out}" in
 	;;
 	'Reboot')
 		systemctl reboot
+	;;
+	'Kexec')
+		systemctl kexec
 	;;
 esac
