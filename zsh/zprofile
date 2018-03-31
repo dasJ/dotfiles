@@ -31,6 +31,9 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 	mkdir -p "$TMPPREFIX"
 fi
 
+# Disable Ctrl+S
+stty -ixon
+
 # Start X11
 if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ]; then
 	@DOTFILES@/scripts/startx
