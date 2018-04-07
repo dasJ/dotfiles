@@ -88,6 +88,7 @@ software=(
 	"noto-fonts|yes|nixos.noto-fonts|exec|[ ! $(fc-list 'Noto Sans' | wc -l) -eq 0 ]"
 	"noto-fonts-emoji|yes|nixos.noto-fonts-emoji|exec|[ ! $(fc-list 'Noto Color Emoji' | wc -l) -eq 0 ]"
 	"telegram-desktop|yes|nixos.tdesktop|command|telegram-desktop"
+	"xcalib|yes||command|xcalib"
 )
 
 

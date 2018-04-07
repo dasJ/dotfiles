@@ -1,6 +1,7 @@
 #!/bin/sh
 
 hash numlockx >/dev/null 2>&1 && numlockx &
+hash xcalib >/dev/null 2>&1 && @DOTFILES@/scripts/icc-profile &
 xmodmap @DOTFILES@/graphical/Xmodmap &
 @DOTFILES@/scripts/xset
 # Import environment into systemd

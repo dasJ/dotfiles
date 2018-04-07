@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# This script loads icc color profiles using `xcalib`
+# It requires $DISPLAY to be set correctly. You can give the directory of icc files as $1
+#
+# If a file with the name of your hostname exists, it's automatically parsed. You can override the hostname with $2
+# The file must contain output names and corresponding icc files, separated by '='.
+# Example:
+#
+# DVI-I-1=/var/monitor.icc
+#
+# If no configuration file is found, $(hostname).icc is tried.
+# If that exists, it's automatically loaded to all monitors.
+
+set -e
+set -o nounset
+set -o pipefail
+
+iccDir="${1:-@DOTFILES@/graphical/icc}"
+hostname="${2:-$(hostname)}"
+[ -d "${iccDir}" ] || exit
+
+# Load profile directly
+if ! [ -f "${iccDir}/${hostname}" ]; then
+	[ -f "${iccDir}/${hostname}.icc" ] && exec xcalib -d "${DISPLAY}" "${iccDir}/${hostname}.icc"
+	exit 0
+fi
+
+# Load profile file
+while IFS='=' read -r output file; do
+	xcalib -d "${DISPLAY}" -o "${output}" "${file}" &
+done < "${iccDir}/${hostname}"
