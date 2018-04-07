@@ -192,6 +192,8 @@ endif
 if exists("vimpager")
 	set nofoldenable
 	set nonumber
+	set norelativenumber
+	set nocursorline
 	let g:airline#extensions#tabline#enabled = 0
 endif
 
