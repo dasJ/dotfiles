@@ -62,6 +62,7 @@ alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias path='echo -e ${PATH//:/\\n}'
 alias ssh="@DOTFILES@/scripts/pass2agent; ssh"
 alias va=vagrant
+alias ip='ip -c'
 
 # Includes
 source "$zshincl/git-aliases.zsh"
