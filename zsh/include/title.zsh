@@ -67,6 +67,8 @@ preexec() {
 				break
 			done
 		fi
+	elif [ "${1:0:2}" = '$(' ]; then
+		set -- zsh
 	fi
 	# Set title
 	termTitle "${1##*/}"
