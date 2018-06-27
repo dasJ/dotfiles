@@ -26,7 +26,7 @@ fi
 
 # Set up Xauth
 if [ -z "$(hostname --version 2>&1 | grep GNU)" ]; then
-	hostname="$(hostname -f)"
+	hostname="$(hostname)"
 else
 	hostname="$(hostname)"
 fi
