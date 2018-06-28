@@ -1,5 +1,0 @@
-[Unit]
-Description=threestatus daemon
-
-[Service]
-ExecStart=/home/janne/.dotfiles/graphical/threestatus

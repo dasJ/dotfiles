@@ -1,9 +1,0 @@
-[Unit]
-Description=threestatus socket
-
-[Socket]
-ListenStream=%t/threestatus.sock
-SocketMode=0700
-
-[Install]
-WantedBy=sockets.target
