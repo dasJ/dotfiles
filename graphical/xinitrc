@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Start dbus
+if [ -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
+	exec dbus-launch --exit-with-session "${0}"
+fi
+
 hash numlockx >/dev/null 2>&1 && numlockx &
 hash xcalib >/dev/null 2>&1 && @DOTFILES@/scripts/icc-profile &
 xmodmap @DOTFILES@/graphical/Xmodmap &
