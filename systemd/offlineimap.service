@@ -1,0 +1,8 @@
+[Unit]
+Description=offlineimap daemon
+
+[Service]
+ExecStart=/run/current-system/sw/bin/offlineimap -c %h/.dotfiles/misc/offlineimap.conf
+
+[Install]
+WantedBy=default.target

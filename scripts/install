@@ -73,6 +73,7 @@ mkdirs=(
 units=(
 	'dirmngr.socket'
 	'gpg-agent.socket'
+	'offlineimap.service'
 )
 
 autostart=(
@@ -230,10 +231,6 @@ systemd() {
 	for file in ${BASEDIR}/systemd/*; do
 		ln -svTf "${file}" "${HOME}/.config/systemd/user/$(basename "${file}")"
 	done
-	# Default target
-	return
-	msg2 'Default'
-	systemctl --user set-default basic.target
 	# Reload
 	msg2 'Reload'
 	systemctl --user daemon-reload
