@@ -1,5 +1,5 @@
 /local/
 /thisislocal
-/scripts/antibody
+/scripts/*.pyc
 
 /zsh/antibody/repos
