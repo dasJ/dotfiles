@@ -131,6 +131,24 @@ bindsym button2 nop
 bindsym button3 nop
 bindsym button4 nop
 bindsym button5 nop
+bindsym $mod+button1 nop
+bindsym $mod+button2 nop
+bindsym $mod+button3 nop
+bindsym Ctrl+button1 nop
+bindsym Ctrl+button2 nop
+bindsym Ctrl+button3 nop
+bindsym Shift+button1 nop
+bindsym Shift+button2 nop
+bindsym Shift+button3 nop
+bindsym $mod+Ctrl+button1 nop
+bindsym $mod+Ctrl+button2 nop
+bindsym $mod+Ctrl+button3 nop
+bindsym $mod+Shift+button1 nop
+bindsym $mod+Shift+button2 nop
+bindsym $mod+Shift+button3 nop
+bindsym $mod+Ctrl+Shift+button1 nop
+bindsym $mod+Ctrl+Shift+button2 nop
+bindsym $mod+Ctrl+Shift+button3 nop
 
 # Resize
 mode "resize" {
@@ -196,6 +214,6 @@ bar {
 
 	bindsym button1 nop
 	bindsym button2 nop
-	wheel_up_cmd nop
-	wheel_down_cmd nop
+	bindsym button4 nop
+	bindsym button5 nop
 }
