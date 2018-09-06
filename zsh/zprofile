@@ -41,3 +41,5 @@ if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -
 		exit
 	fi
 fi
+
+systemctl --user import-environment PATH
