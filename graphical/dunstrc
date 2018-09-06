@@ -18,7 +18,7 @@
 	show_age_threshold = 30
 	icon_position = left
 	max_icon_size = 64
-	icon_folders = /usr/share/icons/Numix/32/status/:/usr/share/icons/Numix/32/devices/
+	icon_path = /usr/share/icons/Numix/32/status/:/usr/share/icons/Numix/32/devices/
 
 	# Frame
 	frame_width = 3
