@@ -6,7 +6,6 @@
 alias ls='ls -h --color --group-directories-first -F'
 alias ll='ls -lF'
 alias la='ll -a'
-alias sl='sl -a'
 
 # rm
 alias rm='rm -I' # Less intrusive interactive mode
