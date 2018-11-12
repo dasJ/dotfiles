@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-if [ -z "${DISPLAY}" ]; then
-	exec cacaview "${@}"
-else
-	exec feh "${@}"
-fi
-

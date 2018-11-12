@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-if [ -z "${XAUTHORITY}" ]; then
-	exec pinentry-tty "${@}"
-else
-	exec pinentry-gnome3 "${@}"
-fi
-
