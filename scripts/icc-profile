@@ -7,9 +7,9 @@
 # The file must contain output names and corresponding icc files, separated by '='.
 # Example:
 #
-# DVI-I-1=/var/monitor.icc
+# DVI-I-1=/var/monitor.icm
 #
-# If no configuration file is found, $(hostname).icc is tried.
+# If no configuration file is found, $(hostname).icm is tried.
 # If that exists, it's automatically loaded to all monitors.
 
 set -e
@@ -22,11 +22,12 @@ hostname="${2:-$(hostname)}"
 
 # Load profile directly
 if ! [ -f "${iccDir}/${hostname}" ]; then
-	[ -f "${iccDir}/${hostname}.icc" ] && exec xcalib -d "${DISPLAY}" "${iccDir}/${hostname}.icc"
+	[ -f "${iccDir}/${hostname}.icm" ] && exec xcalib -d "${DISPLAY}" "${iccDir}/${hostname}.icm"
 	exit 0
 fi
 
 # Load profile file
 while IFS='=' read -r output file; do
+	[ "${output:0:1}" = '#' ] && continue
 	xcalib -d "${DISPLAY}" -o "${output}" "${file}" &
 done < "${iccDir}/${hostname}"
