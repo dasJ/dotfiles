@@ -32,7 +32,6 @@ software=(
 	"pandoc|no|pandoc|command|pandoc"
 
 	"SECTION|Alias targets from zshrc"
-	"sl|no|sl|command|sl"
 	"bc|no|bc|command|bc"
 	"minicom|no|minicom|command|minicom"
 	"zfs|no||command|zfs"
@@ -45,7 +44,6 @@ software=(
 	"SECTION|Archive extractors"
 	"tar|no|gnutar|command|tar"
 	"bzip2|no|bzip2|command|bunzip2"
-	"unrar|no|unrar|command|unrar"
 	"gzip|no|gzip|command|gunzip"
 	"unzip|no|unzip|command|unzip"
 	"p7zip|no|p7zip|command|7z"
@@ -77,7 +75,7 @@ software=(
 	"rofi|yes|rofi|command|rofi"
 	"firefox|yes|firefox|command|firefox"
 	"fontconfig|yes|fontconfig|command|fc-list"
-	"xdg-utils|yes|xdg_utils|command|xdg-open"
+	"xdg-utils|yes|xdg-utils|command|xdg-open"
 	"redshift-gtk|yes|redshift|command|redshift-gtk"
 	"openimageio|yes|openimageio|command|iv"
 	"dbus|yes|dbus|command|dbus-send"
@@ -119,6 +117,7 @@ fi
 if which X &>/dev/null; then
 	graphical=1
 fi
+	graphical=1
 
 
 for sw in "${software[@]}"; do
