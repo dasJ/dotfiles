@@ -17,7 +17,6 @@ set incsearch " Search as you type
 set smartcase " If search pattern contains a uppercase letter, case sensitivity is on
 set laststatus=2 " Always display status bar
 set number " Line numbers
-set relativenumber " Relative line numbers
 set ruler " Display position in file in status bar
 set scrolloff=5 " Keep cursor 5 lines away from the screen border
 set shiftwidth=4 " 4 spaces = 1 tab
@@ -37,7 +36,6 @@ set listchars=tab:>-,eol:¶,trail:~ " Show these whitespaces
 set virtualedit=onemore " Allow the cursor past the end of line
 set splitright " Put a new window to the right
 set splitbelow " Put a new window below
-set nowrap " No line wrapping
 set autoindent " Indent as prevous line
 set noexpandtab " Do not expand tabs to spaces
 set tabstop=4 " Indentation every 4 columns
