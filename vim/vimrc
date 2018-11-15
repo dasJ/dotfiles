@@ -14,6 +14,7 @@ set history=50 " : History
 set hlsearch " Highlight search terms
 set ignorecase " Case insensitive search
 set incsearch " Search as you type
+set smartcase " If search pattern contains a uppercase letter, case sensitivity is on
 set laststatus=2 " Always display status bar
 set number " Line numbers
 set relativenumber " Relative line numbers
@@ -22,8 +23,7 @@ set scrolloff=5 " Keep cursor 5 lines away from the screen border
 set shiftwidth=4 " 4 spaces = 1 tab
 set showcmd " Show what you are doing
 set showmatch " Show matching bracket
-set showmode " Show wether in insert mode
-set smartcase " If search pattern contains a uppercase letter, case sensitivity is on
+set showmode " Show whether in insert mode
 set smarttab " Be cool when inserting tabs
 set title " Change shell title
 set wildmenu " Command line completion
@@ -47,7 +47,6 @@ set shiftwidth=4 " Indent with 4 spaces
 set clipboard=unnamed " Default clipboard
 set t_Co=256 " Wow! Much color!
 set cursorline " Highlight current line
-
 
 " ###
 " Plugins
