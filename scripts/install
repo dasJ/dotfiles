@@ -67,6 +67,7 @@ mkdirs=(
 	"$HOME/.ssh|no"
 	"$HOME/.mozilla/native-messaging-hosts|yes"
 	"$HOME/.icons/default"
+	"$HOME/.cache/mail"
 )
 
 # unit|graphical?
