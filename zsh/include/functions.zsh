@@ -35,6 +35,12 @@ deps() {
 	objdump -p "${bin}" | awk '/NEEDED/ { print $2 }'
 }
 
+straceall() {
+	process="${1}"
+	shift
+	strace ${@} $(pgrep "${process}" | sed 's/\([0-9]*\)/-p \1/g')
+}
+
 tick() {
 	[ "${#}" -lt 2 ] && return 1
 	deadline="${1}"
