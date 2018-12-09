@@ -53,7 +53,6 @@ bindsym $Mod+f fullscreen toggle
 bindsym $Mod+Shift+f fullscreen toggle global
 
 # Change container layout
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 
 # Kill focused window
@@ -167,8 +166,8 @@ bindsym $mod+e mode "resize"
 #####
 # Default workspaces
 #####
-workspace 2 output DVI-D-0
-workspace "♫" output DVI-D-0
+workspace 2 output DP-4
+workspace "♫" output DP-4
 assign [class="Spotify"] "♫"
 
 #####
