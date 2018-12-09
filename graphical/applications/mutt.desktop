@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=mutt
+Comment=Mail reader
+TryExec=neomutt
+Exec=st -c mutt neomutt
+Icon=terminal
+Terminal=false
+StartupWMClass=mutt
+Type=Application
+Categories=Mail;Mail reader;mutt;neomutt
