@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
-out="$(echo 'Select Area
-Current Window
+out="$(echo 'Select Area/Window
 Current Screen
-Select Area (3s)
-Current Window (3s)
-Current Screen (3s)' | rofi -dmenu -p '> ')"
+All Screens
+Select Area/Window (3s)
+Current Screen (3s)
+All Screens (3s)' | rofi -dmenu -p '> ')"
 
 # Cancel
 [ -z "${out}" ] && exit
@@ -29,7 +29,30 @@ case "${out}" in
 		;;
 	'Current Screen'*)
 		params=''
+		monitors="$(xrandr | grep -o '[0-9]*x[0-9]*[+-][0-9]*[+-][0-9]*')"
+		mouseX="$(xdotool getmouselocation | awk -F "[: ]" '{print $2}')"
+		mouseY="$(xdotool getmouselocation | awk -F "[: ]" '{print $4}')"
+		for mon in ${monitors}; do
+			# Monitor geometry
+			monWidth="$(echo "${mon}" | awk -F "[x+]" '{print $1}')"
+			monHeight="$(echo "${mon}" | awk -F "[x+]" '{print $2}')"
+			monX="$(echo "${mon}" | awk -F "[x+]" '{print $3}')"
+			monY="$(echo "${mon}" | awk -F "[x+]" '{print $4}')"
+			# Collision check
+			if (( ${mouseX} >= ${monX} )) && \
+				(( ${mouseX} <= ${monX}+${monWidth} )) && \
+				(( ${mouseY} >= ${monY} )) && \
+				(( ${mouseY} <= ${monY}+${monHeight} )); then
+				params=("-g" "${monWidth}x${monHeight}+${monX}+${monY}")
+			fi
+		done
+		;;
+	'All Screens'*)
+		params=''
 		;;
 esac
 
 maim -q -u -d "${s}" "${params[@]}" | xclip -selection clipboard -t image/png
+if [ "${s}" != 0 ]; then
+	dunstify -a maim 'Screenshot taken' 'and copied to clipboard'
+fi
