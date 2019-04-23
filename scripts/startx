@@ -11,7 +11,7 @@ set -e
 display=0
 while :; do
 	[ -e "/tmp/.X${display}-lock" ] || break
-	display=$((${display} + 1))
+	display=$((display + 1))
 done
 display=":${display}"
 
@@ -25,11 +25,7 @@ else
 fi
 
 # Set up Xauth
-if [ -z "$(hostname --version 2>&1 | grep GNU)" ]; then
-	hostname="$(hostname)"
-else
-	hostname="$(hostname)"
-fi
+hostname="$(hostname)"
 mcookie="$(mcookie)"
 XAUTHORITY="$(mktemp -p /tmp serverauth.XXXXXXXXXX)"
 dummy=0
@@ -58,10 +54,10 @@ done
 
 # Run X
 export XAUTHORITY
-xinit @DOTFILES@/graphical/xinitrc -- "$(which X)" "${display}" "${vtarg}" -auth "${XAUTHORITY}"
+xinit @DOTFILES@/graphical/xinitrc -- "$(command -v X)" "${display}" "${vtarg}" -auth "${XAUTHORITY}"
 retval="${?}"
 
-if ! [ -z "${removelist}" ]; then
+if [ -n "${removelist}" ]; then
 	xauth remove "${removelist}"
 fi
 rm -f "${XAUTHORITY}"
