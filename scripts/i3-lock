@@ -1,25 +1,4 @@
 #!/usr/bin/env bash
 
-xset dpms 0 0 5 # Turn off after 5 seconds of inactivity
-xset dpms force off # Turn off screen now
-# Wait for fingerprint
-if command -v fprintd-verify &>/dev/null; then
-	(
-		ok=1
-		while :; do
-			out="$(fprintd-verify "${USER}")"
-			if [[ "${?}" != 0 ]]; then
-				ok=0
-				break
-			fi
-			echo "${out}" | grep -q 'result: verify-match' && break
-		done
-		[[ "${ok}" == 1 ]] && sudo pkill -xu nobody slock
-	) &
-fi
-slock & # Lock
-tail --pid $! -f /dev/null # Wait for slock
-pkill -xu "${USER}" fprintd-verify &> /dev/null # Try to kill fprintd-verify
-
-xset dpms force on # Turn on screen now
-@DOTFILES@/scripts/xset # Reset DPMS
+touch "/run/user/$(id -u)/i3-lock"
+flock -n -E 0 "/run/user/$(id -u)/i3-lock" "$(dirname "${BASH_SOURCE[0]}")/slock"
