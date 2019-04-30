@@ -8,7 +8,7 @@ fi
 hash numlockx >/dev/null 2>&1 && numlockx &
 hash nm-applet >/dev/null 2>&1 && nm-applet &
 hash xcalib >/dev/null 2>&1 && @DOTFILES@/scripts/icc-profile &
-hash xss-lock >/dev/null 2>&1 && xss-lock -- slock &
+hash xss-lock >/dev/null 2>&1 && xss-lock -- @DOTFILES@/scripts/i3-lock &
 xmodmap @DOTFILES@/graphical/Xmodmap &
 @DOTFILES@/scripts/xset
 # Import environment into systemd
