@@ -27,7 +27,7 @@ fi
 # Set up Xauth
 hostname="$(hostname)"
 mcookie="$(mcookie)"
-XAUTHORITY="$(mktemp -p /run/user/$(id -u) serverauth.XXXXXXXXXX)"
+XAUTHORITY="$(mktemp -p "/run/user/$(id -u)" serverauth.XXXXXXXXXX)"
 dummy=0
 trap 'rm -f "${XAUTHORITY}"' HUP INT QUIT ILL TRAP BUS TERM
 xauth -q -f "${XAUTHORITY}" << EOF
@@ -52,6 +52,10 @@ EOF
 	fi
 done
 
+# Register the X server
+mkdir -p /tmp/.xservers
+ln -s "${XAUTHORITY}" "/tmp/.xservers/${display}"
+
 # Run X
 export XAUTHORITY
 xinit @DOTFILES@/graphical/xinitrc -- "$(command -v X)" "${display}" "${vtarg}" -auth "${XAUTHORITY}"
@@ -61,6 +65,7 @@ if [ -n "${removelist}" ]; then
 	xauth remove "${removelist}"
 fi
 rm -f "${XAUTHORITY}"
+rm -f "/tmp/.xservers/${display}"
 
 if hash deallocvt >/dev/null 2>&1; then
 	deallocvt
