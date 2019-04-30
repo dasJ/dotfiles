@@ -27,7 +27,7 @@ fi
 # Set up Xauth
 hostname="$(hostname)"
 mcookie="$(mcookie)"
-XAUTHORITY="$(mktemp -p /tmp serverauth.XXXXXXXXXX)"
+XAUTHORITY="$(mktemp -p /run/user/$(id -u) serverauth.XXXXXXXXXX)"
 dummy=0
 trap 'rm -f "${XAUTHORITY}"' HUP INT QUIT ILL TRAP BUS TERM
 xauth -q -f "${XAUTHORITY}" << EOF
