@@ -17,7 +17,6 @@ if command -v fprintd-verify &>/dev/null; then
 		[[ "${ok}" == 1 ]] && sudo pkill -xu nobody slock
 	) &
 fi
-set -x
 slock & # Lock
 tail --pid $! -f /dev/null # Wait for slock
 pkill -xu "${USER}" fprintd-verify &> /dev/null # Try to kill fprintd-verify
