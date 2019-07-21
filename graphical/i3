@@ -49,8 +49,8 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 
 # Toggle fullscreen
-bindsym $Mod+f fullscreen toggle
-bindsym $Mod+Shift+f fullscreen toggle global
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle global
 
 # Change container layout
 bindsym $mod+w layout tabbed
