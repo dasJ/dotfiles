@@ -79,7 +79,6 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
-bindsym $mod+m workspace ♫
 bindsym $mod+o workspace prev
 bindsym $mod+i workspace next
 
@@ -162,18 +161,6 @@ mode "resize" {
 	bindsym Escape mode "default"
 }
 bindsym $mod+e mode "resize"
-
-#####
-# Default workspaces
-#####
-workspace 2 output DP-4
-workspace "♫" output DP-4
-assign [class="Spotify"] "♫"
-
-#####
-# Settings for windows
-#####
-for_window [class="Spotify"] border none
 
 #####
 # Visuals
