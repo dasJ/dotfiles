@@ -7,7 +7,7 @@ fi
 
 step="${xbacklight_step:-5}"
 path="/sys/class/backlight/${xbacklight_device:-intel_backlight}"
-safeval="${xbacklight_safe:-50}"
+safeval="${xbacklight_safe:-5}"
 
 current_brightness="$(< "${path}/brightness")"
 
