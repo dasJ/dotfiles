@@ -54,7 +54,7 @@ done
 
 # Register the X server
 mkdir -p /tmp/.xservers
-ln -s "${XAUTHORITY}" "/tmp/.xservers/${display}"
+ln -fs "${XAUTHORITY}" "/tmp/.xservers/${display}"
 
 # Run X
 export XAUTHORITY
