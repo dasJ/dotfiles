@@ -62,6 +62,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ssh="@DOTFILES@/scripts/pass2agent; ssh"
 alias va=vagrant
 alias ip='ip -c'
+alias deploy=/var/src/helsinki/0scripts/deploy
 
 # Includes
 source "$zshincl/git-aliases.zsh"
