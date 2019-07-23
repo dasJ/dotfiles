@@ -48,6 +48,32 @@ tick() {
 	in +tickle wait:"${deadline}" "${@}"
 }
 
+rsl() {
+	local currentPath
+	unset REPORTTIME
+	# Try locating the file
+	if [ -f "${1}" ]; then
+		currentPath="${1}"
+	else
+		currentPath="$(type -p "${1}" | cut -d' ' -f3-)"
+	fi
+
+	if [ -z "${currentPath}" ]; then
+		return
+	fi
+
+	# Start resolving
+	for i in {1..15}; do
+		\ls --color "${currentPath}"
+		if [ -L "${currentPath}" ]; then
+			currentPath="$(readlink "${currentPath}")"
+		else
+			return 0
+		fi
+	:
+	done
+}
+
 alright() {
 	unset REPORTTIME
 	[ -z "${TMUX}" ] && TMUX="${OUTERTMUX}"
