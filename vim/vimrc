@@ -119,6 +119,12 @@ if has ('folding')
 endif
 
 " ###
+" Commands
+" ###
+" emptyhash
+command Eh :normal osha256 = "0000000000000000000000000000000000000000000000000000";<ESC>2T"
+
+" ###
 " Filetypes
 " ###
 autocmd BufNewFile,BufReadPost *.md set ft=markdown
