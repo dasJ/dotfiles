@@ -21,6 +21,7 @@ alias gb='git branch'
 
 # git clone
 alias gcl='git clone --recursive'
+alias gcl1='gcl --depth 1'
 
 # git diff
 alias gd='git diff'
