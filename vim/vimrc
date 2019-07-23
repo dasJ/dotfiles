@@ -197,6 +197,7 @@ if exists("vimpager")
 	set nonumber
 	set norelativenumber
 	set nocursorline
+	set mouse=
 	let g:airline#extensions#tabline#enabled = 0
 endif
 
