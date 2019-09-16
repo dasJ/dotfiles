@@ -1,0 +1,27 @@
+#compdef deploy
+
+_arguments -C \
+	"1:hostname:->hostname" \
+	"*::arg:->args"
+
+case "$state" in
+	(hostname)
+		_values -s , 'hostname' "${(uonzf)$(ls /var/src/helsinki/1systems)}"
+		;;
+	(args)
+		_values 'action' \
+			'switch[Build and switch now]' \
+			'boot[Build and switch at next boot]' \
+			'test[Build and roll back on next boot]' \
+			'build-vm[Build and create VM]' \
+			'build-vm-with-bootloader[Build and create VM with bootloader]'
+
+		_arguments -C \
+			"--no-secrets[Do not deploy secrets]" \
+			"--local-build[Build locally]" \
+			"--upgrade[Also run an upgrade]" \
+			"--no-multiplex[Do not multiplex SSH sessions]" \
+			"--no-hydra[Do not attempt to substitute against Hydra]" \
+			"--connectTo[Override connectTo for this run]" \
+		;;
+esac

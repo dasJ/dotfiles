@@ -2,6 +2,9 @@
 ## Completion configuration
 ###############
 
+# Add our own stuff
+fpath=(@DOTFILES@/zsh/completion $fpath)
+
 # Initialize completions with dump
 autoload -Uz compinit
 compinit -i -d "$HOME/.cache/zsh/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
