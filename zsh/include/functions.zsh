@@ -91,5 +91,14 @@ alright() {
 	exec @DOTFILES@/scripts/taskstatus
 }
 
+wiresharkRemote() {
+	unset REPORTTIME
+	local host
+	host="${1}"
+	shift
+
+	ssh "${host}" nix run nixpkgs.tcpdump -c tcpdump -U -s0 -w - ${*} | wireshark -k -i -
+}
+
 source "$zshincl/extract.zsh"
 source "$zshincl/ldapid.zsh"
