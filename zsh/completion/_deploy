@@ -22,6 +22,6 @@ case "$state" in
 			"--upgrade[Also run an upgrade]" \
 			"--no-multiplex[Do not multiplex SSH sessions]" \
 			"--no-hydra[Do not attempt to substitute against Hydra]" \
-			"--connectTo[Override connectTo for this run]" \
+			"--connect-to[Override connectTo for this run]" \
 		;;
 esac
