@@ -53,7 +53,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f fullscreen toggle global
 
 # Change container layout
-bindsym $mod+w layout tabbed
+bindsym $mod+w layout toggle splith tabbed
 
 # Kill focused window
 bindsym $mod+c kill
