@@ -23,5 +23,6 @@ case "$state" in
 			"--no-multiplex[Do not multiplex SSH sessions]" \
 			"--no-hydra[Do not attempt to substitute against Hydra]" \
 			"--connect-to[Override connectTo for this run]" \
+			"--nixpkgs[Override path to nixpkgs for this run]" \
 		;;
 esac
