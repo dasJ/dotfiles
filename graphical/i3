@@ -201,7 +201,7 @@ bar {
 		focused_workspace  #f0544c #f0544c #333333
 		active_workspace   #222222 #5f676a #333333
 		inactive_workspace #222222 #222222 #888888
-		urgent_workspace   #bb0000 #bb0000 #333333
+		urgent_workspace   #bb0000 #bb0000 #ffffff
 	}
 
 	bindsym button1 nop
