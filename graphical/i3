@@ -148,6 +148,12 @@ bindsym $mod+Ctrl+Shift+button1 nop
 bindsym $mod+Ctrl+Shift+button2 nop
 bindsym $mod+Ctrl+Shift+button3 nop
 
+# Passthrough
+mode "passthrough" {
+	bindsym $mod+Return mode "default"
+}
+bindsym $mod+p mode "passthrough"
+
 # Resize
 mode "resize" {
 	# Resize with directional keys
