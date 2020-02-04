@@ -13,6 +13,7 @@ case "$state" in
 			'switch[Build and switch now]' \
 			'boot[Build and switch at next boot]' \
 			'test[Build and roll back on next boot]' \
+			'eval[Evaluate and output the result]' \
 			'build[Build and output the result]' \
 			'build-vm[Build and create VM]' \
 			'build-vm-with-bootloader[Build and create VM with bootloader]'
