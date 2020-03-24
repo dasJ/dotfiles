@@ -11,6 +11,7 @@ set backupskip=/tmp/* " No Backup for /tmp
 set completeopt=longest,menuone " Only insert the longest common text of the matches. Show a menu even if there is just one
 set tabpagemax=9999
 set directory=~/.vim/swap,~/tmp,. " Keep swap files in home
+set path=.,/,,@HOME@/projects/nixpkgs/lib,@HOME@/projects/nixpkgs/pkgs/top-level
 set history=50 " : History
 set hlsearch " Highlight search terms
 set ignorecase " Case insensitive search
