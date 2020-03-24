@@ -120,8 +120,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id sh -c 'xbacklight_tee="sudo t
 bindsym XF86MonBrightnessUp exec --no-startup-id sh -c 'xbacklight_tee="sudo tee" @DOTFILES@/scripts/xbacklight +'
 bindsym XF86ScreenSaver exec --no-startup-id slock
 
-bindsym --whole-window --border $mod+button4 exec ponymix increase 5
-bindsym --whole-window --border $mod+button5 exec ponymix decrease 5
+bindsym --whole-window --border $mod+button4 exec @DOTFILES@/scripts/volume up
+bindsym --whole-window --border $mod+button5 exec @DOTFILES@/scripts/volume down
 
 # No mouse in title bar
 bindsym button1 nop
