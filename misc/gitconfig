@@ -26,5 +26,7 @@
 	keepBackup = false
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[url "git@git.helsinki.tools:"]
+	insteadOf = https://git.helsinki.tools/
 [commit]
 	gpgsign = true
