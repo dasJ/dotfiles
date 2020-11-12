@@ -11,9 +11,8 @@ hash xcalib >/dev/null 2>&1 && @DOTFILES@/scripts/icc-profile &
 hash xss-lock >/dev/null 2>&1 && xss-lock -- @DOTFILES@/scripts/i3-lock &
 xmodmap @DOTFILES@/graphical/Xmodmap &
 @DOTFILES@/scripts/xset
-# Import environment into systemd
-systemctl --user import-environment DISPLAY XAUTHORITY
-dbus-update-action-environment
+# Import environment into systemd and dbus
+dbus-update-activation-environment --systemd
 
 # Start admin-defined programs
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
