@@ -32,3 +32,5 @@
 	insteadOf = https://git.helsinki.tools/
 [commit]
 	gpgsign = true
+[status]
+	showStash = true
