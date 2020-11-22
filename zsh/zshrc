@@ -10,6 +10,7 @@ if [ ! -z "$PATHBACKUP" ]; then
 	PATH="$PATHBACKUP"
 	export PATH
 fi
+
 # This will be needed later
 zshconf="@DOTFILES@/zsh"
 zshincl="$zshconf/include"
@@ -31,6 +32,8 @@ export SYSTEMD_EDITOR=$EDITOR
 export MINICOM='-D /dev/ttyUSB0 -b 115200 -c on -t linux'
 # A more useful Vangrant provider
 export VAGRANT_DEFAULT_PROVIDER='libvirt'
+# curl config
+export CURL_HOME='@DOTFILES@/misc'
 # More restrictive umask
 umask 027
 # Aliases
