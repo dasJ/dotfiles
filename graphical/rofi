@@ -1,6 +1,7 @@
 rofi.matching: regex
 rofi.terminal: st
 rofi.disable-history: true
+rofi.pid: /tmp/.rofi.pid
 
 rofi.color-normal: #222222, #888888, #222222, #333333, #f0544c
 rofi.color-urgent: #f0544c, #333333, #f0544c, #333333, #f0544c
