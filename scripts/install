@@ -15,7 +15,6 @@ dependencies=(
 
 # file|graphical?
 linkfiles=(
-	"$HOME/.gitconfig:misc/gitconfig|no"
 	"$HOME/.zlogin:zsh/zlogin|no"
 	"$HOME/.zlogout:zsh/zlogout|no"
 	"$HOME/.zprofile:zsh/zprofile|no"
@@ -24,7 +23,7 @@ linkfiles=(
 	"$HOME/.vimrc:vim/vimrc|no"
 	"$HOME/.tmux.conf:misc/tmux.conf|no"
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
-	"$HOME/.config/pacaur/config:misc/pacaur|no"
+	"$HOME/.config/git/config:misc/gitconfig|no"
 	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
 	"$HOME/.gnupg/gpg.conf:gpg/gpg.conf|no"
 	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
@@ -53,6 +52,7 @@ mkdirs=(
 	"$HOME/.config/systemd/user"
 	"$HOME/.config/gtk-2.0|yes"
 	"$HOME/.config/gtk-3.0|yes"
+	"$HOME/.config/git|no"
 	"$HOME/.config/i3|yes"
 	"$HOME/.config/dunst|yes"
 	"$HOME/.config/OpenImageIO|es"
