@@ -15,7 +15,6 @@ dependencies=(
 
 # file|graphical?
 linkfiles=(
-	"$HOME/.gemrc:misc/gemrc|no"
 	"$HOME/.gitconfig:misc/gitconfig|no"
 	"$HOME/.zlogin:zsh/zlogin|no"
 	"$HOME/.zlogout:zsh/zlogout|no"
