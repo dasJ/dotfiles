@@ -30,7 +30,7 @@ linkfiles=(
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
 	"$HOME/.ssh/config:misc/ssh_config|no"
 	# Graphical stuff
-	"$HOME/.gtkrc-2.0:graphical/gtk/gtkrc-2.0|yes"
+	"$HOME/.config/gtk-2.0/gtkrc:graphical/gtk/gtkrc-2.0|yes"
 	"$HOME/.mozilla/native-messaging-hosts/passff.json:graphical/firefox/passff.json|yes"
 	"$HOME/.config/gtk-2.0/gtkfilechooser.ini:graphical/gtk/gtk2.0-filechooser.ini|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"

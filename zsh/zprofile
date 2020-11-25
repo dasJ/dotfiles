@@ -35,8 +35,9 @@ fi
 stty -ixon &>/dev/null
 
 # Start X11
-if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ]; then
-	@DOTFILES@/scripts/startx
+if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@HOME@/.dotfiles/local/graphical" ]; then
+	export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+	@HOME@/.dotfiles/scripts/startx
 	if [ "${?}" = 0 ]; then
 		exit
 	fi
