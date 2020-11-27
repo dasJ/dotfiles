@@ -131,6 +131,17 @@ command Eh :normal osha256 = "00000000000000000000000000000000000000000000000000
 " ###
 autocmd BufNewFile,BufReadPost *.md set ft=markdown
 autocmd Filetype yaml set ts=2 sw=2 et
+autocmd Filetype typescriptreact set ts=4 sw=4 et
+
+" ###
+" Linting
+" ###
+let g:ale_linters = {
+\	'typescriptreact': ['tsserver', 'eslint']
+\}
+let g:ale_fixers = {
+\	'typescriptreact': ['prettier']
+\}
 
 " ###
 " Hex Mode (RO)
