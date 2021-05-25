@@ -34,13 +34,20 @@ fi
 # Disable Ctrl+S
 stty -ixon &>/dev/null
 
+# Import $PATH, DISPLAY and XAUTHORITY
+systemctl --user import-environment PATH DISPLAY XAUTHORITY
+
+# Start sway
+if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ] && [ -f @DOTFILES@/local/wayland ]; then
+	export GTK2_RC_FILES="@HOME@/.config/gtk-2.0/gtkrc"
+	exec sway
+fi
+
 # Start X11
-if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ]; then
+if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ] && ! [ -f @DOTFILES@/local/wayland ]; then
 	export GTK2_RC_FILES="@HOME@/.config/gtk-2.0/gtkrc"
 	@DOTFILES@/scripts/startx
 	if [ "${?}" = 0 ]; then
 		exit
 	fi
 fi
-
-systemctl --user import-environment PATH
