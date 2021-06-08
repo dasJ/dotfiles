@@ -34,8 +34,8 @@ fi
 # Disable Ctrl+S
 stty -ixon &>/dev/null
 
-# Import $PATH, DISPLAY and XAUTHORITY
-systemctl --user import-environment PATH DISPLAY XAUTHORITY
+# Import $PATH
+systemctl --user import-environment PATH
 
 # Start sway
 if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ] && [ -f @DOTFILES@/local/wayland ]; then
