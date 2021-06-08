@@ -56,8 +56,11 @@ done
 mkdir -p /tmp/.xservers
 ln -fs "${XAUTHORITY}" "/tmp/.xservers/${display}"
 
-# Run X
+# Import variables into the systemd user instance
 export XAUTHORITY
+DISPLAY="${display}" systemctl --user import-environment DISPLAY XAUTHORITY
+
+# Run X
 xinit @DOTFILES@/graphical/xinitrc -- "$(command -v X)" "${display}" "${vtarg}" -auth "${XAUTHORITY}"
 retval="${?}"
 
