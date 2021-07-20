@@ -12,11 +12,13 @@ case "$state" in
 		_values 'action' \
 			'switch[Build and switch now]' \
 			'boot[Build and switch at next boot]' \
+			'reboot[Build and reboot for next switch]' \
 			'test[Build and roll back on next boot]' \
 			'eval[Evaluate and output the result]' \
 			'build[Build and output the result]' \
 			'build-vm[Build and create VM]' \
-			'build-vm-with-bootloader[Build and create VM with bootloader]'
+			'build-vm-with-bootloader[Build and create VM with bootloader]' \
+			'install[Build and install to /mnt]'
 
 		_arguments -C \
 			"--no-secrets[Do not deploy secrets]" \
@@ -24,7 +26,10 @@ case "$state" in
 			"--upgrade[Also run an upgrade]" \
 			"--no-multiplex[Do not multiplex SSH sessions]" \
 			"--no-hydra[Do not attempt to substitute against Hydra]" \
+			"--offline[Do not attempt to substitute from anywhere]" \
 			"--connect-to[Override connectTo for this run]" \
+			"--connect-user[Override connection user for this run]" \
 			"--nixpkgs[Override path to nixpkgs for this run]" \
+			"--ask[Run dry-activate and ask whether to continue before performing action]" \
 		;;
 esac
