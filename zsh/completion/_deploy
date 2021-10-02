@@ -29,6 +29,7 @@ case "$state" in
 			"--offline[Do not attempt to substitute from anywhere]" \
 			"--connect-to[Override connectTo for this run]" \
 			"--connect-user[Override connection user for this run]" \
+			"--jump[Jump over a host via SSH]" \
 			"--nixpkgs[Override path to nixpkgs for this run]" \
 			"--ask[Run dry-activate and ask whether to continue before performing action]" \
 		;;
