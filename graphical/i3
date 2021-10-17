@@ -109,10 +109,10 @@ bindsym --release $mod+y exec --no-startup-id @DOTFILES@/scripts/i3-screenshot
 bindsym --release $mod+n exec --no-startup-id @DOTFILES@/scripts/i3-power
 
 # XF86
-bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioStop exec --no-startup-id dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
-bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPlay exec --no-startup-id busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player PlayPause
+bindsym XF86AudioStop exec --no-startup-id busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player Pause
+bindsym XF86AudioPrev exec --no-startup-id busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player Previous
+bindsym XF86AudioNext exec --no-startup-id busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player Next
 bindsym XF86AudioRaiseVolume exec --no-startup-id @DOTFILES@/scripts/volume up
 bindsym XF86AudioLowerVolume exec --no-startup-id @DOTFILES@/scripts/volume down
 bindsym XF86AudioMute exec --no-startup-id @DOTFILES@/scripts/volume toggle
