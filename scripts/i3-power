@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+killAndWait() {
+	pkill "${1}"
+	while pgrep "${1}"; do sleep .1; done
+}
+
+killStuff() {
+	killAndWait firefox &
+	wait
+}
+
 out="$(echo 'Log Out
 Shut down
 Suspend
@@ -12,9 +22,11 @@ Hybrid sleep' | rofi -dmenu -p 'power> ')"
 
 case "${out}" in
 	'Log Out')
+		killStuff
 		i3-msg exit
 	;;
 	'Shut down')
+		killStuff
 		systemctl poweroff
 	;;
 	'Suspend')
@@ -27,9 +39,11 @@ case "${out}" in
 		systemctl hybrid-sleep
 	;;
 	'Reboot')
+		killStuff
 		systemctl reboot
 	;;
 	'Kexec')
+		killStuff
 		systemctl kexec
 	;;
 esac
