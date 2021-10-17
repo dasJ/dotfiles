@@ -8,6 +8,7 @@
 	last = log -1 HEAD
 	unstage = reset HEAD --
 	graph = log --graph --full-history --all --color --decorate --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
+	recringe = rebase
 [include]
 	path = ~/.dotfiles/local/gitcustom
 [color]
