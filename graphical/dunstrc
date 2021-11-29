@@ -1,6 +1,8 @@
 [global]
 	# Position and size
-	geometry = 400x6-5+25
+	width = 400
+	height = (0, 6)
+	offset = -5x25
 	follow = keyboard
 	padding = 10
 	horizontal_padding = 10
