@@ -16,7 +16,7 @@ Suspend
 Reboot
 Hibernate
 Kexec
-Hybrid sleep' | rofi -dmenu -p 'power> ')"
+Hybrid sleep' | rofi -dmenu -p 'power')"
 
 [ -z "${out}" ] && exit
 

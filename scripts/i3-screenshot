@@ -5,7 +5,7 @@ Current Screen
 All Screens
 Select Area/Window (3s)
 Current Screen (3s)
-All Screens (3s)' | rofi -dmenu -p '> ')"
+All Screens (3s)' | rofi -dmenu -p 'screenshot')"
 
 # Cancel
 [ -z "${out}" ] && exit

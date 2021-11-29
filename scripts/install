@@ -38,7 +38,7 @@ linkfiles=(
 	"$HOME/.config/i3/config:graphical/i3|yes"
 	"$HOME/.config/dunst/dunstrc:graphical/dunstrc|yes"
 	"$HOME/.config/OpenImageIO/iv.conf:graphical/iv.conf|yes"
-	"$HOME/.config/rofi/config:graphical/rofi|yes"
+	"$HOME/.config/rofi/config.rasi:graphical/rofi|yes"
 	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
 	"$HOME/.config/redshift.conf:graphical/redshift.conf|yes"
 	"$HOME/.config/yad.conf:graphical/yad.conf|yes"

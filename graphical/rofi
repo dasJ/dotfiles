@@ -1,9 +1,27 @@
-rofi.matching: regex
-rofi.terminal: st
-rofi.disable-history: true
-rofi.pid: /tmp/.rofi.pid
+configuration {
+  font: "anonymous pro 12";
+  matching: "regex";
+  terminal: "st";
+  disable-history: true;
+}
 
-rofi.color-normal: #222222, #888888, #222222, #333333, #f0544c
-rofi.color-urgent: #f0544c, #333333, #f0544c, #333333, #f0544c
-rofi.color-active: #5f676a, #333333, #5f676a, #333333, #f0544c
-rofi.color-window: #222222, #222222, #222222
+* {
+  background: #222222;
+  normal-background: #222222;
+  normal-foreground: #888888;
+  alternate-normal-background: #222222;
+  alternate-normal-foreground: #888888;
+  selected-normal-background: #333333;
+  selected-normal-foreground: #f0544c;
+  active-background: #333333;
+  active-foreground: #888888;
+  alternate-active-background: #333333;
+  alternate-active-foreground: #888888;
+  selected-active-background: #333333;
+  selected-active-foreground: #f0544c;
+  separatorcolor: #ffffff00;
+}
+
+window {
+  border: 0;
+}

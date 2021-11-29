@@ -102,8 +102,8 @@ bindsym $mod+Shift+o move workspace to output right
 bindsym $mod+u exec i3-input -F 'rename workspace to "%s"' -P 'Workspace name: ' -f 'pango:Noto Sans Regular 9'
 
 # Start stuff
-bindsym --release $mod+r exec --no-startup-id rofi -modi drun -show drun
-bindsym --release $mod+x exec --no-startup-id rofi -modi window -show window
+bindsym --release $mod+r exec --no-startup-id rofi -modi drun -show drun -show-icons
+bindsym --release $mod+x exec --no-startup-id rofi -modi window -show window -show-icons
 bindsym --release $mod+t exec --no-startup-id @DOTFILES@/scripts/i3-passrofi
 bindsym --release $mod+y exec --no-startup-id @DOTFILES@/scripts/i3-screenshot
 bindsym --release $mod+n exec --no-startup-id @DOTFILES@/scripts/i3-power
