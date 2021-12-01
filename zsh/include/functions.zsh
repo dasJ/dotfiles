@@ -97,7 +97,7 @@ wiresharkRemote() {
 	host="${1}"
 	shift
 
-	ssh "${host}" nix run nixpkgs.tcpdump -c tcpdump -U -s0 -w - ${*} | wireshark -k -i -
+	ssh "${host}" sudo nix run nixpkgs.tcpdump -c tcpdump -U -s0 -w - ${*} | wireshark -k -i -
 }
 
 source "$zshincl/extract.zsh"
