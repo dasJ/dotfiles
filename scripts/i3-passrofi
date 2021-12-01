@@ -25,13 +25,6 @@ if [[ -f "${cfg}" ]]; then
 	source "${cfg}"
 fi
 
-mounts="$(gopass mounts)"
-if [ "$mounts" = 'No mounts' ]; then
-	mounts="gopass $HOME/.password-store"
-else
-	mounts="$(echo "${mounts}" | awk -F '[ ()]' '{ if (NF==0){next}; if (NF==5){print $2 " " $4}else{print $1 " " $3}}')"
-fi
-
 password_files=()
 while IFS=' ' read -r storename storepath; do
 	# List all files matching *.gpg
@@ -54,7 +47,7 @@ while IFS=' ' read -r storename storepath; do
 	done
 	# Add to list with all files
 	password_files+=("${filtered[@]}")
-done < <(echo "$mounts")
+done < <(gopass mounts | awk -F '[ ()]' '{ if (NF==0){next}; if (NF==5){print $2 " " $4}else{print $1 " " $3}}')
 # Drop .gpg suffix
 password_files=("${password_files[@]%.gpg}")
 
