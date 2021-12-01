@@ -1,7 +1,0 @@
-# vi:ft=bash
-
-# Only show matching
-patterns[helsinki-shared]='^helsinki-shared/misc/'
-
-# Do not show matching
-patternsIgnore[gopass]='^(helsinki|configs|recovery|ssh)/'
