@@ -44,6 +44,8 @@ source "$zshincl/functions.zsh"
 source "$zshincl/ssh-agent.zsh"
 # Clipboard
 source "$zshincl/clipboard.zsh"
+# undistract me
+source "$zshincl/undistract-me.zsh"
 
 ###############
 ## zsh options
