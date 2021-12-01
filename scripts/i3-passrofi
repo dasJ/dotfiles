@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 
-# A passmenu alternative with gopass mount, filter, and rofi support.
-
-# The config file is searched at $I3_PASSROFI_CONFIG or ../misc/i3-passrofi and ignored if not existing.
-# It may contain two associative arrays with patterns (values) that are matched against the stores (keys).
-# The first array (patterns) are patterns secrets have to match (defaults to .*)
-# The second array (patternsIgnore) are patterns secrets have to not match (defaults to ^$)
-# Remember to use substore prefixes in patterns if you want to filter substores.
+# Just a modified version of passmenu
 
 shopt -s nullglob globstar
 
@@ -16,51 +10,18 @@ if [[ $1 == "--type" ]]; then
 	shift
 fi
 
-# Patterns
-declare -A patterns
-declare -A patternsIgnore
-cfg="${I3_PASSROFI_CONFIG:-$(readlink -m "${BASH_SOURCE[0]}/../../misc/i3-passrofi")}"
-if [[ -f "${cfg}" ]]; then
-	# shellcheck source=../misc/i3-passrofi
-	source "${cfg}"
-fi
+prefix=${PASSWORD_STORE_DIR-~/.password-store}
+password_files=( "$prefix"/**/*.gpg )
+password_files=( "${password_files[@]#"$prefix"/}" )
+password_files=( "${password_files[@]%.gpg}" )
 
-password_files=()
-while IFS=' ' read -r storename storepath; do
-	# List all files matching *.gpg
-	files=("${storepath}"/**/*.gpg)
-	if [ "${storename}" = gopass ]; then
-		# Remove full path
-		files=("${files[@]##"${storepath}/"}")
-	else
-		# Replace full path with name
-		files=("${files[@]/"${storepath}/"/"${storename}/"}")
-	fi
-	# Filter files with patterns
-	filtered=()
-	for pass in "${files[@]}"; do
-		if [[ "${pass}" =~ ${patterns[${storename}]:-.*} ]]; then
-			if ! [[ "${pass}" =~ ${patternsIgnore[${storename}]:-^$} ]]; then
-				filtered+=("${pass}")
-			fi
-		fi
-	done
-	# Add to list with all files
-	password_files+=("${filtered[@]}")
-done < <(gopass mounts | awk -F '[ ()]' '{ if (NF==0){next}; if (NF==5){print $2 " " $4}else{print $1 " " $3}}')
-# Drop .gpg suffix
-password_files=("${password_files[@]%.gpg}")
+password=$(printf '%s\n' "${password_files[@]}" | rofi -dmenu -p 'pass> ' "$@")
 
-# Show menu
-password=$(printf '%s\n' "${password_files[@]}" | rofi -dmenu -p 'gopass' "$@")
-
-# Nothing selected?
 [[ -n $password ]] || exit
 
-# Copy/Type the password
 if [[ $typeit -eq 0 ]]; then
-	gopass show -c "$password" 2>/dev/null
+	pass show -c "$password" 2>/dev/null
 else
-	gopass show "$password" | { read -r pass; printf %s "$pass"; } |
+	pass show "$password" | { read -r pass; printf %s "$pass"; } |
 		xdotool type --clearmodifiers --file -
 fi
