@@ -145,6 +145,29 @@ let g:ale_fixers = {
 \	'typescriptreact': ['prettier']
 \}
 
+" uff
+command CalcHash call CalcHash()
+
+function CalcHash()
+	" Break the hash
+	let line = getline('.')
+	if line !~ '^\s*sha256 ='
+		echoerr 'Unable to find hash'
+		return
+	endif
+	let parts = split(line, '"')
+	call setline('.', parts[0] . '"0000000000000000000000000000000000000000000000000000"' . parts[2])
+	write
+
+	" Calculate the new hash
+	let out = system('nix-build --expr "((import <nixpkgs> {}).callPackage ' . expand('%:p') . ' {}).src"')
+	let newHash = substitute(out, '^.*got:\s*\([^\n]*\).*$', '\1', 'g')
+
+	" Insert the hash
+	call setline('.', parts[0] . '"' . newHash . '"' . parts[2])
+	write
+endfunction
+
 " ###
 " Hex Mode (RO)
 " ###
