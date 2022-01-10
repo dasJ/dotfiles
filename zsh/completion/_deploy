@@ -1,13 +1,10 @@
 #compdef deploy
 
 _arguments -C \
-	"1:hostname:->hostname" \
+	"1:hostname:_path_files -/ -W /var/src/helsinki/1systems -n -S ''" \
 	"*::arg:->args"
 
 case "$state" in
-	(hostname)
-		_values -s , 'hostname' "${(uonzf)$(ls /var/src/helsinki/1systems)}"
-		;;
 	(args)
 		_values 'action' \
 			'switch[Build and switch now]' \
@@ -32,5 +29,6 @@ case "$state" in
 			"--jump[Jump over a host via SSH]" \
 			"--nixpkgs[Override path to nixpkgs for this run]" \
 			"--ask[Run dry-activate and ask whether to continue before performing action]" \
+			"--closure[Take this store-path as a system]" \
 		;;
 esac
