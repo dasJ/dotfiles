@@ -1,8 +1,7 @@
 [global]
 	# Position and size
 	width = 400
-	height = (0, 6)
-	offset = -5x25
+	offset = 5x27
 	follow = keyboard
 	padding = 10
 	horizontal_padding = 10
@@ -23,7 +22,7 @@
 	icon_path = /run/current-system/sw/share/icons/Adwaita/32x32/status/:/run/current-system/sw/share/icons/Adwaita/32x32/devices/
 
 	# Frame
-	frame_width = 3
+	frame_width = 1
 	frame_color = "#444444"
 
 	# History
@@ -53,5 +52,9 @@
 	foreground = "#222222"
 	background = "#bb0000"
 	timeout = 0
+
+[spotify]
+	appname = Spotify
+	markup = strip
 
 # vi: ft=cfg
