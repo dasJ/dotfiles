@@ -21,16 +21,20 @@ case "$state" in
 			'install[Build and install to /mnt]'
 
 		_arguments -C \
-			"--no-secrets[Do not deploy secrets]" \
 			"--local-build[Build locally]" \
-			"--upgrade[Also run an upgrade]" \
+			"--no-upgrade[Don't upgrade nixpkgs channel on local deployment]" \
 			"--no-multiplex[Do not multiplex SSH sessions]" \
 			"--no-hydra[Do not attempt to substitute against Hydra]" \
 			"--offline[Do not attempt to substitute from anywhere]" \
-			"--connect-to[Override connectTo for this run]" \
+			"--connect-to[Override connectTo for this run]:hosts:_hosts" \
 			"--connect-user[Override connection user for this run]" \
-			"--jump[Jump over a host via SSH]" \
-			"--nixpkgs[Override path to nixpkgs for this run]" \
+			"--jump[Jump over a host via SSH]:hosts:_hosts" \
+			"--nixpkgs[Override path to nixpkgs for this run]:filename:_directories" \
 			"--ask[Run dry-activate and ask whether to continue before performing action]" \
+			"--closure[Take this store-path as a system, instead of evaluating a config and building it somewhere]:filename:_directories" \
+			"--backup[Run heb.service before deployment]" \
+			"--autoreboot[Reboot if the deployment is not done after N seconds]:SEC" \
+			"--autorevert[Switch back if the deployment is not done after N seconds]:SEC" \
+			"--confirm[Require user to confirm deployment for --autoreboot and --autorevert]"
 		;;
 esac
