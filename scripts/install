@@ -68,7 +68,6 @@ mkdirs=(
 units=(
 	'dirmngr.socket'
 	'gpg-agent.socket'
-	'offlineimap.service'
 )
 
 autostart=(
