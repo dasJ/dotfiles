@@ -22,6 +22,10 @@ configuration {
   separatorcolor: #ffffff00;
 }
 
+textbox {
+  text-color: red;
+}
+
 window {
   border: 0;
 }
