@@ -36,6 +36,7 @@
 	insteadOf = https://github.com/rust-lang/crates.io-index
 [commit]
 	gpgsign = true
+	verbose = true
 [status]
 	showStash = true
 [filter "lfs"]
