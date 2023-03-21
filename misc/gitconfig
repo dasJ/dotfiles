@@ -31,6 +31,9 @@
 	insteadOf = https://github.com/
 [url "git@git.helsinki.tools:"]
 	insteadOf = https://git.helsinki.tools/
+# fine-tune the override to avoid issues with cargo-edit
+[url "https://github.com/rust-lang/crates.io-index"]
+	insteadOf = https://github.com/rust-lang/crates.io-index
 [commit]
 	gpgsign = true
 [status]
