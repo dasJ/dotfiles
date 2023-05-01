@@ -6,16 +6,17 @@ set -o nounset
 pass_prefix="${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
 pass_location="${pass_prefix}/ssh"
 
-for keyfile in "${pass_location}"/*; do
+#shellcheck disable=SC2045
+for keyfile in $(ls -v "${pass_location}"/*.gpg); do
 	ok=0
 	while IFS= read -r key; do
-		if [ "$(echo "${key}" | cut -d' ' -f3)" = "$(basename "${keyfile}" .gpg)" ]; then
+		if [[ "$(echo "${key}" | cut -d' ' -f3)" = "$(basename "${keyfile}" .gpg)" ]]; then
 			ok=1
 			break
 		fi
 	done < <(ssh-add -l)
-	if [ "${ok}" = 0 ]; then
-		path="${keyfile#$pass_prefix/}"
+	if [[ "${ok}" = 0 ]]; then
+		path="${keyfile#"${pass_prefix}/"}"
 		ssh-add <(pass show "${path%.gpg}")
 	fi
 done
