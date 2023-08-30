@@ -9,9 +9,7 @@ fi
 
 export EDITOR='vim'
 export VISUAL='vim'
-export PAGER='vimpager'
 path+="$HOME/bin"
-path+="$HOME/.vim/plugged/vimpager"
 test -f "/etc/profile.d/perlbin.sh" && source "$_"
 
 PATHBACKUP="$PATH"
