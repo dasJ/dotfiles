@@ -74,3 +74,5 @@ HISTSIZE=1000
 SAVEHIST="$HISTSIZE"
 # local options
 test -f "@DOTFILES@/local/zsh" && source "$_"
+
+ttyctl -f # something like automatic `reset` for every command
