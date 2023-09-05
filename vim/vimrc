@@ -49,6 +49,11 @@ set clipboard=unnamedplus " Default clipboard
 set t_Co=256 " Wow! Much color!
 set cursorline " Highlight current line
 set runtimepath^=/run/current-system/sw/share/vim-plugins
+" Persistent undo
+set undodir=~/.vim/undo
+set undofile
+set undolevels=1000000
+set undoreload=1000000
 
 " ###
 " Plugins
