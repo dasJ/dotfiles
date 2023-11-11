@@ -11,6 +11,7 @@ hash xcalib >/dev/null 2>&1 && @DOTFILES@/scripts/icc-profile &
 hash xss-lock >/dev/null 2>&1 && xss-lock -- @DOTFILES@/scripts/i3-lock &
 hash picom >/dev/null 2>&1 && picom &
 xmodmap @DOTFILES@/graphical/Xmodmap &
+setxkbmap -option compose:menu
 @DOTFILES@/scripts/xset
 # Import environment into systemd and dbus
 dbus-update-activation-environment --systemd
