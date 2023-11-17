@@ -45,7 +45,6 @@ set tabstop=4 " Indentation every 4 columns
 set softtabstop=4 " Let backspace delete indent
 set linespace=0 " No space between the characters
 set shiftwidth=4 " Indent with 4 spaces
-set clipboard=unnamedplus " Default clipboard
 set t_Co=256 " Wow! Much color!
 set cursorline " Highlight current line
 set runtimepath^=/run/current-system/sw/share/vim-plugins
