@@ -35,7 +35,7 @@ set termencoding=utf-8 " Terminal Encoding
 set winminheight=0 " Windows can have no height
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap, too
 set list " Show whitespaces
-set listchars=tab:>-,eol:¶,trail:~ " Show these whitespaces
+set listchars=tab:>-,eol:¶,trail:~,multispace:·,lead:\  " Show these whitespaces
 set virtualedit=onemore " Allow the cursor past the end of line
 set splitright " Put a new window to the right
 set splitbelow " Put a new window below
