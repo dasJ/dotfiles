@@ -66,12 +66,12 @@ Plug 'kopischke/vim-fetch' " Can not be loaded on demand
 Plug 'w0rp/ale' " Usable for most languages
 Plug 'takac/vim-hardtime' " Make my life harder
 " Language-specific plugs
-Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Syntax highlightings
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'LnL7/vim-nix', { 'for': 'nix' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'vim-scripts/exim.vim'
 " Visual things
 Plug 'tomasr/molokai' " Not loaded on demand because I always need it
