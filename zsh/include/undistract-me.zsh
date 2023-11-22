@@ -19,6 +19,7 @@ _undistract_me_send() {
 		'journalctl'
 		'less'
 		'man'
+		'nvim'
 		'nix-shell'
 		'ssh'
 		'tmux'
