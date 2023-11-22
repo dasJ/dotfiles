@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 killAndWait() {
 	pkill "${1}"
@@ -16,9 +17,10 @@ Suspend
 Reboot
 Hibernate
 Kexec
-Hybrid sleep' | rofi -dmenu -p 'power')"
+Hybrid sleep
+Windows' | rofi -dmenu -p 'power')"
 
-[ -z "${out}" ] && exit
+[[ -z "${out}" ]] && exit
 
 case "${out}" in
 	'Log Out')
@@ -46,4 +48,8 @@ case "${out}" in
 		killStuff
 		systemctl kexec
 	;;
+	'Windows')
+		killStuff
+		sudo /run/current-system/sw/bin/bootctl set-oneshot auto-windows
+		systemctl reboot
 esac
