@@ -9,7 +9,6 @@ set -o nounset
 dependencies=(
 	zsh
 	git
-	vim
 	curl
 )
 
@@ -20,11 +19,9 @@ linkfiles=(
 	"$HOME/.zprofile:zsh/zprofile|no"
 	"$HOME/.zshenv:zsh/zshenv|no"
 	"$HOME/.zshrc:zsh/zshrc|no"
-	"$HOME/.vim/vimrc:vim/vimrc|no"
 	"$HOME/.tmux.conf:misc/tmux.conf|no"
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
 	"$HOME/.config/git/config:misc/gitconfig|no"
-	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
 	"$HOME/.nvim:nvim|no"
 	"$HOME/.gnupg/gpg.conf:gpg/gpg.conf|no"
 	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
@@ -45,9 +42,6 @@ linkfiles=(
 )
 # dir|graphical?
 mkdirs=(
-	"$HOME/.vim/autoload|no"
-	"$HOME/.vim/backup|no"
-	"$HOME/.vim/swap|no"
 	"$HOME/.config/systemd/user"
 	"$HOME/.config/gtk-2.0|yes"
 	"$HOME/.config/gtk-3.0|yes"
@@ -133,7 +127,6 @@ checkDependencies() {
 createlocalconfig() {
 	mkdir -pv "${BASEDIR}/local"
 	touch "${BASEDIR}/local/zsh"
-	touch "${BASEDIR}/local/vim"
 	touch "${HOME}/.ssh/config.local"
 }
 
@@ -224,9 +217,6 @@ systemd() {
 }
 
 updatesw() {
-	msg2 'vim'
-	vim +PlugUpdate +qall
-	vim +PlugClean! +qall
 	msg2 'zsh'
 	# Install
 	zsh -c "zshconf=\"${BASEDIR}/zsh\" source \"${BASEDIR}/zsh/include/antibody.zsh\""
@@ -234,12 +224,6 @@ updatesw() {
 	ANTIBODY_HOME="${BASEDIR}/zsh/antibody/repos" antibody update
 	msg2 'Firefox'
 	"${BASEDIR}/scripts/ff-addon"
-}
-
-updaterepos() {
-	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule init
-	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule update --init --recursive
-	git "--git-dir=${BASEDIR}/.git" "--work-tree=${BASEDIR}" submodule foreach git pull origin master
 }
 
 msg "Checking requirements..."
@@ -251,8 +235,6 @@ createlocalconfig
 msg "Asking for configuration..."
 creategitconfig
 creategraphicalconfig
-msg "Updating submodules..."
-updaterepos
 msg "Linking..."
 link
 msg "Configuring autostart..."
