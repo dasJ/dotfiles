@@ -7,8 +7,8 @@ if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "$HOME/.zprofile" ]]; then
 	source "$HOME/.zprofile"
 fi
 
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 path+="$HOME/bin"
 test -f "/etc/profile.d/perlbin.sh" && source "$_"
 

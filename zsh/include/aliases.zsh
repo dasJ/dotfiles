@@ -47,8 +47,8 @@ alias outertmux='tmux -L "$tmuxname"'
 
 # Misc. stuff
 alias sudo='sudo ' # Use aliases with sudo
-alias vi=vim
-alias nano=vim
+alias vi=nvim
+alias vim=nvim
 alias why='whence -fa'
 alias fuck='sudo $(fc -nl -1)'
 alias dd='dd status=progress'
