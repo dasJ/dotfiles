@@ -25,6 +25,7 @@ linkfiles=(
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
 	"$HOME/.config/git/config:misc/gitconfig|no"
 	"$HOME/.vim/autoload/plug.vim:vim/vim-plug/plug.vim|no"
+	"$HOME/.nvim:nvim|no"
 	"$HOME/.gnupg/gpg.conf:gpg/gpg.conf|no"
 	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
@@ -40,7 +41,6 @@ linkfiles=(
 	"$HOME/.config/rofi/config.rasi:graphical/rofi|yes"
 	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
 	"$HOME/.config/redshift.conf:graphical/redshift.conf|yes"
-	"$HOME/.config/yad.conf:graphical/yad.conf|yes"
 	"$HOME/.icons/default/index.theme:graphical/index.theme|yes"
 )
 # dir|graphical?
