@@ -70,6 +70,7 @@ fi
 bindkey "^r" history-incremental-search-backward
 
 # v command for opening in $EDITOR
+autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # b command to push line
