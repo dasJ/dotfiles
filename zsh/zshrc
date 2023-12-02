@@ -42,8 +42,6 @@ source "$zshincl/aliases.zsh"
 source "$zshincl/functions.zsh"
 # SSH agent
 source "$zshincl/ssh-agent.zsh"
-# Clipboard
-source "$zshincl/clipboard.zsh"
 # undistract me
 source "$zshincl/undistract-me.zsh"
 

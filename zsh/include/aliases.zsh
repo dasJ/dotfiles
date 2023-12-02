@@ -37,10 +37,6 @@ alias -g T='| tail'
 alias -g G='| grep'
 alias -g NUL='&>/dev/null'
 
-# task
-alias in='task add +in'
-alias tctx='task context'
-
 # tmux
 alias tmux='tmux -2' # Colors
 alias outertmux='tmux -L "$tmuxname"'
@@ -58,8 +54,6 @@ alias userctl='systemctl --user'
 alias :q='exit'
 alias privip="ip a | grep 'inet ' | awk -F' ' '{print $2}'"
 alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias path='echo -e ${PATH//:/\\n}'
-alias va=vagrant
 alias ip='ip -c'
 alias deploy=/var/src/helsinki/0scripts/deploy
 

@@ -43,14 +43,3 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;93=0=01'
 # ps columns
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
-
-# Completion aliases
-compdef va='vagrant'
-
-# Custom completions
-compdef _taskw_ctx tctx
-_taskw_ctx() {
-	local -a contexts
-	contexts=(none $(task _context))
-	_describe 'command' contexts
-}
