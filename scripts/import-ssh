@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+shopt -s nullglob
+
+# Find pinentry
+if command -v pinentry-gnome3 &>/dev/null; then
+	entry=pinentry-gnome3
+elif command -v pinentry-qt &>/dev/null; then
+	entry=pinentry-qt
+elif command -v pinentry &>/dev/null; then
+	entry=pinentry
+else
+	echo "No pinentry found" >&2
+	exit 1
+fi
+
+# Check if we need to import keys
+mapfile -t currentKeys <<< "$(ssh-add -l | cut -d' ' -f3)"
+requiredKeys=()
+for absoluteKey in ~/.ssh/keys/*.key; do
+	keyName="${absoluteKey##*/}"
+	keyName="${keyName%%.*}"
+	if ! [[ " ${currentKeys[*]} " == *" ${keyName} "* ]]; then
+		requiredKeys+=("${absoluteKey}")
+	fi
+done
+
+if [[ "${#requiredKeys[@]}" == 0 ]]; then
+	exit 0
+fi
+
+# Import keys
+pw=
+for path in "${requiredKeys[@]}"; do
+	if [[ -z "${pw:-}" ]]; then
+		for _ in {1..5}; do
+			pw="$(printf "SETDESC SSH key decryption of %d keys\nSETPROMPT Password:\nSETTITLE ssh\nGETPIN\n" "${#requiredKeys[@]}" | "${entry}" 2>/dev/null | grep ^D | cut -d' ' -f2)"
+			echo "${pw}" | SSH_ASKPASS_REQUIRE=never setsid -w ssh-add "${path}" 2>/dev/null && break
+		done
+	else
+		# Use existing password
+		echo "${pw}" | SSH_ASKPASS_REQUIRE=never setsid -w ssh-add "${path}" 2>/dev/null
+	fi
+	keyName="${path##*/}"
+	keyName="${keyName%%.*}"
+	echo "Identity added: ${keyName}"
+done

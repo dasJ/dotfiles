@@ -91,6 +91,13 @@ alright() {
 	exec @DOTFILES@/scripts/taskstatus
 }
 
+function ssh() {
+	unset REPORTTIME
+	@DOTFILES@/scripts/import-ssh
+	REPORTTIME=0
+	command ssh "${@}"
+}
+
 wiresharkRemote() {
 	unset REPORTTIME
 	local host

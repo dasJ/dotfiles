@@ -2,7 +2,7 @@
 # git aliases
 ###############
 
-export GIT_SSH_COMMAND='@DOTFILES@/scripts/pass2agent; ssh -o VisualHostKey=no'
+export GIT_SSH_COMMAND='@DOTFILES@/scripts/import-ssh; ssh -o VisualHostKey=no'
 
 # git add
 alias ga='git add'
