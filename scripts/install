@@ -22,7 +22,7 @@ linkfiles=(
 	"$HOME/.tmux.conf:misc/tmux.conf|no"
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
 	"$HOME/.config/git/config:misc/gitconfig|no"
-	"$HOME/.nvim:nvim|no"
+	"$HOME/.config/nvim:nvim|no"
 	"$HOME/.gnupg/gpg.conf:gpg/gpg.conf|no"
 	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
 	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
