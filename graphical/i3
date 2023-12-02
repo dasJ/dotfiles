@@ -104,7 +104,6 @@ bindsym $mod+u exec i3-input -F 'rename workspace to "%s"' -P 'Workspace name: '
 # Start stuff
 bindsym --release $mod+r exec --no-startup-id rofi -modi drun -show drun -show-icons
 bindsym --release $mod+x exec --no-startup-id rofi -modi window -show window -show-icons
-bindsym --release $mod+t exec --no-startup-id @DOTFILES@/scripts/i3-passrofi
 bindsym --release $mod+y exec --no-startup-id @DOTFILES@/scripts/i3-screenshot
 bindsym --release $mod+n exec --no-startup-id @DOTFILES@/scripts/i3-power
 
