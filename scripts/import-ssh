@@ -30,6 +30,9 @@ if [[ "${#requiredKeys[@]}" == 0 ]]; then
 	exit 0
 fi
 
+IFS=$'\n' requiredKeys=($(sort --sort version <<<"${requiredKeys[*]}"))
+unset IFS
+
 # Import keys
 pw=
 for path in "${requiredKeys[@]}"; do
