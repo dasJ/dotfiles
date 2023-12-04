@@ -23,9 +23,6 @@ linkfiles=(
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
 	"$HOME/.config/git/config:misc/gitconfig|no"
 	"$HOME/.config/nvim:nvim|no"
-	"$HOME/.gnupg/gpg.conf:gpg/gpg.conf|no"
-	"$HOME/.gnupg/gpg-agent.conf:gpg/gpg-agent.conf|no"
-	"$HOME/.gnupg/dirmngr.conf:gpg/dirmngr.conf|no"
 	"$HOME/.ssh/config:misc/ssh_config|no"
 	# Graphical stuff
 	"$HOME/.config/gtk-2.0/gtkrc:graphical/gtk/gtkrc-2.0|yes"
@@ -54,12 +51,6 @@ mkdirs=(
 	"$HOME/.ssh|no"
 	"$HOME/.icons/default"
 	"$HOME/.cache/mail"
-)
-
-# unit|graphical?
-units=(
-	'dirmngr.socket'
-	'gpg-agent.socket'
 )
 
 autostart=(
@@ -209,11 +200,6 @@ systemd() {
 	# Reload
 	msg2 'Reload'
 	systemctl --user daemon-reload
-	# Enable units
-	msg2 'Enable'
-	for u in "${units[@]}"; do
-		systemctl --user enable "${u}"
-	done
 }
 
 updatesw() {
