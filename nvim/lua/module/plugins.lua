@@ -13,6 +13,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
+    "nvim-lua/plenary.nvim",
+  },
+  {
     "lewis6991/fileline.nvim",
     lazy = false,
   },
@@ -24,6 +27,20 @@ require("lazy").setup({
     end,
   },
   -- Syntaxes
+  {
+    "nvimtools/none-ls.nvim",
+    ft = "nix",
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup {
+        sources = {
+          null_ls.builtins.code_actions.statix,
+          null_ls.builtins.diagnostics.statix,
+          null_ls.builtins.diagnostics.deadnix,
+        }
+      }
+    end,
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
