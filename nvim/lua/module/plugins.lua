@@ -28,20 +28,6 @@ require("lazy").setup({
   },
   -- Syntaxes
   {
-    "nvimtools/none-ls.nvim",
-    ft = "nix",
-    config = function()
-      local null_ls = require("null-ls")
-      null_ls.setup {
-        sources = {
-          null_ls.builtins.code_actions.statix,
-          null_ls.builtins.diagnostics.statix,
-          null_ls.builtins.diagnostics.deadnix,
-        }
-      }
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
@@ -83,6 +69,16 @@ require("lazy").setup({
   {
     "vim-scripts/exim.vim",
     ft = "exim",
+  },
+  {
+    "nvim-lua/plenary.nvim",
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    ft = "nix",
+    config = function()
+      require "module.none-ls"
+    end,
   },
   -- Look and feel
   {
