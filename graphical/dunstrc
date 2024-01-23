@@ -19,7 +19,7 @@
 	show_age_threshold = 30
 	icon_position = left
 	max_icon_size = 64
-	icon_path = /run/current-system/sw/share/icons/Adwaita/32x32/status/:/run/current-system/sw/share/icons/Adwaita/32x32/devices/
+	icon_path = /run/current-system/sw/share/icons/Adwaita/16x16/status/:/run/current-system/sw/share/icons/Adwaita/16x16/devices/
 
 	# Frame
 	frame_width = 1
