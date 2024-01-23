@@ -119,6 +119,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id sh -c 'xbacklight_tee="sudo t
 bindsym XF86MonBrightnessUp exec --no-startup-id sh -c 'xbacklight_tee="sudo tee" @DOTFILES@/scripts/xbacklight +'
 bindsym XF86ScreenSaver exec --no-startup-id slock
 
+bindsym --whole-window --border button8 exec --no-startup-id busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player Previous
+bindsym --whole-window --border button9 exec --no-startup-id busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player Next
+bindsym --whole-window --border button10 exec --no-startup-id busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player PlayPause
+
 bindsym --whole-window --border $mod+button4 exec @DOTFILES@/scripts/volume up
 bindsym --whole-window --border $mod+button5 exec @DOTFILES@/scripts/volume down
 
