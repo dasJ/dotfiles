@@ -24,6 +24,7 @@ linkfiles=(
 	"$HOME/.config/git/config:misc/gitconfig|no"
 	"$HOME/.config/nvim:nvim|no"
 	"$HOME/.ssh/config:misc/ssh_config|no"
+	"$HOME/.config/atuin/config.toml:misc/atuin.toml|no"
 	# Graphical stuff
 	"$HOME/.config/gtk-2.0/gtkrc:graphical/gtk/gtkrc-2.0|yes"
 	"$HOME/.config/gtk-2.0/gtkfilechooser.ini:graphical/gtk/gtk2.0-filechooser.ini|yes"
@@ -50,7 +51,7 @@ mkdirs=(
 	"$HOME/.gnupg|no"
 	"$HOME/.ssh|no"
 	"$HOME/.icons/default"
-	"$HOME/.cache/mail"
+	"$HOME/.config/atuin|no"
 )
 
 autostart=(

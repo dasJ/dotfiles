@@ -1,3 +1,4 @@
-zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
+atuinsh/atuin
 dasJ/zsh-theme
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
