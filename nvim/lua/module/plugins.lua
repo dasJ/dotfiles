@@ -16,6 +16,17 @@ require("lazy").setup({
     "nvim-lua/plenary.nvim",
   },
   {
+    "hrsh7th/nvim-cmp",
+    lazy = false,
+    config = function()
+      require "module.cmp"
+    end,
+  },
+  {
+    "hrsh7th/cmp-nvim-lsp",
+    lazy = false,
+  },
+  {
     "lewis6991/fileline.nvim",
     lazy = false,
   },
