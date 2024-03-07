@@ -10,6 +10,10 @@ null_ls.setup({
       condition = function(utils)
         return utils.root_has_file("treefmt.toml") or utils.root_has_file(".treefmt.toml")
       end,
+      extra_args = function()
+        local client = require("null-ls.client").get_client()
+        return { "--tree-root", client.config.root_dir }
+      end,
     }),
   },
   -- you can reuse a shared lspconfig on_attach callback here
