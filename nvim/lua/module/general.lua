@@ -34,6 +34,24 @@ vim.o.updatetime = 400
 -- Completion
 vim.o.completeopt = "menuone,preview"
 
+-- Fix relative paths in onmnicomplete
+local omnigroup = vim.api.nvim_create_augroup("OmniFile", {})
+vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = omnigroup,
+  callback = function()
+      vim.g.omnicwd = vim.fn.getcwd()
+      vim.o.autochdir = true
+  end,
+})
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = omnigroup,
+  callback = function()
+      vim.o.autochdir = false
+      vim.fn.execute("cd " .. vim.fn.fnameescape(vim.g.omnicwd))
+  end,
+})
+
 -- Splits
 vim.o.splitbelow = true
 vim.o.splitright = true
