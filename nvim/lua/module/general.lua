@@ -32,7 +32,7 @@ vim.o.backupskip = "/tmp/*"
 vim.o.updatetime = 400
 
 -- Completion
-vim.o.completeopt = "menuone,preview"
+vim.o.completeopt = "menuone,preview,noinsert,noselect"
 
 -- Fix relative paths in onmnicomplete
 local omnigroup = vim.api.nvim_create_augroup("OmniFile", {})
