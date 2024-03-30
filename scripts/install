@@ -19,6 +19,7 @@ linkfiles=(
 	"$HOME/.zprofile:zsh/zprofile|no"
 	"$HOME/.zshenv:zsh/zshenv|no"
 	"$HOME/.zshrc:zsh/zshrc|no"
+	"$HOME/.bashrc:misc/bashrc|no"
 	"$HOME/.tmux.conf:misc/tmux.conf|no"
 	"$HOME/.config/htop/htoprc:misc/htoprc|no"
 	"$HOME/.config/git/config:misc/gitconfig|no"
