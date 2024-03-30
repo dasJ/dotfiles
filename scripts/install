@@ -193,17 +193,6 @@ astart() {
 	done
 }
 
-systemd() {
-	# Link
-	msg2 'Link'
-	for file in ${BASEDIR}/systemd/*; do
-		ln -svTf "${file}" "${HOME}/.config/systemd/user/$(basename "${file}")"
-	done
-	# Reload
-	msg2 'Reload'
-	systemctl --user daemon-reload
-}
-
 updatesw() {
 	msg2 'zsh'
 	# Install
@@ -227,7 +216,5 @@ msg "Linking..."
 link
 msg "Configuring autostart..."
 astart
-msg "Configuring systemd..."
-systemd
 msg "Updating plugins..."
 updatesw
