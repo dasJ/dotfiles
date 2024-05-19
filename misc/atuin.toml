@@ -1,8 +1,10 @@
 dialect = "uk"
 update_check = false
 sync_address = "https://shellhist.hess.nz"
-filter_mode = "host"
-workspaces = false # not yet: https://github.com/atuinsh/atuin/pull/1417
+# Needs https://github.com/atuinsh/atuin/pull/1417 patched in:
+filter_modes = [ "host", "workspace", "global" ]
+workspaces = true
+# ---
 keymap_mode = "vim-insert"
 show_help = false
 ctrl_n_shortcuts = true
