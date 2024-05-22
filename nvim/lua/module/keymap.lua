@@ -4,7 +4,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true })
 vim.keymap.set("n", "gf", function()
   cfile = vim.fn.expand('<cfile>')
-  if string.sub(cfile, 1, 2) == './' then
+  if string.sub(cfile, 1, 2) == './' or string.sub(cfile, 1, 3) == '../' then
     cfile = vim.fn.expand('%:p:h') .. '/' .. cfile
   end
 
