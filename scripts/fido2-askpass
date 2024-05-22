@@ -2,11 +2,20 @@
 
 set -euo pipefail
 
+sk_quit() {
+	trap - TERM
+	dunstify -C "${notificationId}"
+	kill -TERM "${sleepPid}"
+}
+
 if [[ "${1}" == 'Confirm user presence'* ]]; then
 	read -r -a parts <<< "${1}"
 	key="${parts[*]: -2:2}"
-	dunstify -a ssh --printid 'Confirm user presence for key' "${key}"
-	exit
+	trap sk_quit SIGTERM
+	notificationId="$(dunstify -a ssh -t 0 --urgency critical --printid 'Confirm user presence for key' "${key}")"
+	sleep infinity &
+	sleepPid="${!}"
+	wait "${sleepPid}"
 fi
 
 askpass="$(. /etc/set-environment; echo "${SSH_ASKPASS}")"
