@@ -53,8 +53,4 @@
 	background = "#bb0000"
 	timeout = 0
 
-[spotify]
-	appname = Spotify
-	markup = strip
-
 # vi: ft=cfg
