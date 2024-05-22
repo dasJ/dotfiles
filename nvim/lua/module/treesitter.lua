@@ -10,3 +10,4 @@ configs.setup({
 vim.api.nvim_set_hl(0, "@comment.todo", { link = "@text.todo" })
 vim.api.nvim_set_hl(0, "@text.note", { link = "Ignore" })
 vim.api.nvim_set_hl(0, "@text.danger", { link = "ErrorMsg" })
+vim.api.nvim_set_hl(0, "@variable", { link = "Include" })

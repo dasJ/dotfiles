@@ -70,7 +70,6 @@ vim.opt.runtimepath:append("/run/current-system/sw/share/vim-plugins")
 -- Terminal
 vim.o.title = true
 vim.o.encoding = "utf-8"
-vim.o.termencoding = "utf-8"
 
 -- Netrw
 vim.g.netrw_mousemaps = 0
