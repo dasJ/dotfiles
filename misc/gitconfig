@@ -16,12 +16,12 @@
 [help]
 	autocorrect = -1
 [diff]
-	tool = vimdiff
+	tool = nvimdiff
 	renames = copies
 [grep]
 	lineNumber = true
 [merge]
-	tool = vimdiff
+	tool = nvimdiff
 	conflictstyle = diff3
 	log = true
 [mergetool]
