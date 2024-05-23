@@ -19,7 +19,7 @@
 	show_age_threshold = 30
 	icon_position = left
 	max_icon_size = 64
-	icon_path = /run/current-system/sw/share/icons/Adwaita/16x16/status/:/run/current-system/sw/share/icons/Adwaita/16x16/devices/
+	icon_path = /run/current-system/sw/share/icons/Adwaita/16x16/mimetypes/:/run/current-system/sw/share/icons/Adwaita/16x16/devices/:/run/current-system/sw/share/icons/Adwaita/16x16/emblems/:/run/current-system/sw/share/icons/Adwaita/16x16/places/
 
 	# Frame
 	frame_width = 1
@@ -52,5 +52,6 @@
 	foreground = "#ffffff"
 	background = "#bb0000"
 	timeout = 0
+	override_pause_level = 100
 
 # vi: ft=cfg
