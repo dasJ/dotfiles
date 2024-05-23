@@ -36,7 +36,7 @@ vim.o.completeopt = "menuone,preview,noinsert,noselect"
 
 -- Fix relative paths in onmnicomplete
 local omnigroup = vim.api.nvim_create_augroup("OmniFile", {})
-vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+vim.api.nvim_clear_autocmds({ group = "OmniFile", buffer = bufnr })
 vim.api.nvim_create_autocmd("InsertEnter", {
   group = omnigroup,
   callback = function()
