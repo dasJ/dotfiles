@@ -36,6 +36,7 @@ linkfiles=(
 	"$HOME/.config/OpenImageIO/iv.conf:graphical/iv.conf|yes"
 	"$HOME/.config/rofi/config.rasi:graphical/rofi|yes"
 	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
+	"$HOME/.config/flameshot/flameshot.ini:graphical/flameshot.ini|yes"
 	"$HOME/.config/redshift.conf:graphical/redshift.conf|yes"
 	"$HOME/.icons/default/index.theme:graphical/index.theme|yes"
 )
@@ -49,6 +50,7 @@ mkdirs=(
 	"$HOME/.config/dunst|yes"
 	"$HOME/.config/OpenImageIO|es"
 	"$HOME/.config/rofi|yes"
+	"$HOME/.config/flameshot|yes"
 	"$HOME/.gnupg|no"
 	"$HOME/.ssh|no"
 	"$HOME/.icons/default"

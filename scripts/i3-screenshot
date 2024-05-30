@@ -1,5 +1,14 @@
 #!/usr/bin/env sh
 
+if hash flameshot >/dev/null 2>&1; then
+	focusedwindow_before="$(xdotool getactivewindow || :)"
+	flameshot gui
+	if hash xdotool >/dev/null 2>&1; then
+		[ "${focusedwindow_before}" = "$(xdotool getactivewindow)" ] && xdotool windowfocus "${focusedwindow_before}"
+	fi
+	exit 0
+fi
+
 out="$(echo 'Select Area/Window
 Current Screen
 All Screens
