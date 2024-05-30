@@ -199,8 +199,6 @@ updatesw() {
 	zsh -c "zshconf=\"${BASEDIR}/zsh\" source \"${BASEDIR}/zsh/include/antibody.zsh\""
 	# Update
 	ANTIBODY_HOME="${BASEDIR}/zsh/antibody/repos" antibody update
-	msg2 'Firefox'
-	"${BASEDIR}/scripts/ff-addon"
 }
 
 msg "Checking requirements..."
