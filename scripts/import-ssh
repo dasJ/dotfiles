@@ -26,11 +26,21 @@ for absoluteKey in ~/.ssh/keys/*.key; do
 	fi
 done
 
+# Also check if we need to import certificates
+mapfile -t currentCerts <<< "$(ssh-add -l | grep -- -CERT | cut -d' ' -f3)"
+for absoluteCert in ~/.ssh/keys/*.key-cert.pub; do
+	keyName="${absoluteCert##*/}"
+	keyName="${keyName%%.*}"
+	if ! [[ " ${currentCerts[*]} " == *" ${keyName} "* ]]; then
+		requiredKeys+=("${absoluteCert%%-cert.pub}")
+	fi
+done
+
 if [[ "${#requiredKeys[@]}" == 0 ]]; then
 	exit 0
 fi
 
-IFS=$'\n' requiredKeys=($(sort --sort version <<<"${requiredKeys[*]}"))
+IFS=$'\n' requiredKeys=($(sort --unique --sort version <<<"${requiredKeys[*]}"))
 unset IFS
 
 # Import keys
