@@ -1,1 +1,5 @@
-eval "$(atuin init bash --disable-up-arrow)"
+if command blesh-share &>/dev/null; then
+	source "$(blesh-share)/ble.sh" --attach=none
+	[[ -n "${BLE_VERSION:-}" ]] && ble-attach
+	[[ -n "${BLE_VERSION:-}" ]] && eval "$(atuin init bash --disable-up-arrow)"
+fi
