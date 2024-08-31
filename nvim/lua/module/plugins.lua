@@ -13,9 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
-    "nvim-lua/plenary.nvim",
-  },
-  {
     "hrsh7th/nvim-cmp",
     lazy = false,
     config = function()
@@ -25,6 +22,38 @@ require("lazy").setup({
   {
     "hrsh7th/cmp-nvim-lsp",
     lazy = false,
+  },
+  {
+    "tpope/vim-fugitive",
+    lazy = false,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.6",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim" },
+    lazy = false,
+    config = function()
+      local telescope = require("telescope")
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<Leader>ff", builtin.find_files, {})
+      vim.keymap.set("n", "<Leader>fg", builtin.live_grep, {})
+      vim.keymap.set("n", "<Leader>fb", builtin.buffers, {})
+      vim.keymap.set("n", "<Leader>fh", builtin.help_tags, {})
+
+      telescope.load_extension("ui-select")
+      telescope.setup({
+        pickers = {
+          lsp_code_actions = { theme = "dropdown" },
+        }
+      })
+    end,
+  },
+  {
+    "shumphrey/fugitive-gitlab.vim",
+    lazy = false,
+    config = function()
+      vim.g.fugitive_gitlab_domains = { ["git.helsinki.tools"] = "https://git.helsinki.tools" }
+    end,
   },
   {
     "lewis6991/fileline.nvim",
@@ -80,9 +109,6 @@ require("lazy").setup({
   {
     "vim-scripts/exim.vim",
     ft = "exim",
-  },
-  {
-    "nvim-lua/plenary.nvim",
   },
   {
     "nvimtools/none-ls.nvim",
