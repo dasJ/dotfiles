@@ -27,4 +27,9 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
   },
+  completion = {
+    autocomplete = false
+  }
 }
+
+vim.o.completefunc = "v:lua.require'module.complete'.dictionary_complete"
