@@ -9,7 +9,6 @@ setopt pushd_to_home # pushd with no arguments -> pushd $HOME
 setopt auto_param_keys # Be smarter when completing whithin parameters
 setopt auto_param_slash # Add / after completed directories
 setopt auto_remove_slash # When autocomplete adds a slash and you do as well, one will be removed
-setopt complete_aliases # Make aliases a distinct command
 setopt complete_in_word # Tab completion in word
 setopt menu_complete # Insert the first match immediately
 setopt no_list_beep # No beep when completion list is displayed
