@@ -7,12 +7,7 @@ if command -v fprintd-verify &>/dev/null; then
 	(
 		ok=1
 		while :; do
-			out="$(fprintd-verify "${USER}")"
-			if [[ "${?}" != 0 ]]; then
-				ok=0
-				break
-			fi
-			echo "${out}" | grep -q 'result: verify-match' && break
+			fprintd-verify "${USER}" | grep -q 'result: verify-match' && break
 		done
 		[[ "${ok}" == 1 ]] && sudo pkill -xu nobody slock
 	) &
