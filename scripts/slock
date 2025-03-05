@@ -1,20 +1,30 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 xset dpms 0 0 5 # Turn off after 5 seconds of inactivity
 xset dpms force off # Turn off screen now
 # Wait for fingerprint
 if command -v fprintd-verify &>/dev/null; then
 	(
-		ok=1
+		ok=0
 		while :; do
-			fprintd-verify "${USER}" | grep -q 'result: verify-match' && break
+			if out="$(fprintd-verify "${USER}")"; then
+				if echo "${out}" | grep -q 'result: verify-match'; then
+					ok=1
+					break
+				fi
+			fi
 		done
-		[[ "${ok}" == 1 ]] && sudo pkill -xu nobody slock
+		if [[ "${ok}" == 1 ]]; then
+			sudo pkill -xu nobody slock
+		fi
+		sleep 1
 	) &
 fi
 slock & # Lock
 tail --pid $! -f /dev/null # Wait for slock
-pkill -xu "${USER}" fprintd-verify &> /dev/null # Try to kill fprintd-verify
 
 xset dpms force on # Turn on screen now
 @DOTFILES@/scripts/xset # Reset DPMS
+kill 0 # Kill fprint loop
