@@ -24,7 +24,8 @@ if command -v fprintd-verify &>/dev/null; then
 fi
 slock & # Lock
 tail --pid $! -f /dev/null # Wait for slock
+kill %1 # Kill the fprintd loop
+pkill -x -u "${USER}" fprintd-verify || : # Kill fprintd-verify
 
 xset dpms force on # Turn on screen now
 @DOTFILES@/scripts/xset # Reset DPMS
-kill 0 # Kill fprint loop
