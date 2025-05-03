@@ -116,11 +116,6 @@ require("lazy").setup({
     cmd = "TSPlaygroundToggle",
   },
   {
-    "mrcjkb/rustaceanvim",
-    version = "^3",
-    ft = "rust",
-  },
-  {
     "vim-scripts/exim.vim",
     ft = "exim",
   },
