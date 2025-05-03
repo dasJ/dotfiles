@@ -26,6 +26,7 @@ cmp.setup {
   }),
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
   },
   completion = {
     autocomplete = false
