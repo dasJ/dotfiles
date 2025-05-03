@@ -7,7 +7,7 @@ export GIT_SSH_COMMAND='@DOTFILES@/scripts/import-ssh; ssh -o VisualHostKey=no'
 # git add
 alias ga='git add'
 alias gaa='ga --all'
-alias gai='ga -i'
+alias gap='ga -p'
 
 # git commit
 alias gc='git commit -v'
