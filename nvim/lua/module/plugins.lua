@@ -66,6 +66,20 @@ require("lazy").setup({
       require "module.lsp"
     end,
   },
+  {
+    "folke/todo-comments.nvim",
+    lazy = false,
+    priority = 900,
+    opts = {
+        highlight = {
+          pattern = [[.*<(KEYWORDS)\s*]],
+        },
+        search = {
+          pattern = [[\b(KEYWORDS)\b]],
+        },
+      },
+
+  },
   -- Syntaxes
   {
     "nvim-treesitter/nvim-treesitter",
