@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+focusedWorkspace="$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name')"
+
+declare -A workspaceMap
+while IFS=: read -r output workspace; do
+	if [[ "${workspace}" == null ]] || [[ "${output}" == eDP-1 ]]; then
+		continue
+	fi
+	workspaceMap["${output}"]="${workspace}"
+done < <(i3-msg -t get_outputs | jq -r '.[]|"\(.name):\(.current_workspace)"')
+
+if [[ "${#workspaceMap[@]}" != 2 ]]; then
+	echo "Not exactly 2 displays" >&2
+	exit 1
+fi
+
+for output in "${!workspaceMap[@]}"; do
+	currentWorkspace="${workspaceMap["${output}"]}"
+	for output2 in "${!workspaceMap[@]}"; do
+		if [[ "${output}" != "${output2}" ]]; then
+			otherOutput="${output2}"
+		fi
+	done
+	echo "Moving ${currentWorkspace} to ${otherOutput}"
+
+	i3-msg -- workspace --no-auto-back-and-forth "${currentWorkspace}"
+	i3-msg -- move workspace to output "${otherOutput}"
+done
+
+i3-msg -- workspace --no-auto-back-and-forth "${focusedWorkspace}"
