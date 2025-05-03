@@ -44,10 +44,13 @@
 	verbose = true
 [status]
 	showStash = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [init]
 	defaultBranch = master
+[user]
+	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM35Bq87SBWrEcoDqrZFOXyAmV/PJrSSu3hl3TdVvo4C janne
+[gpg "ssh"]
+	allowedSignersFile = @HOME@/.config/git/allowed_signers
+[gpg]
+	format = ssh
+[tag]
+	gpgSign = true
