@@ -19,6 +19,20 @@ for _, server in ipairs {
     "rust_analyzer",
     cmd = { "rust-analyzer" },
   },
+  {
+    "yamlls",
+    settings = {
+      yaml = {
+        schemas = {
+          [require("kubernetes").yamlls_schema()] = "*.yaml",
+          ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+          ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "*play*.{yml,yaml}",
+          ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+          ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
+        },
+      },
+    },
+  },
 } do
   lspconfig[server[1]].setup {
     cmd = server.cmd,

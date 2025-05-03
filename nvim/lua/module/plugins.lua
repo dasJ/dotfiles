@@ -80,6 +80,13 @@ require("lazy").setup({
       },
 
   },
+  {
+    "diogo464/kubernetes.nvim",
+    ft = "yaml",
+    opts = {
+        schema_generate_always = false,
+    },
+  },
   -- Syntaxes
   {
     "nvim-treesitter/nvim-treesitter",
