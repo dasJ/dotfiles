@@ -18,6 +18,13 @@ for _, server in ipairs {
   {
     "rust_analyzer",
     cmd = { "rust-analyzer" },
+    settings = {
+      ['rust-analyzer'] = {
+        checkOnSave = {
+          command = "clippy",
+        },
+      },
+    },
   },
   {
     "yamlls",
