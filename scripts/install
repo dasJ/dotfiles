@@ -37,7 +37,7 @@ linkfiles=(
 	"$HOME/.config/rofi/config.rasi:graphical/rofi|yes"
 	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
 	"$HOME/.config/flameshot/flameshot.ini:graphical/flameshot.ini|yes"
-	"$HOME/.config/redshift.conf:graphical/redshift.conf|yes"
+	"$HOME/.config/alacritty.toml:graphical/alacritty.toml|yes"
 	"$HOME/.icons/default/index.theme:graphical/index.theme|yes"
 )
 # dir|graphical?
@@ -60,7 +60,7 @@ mkdirs=(
 autostart=(
 	firefox
 	spotify
-	st
+	alacritty
 )
 
 ###

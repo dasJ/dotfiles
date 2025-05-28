@@ -36,7 +36,7 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+a focus parent
 bindsym $mod+d focus child
-bindsym $mod+Return [class="st-256color"] focus
+bindsym $mod+Return [class="Alacritty"] focus
 
 # Move focused window
 bindsym $mod+Shift+h move left

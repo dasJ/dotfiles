@@ -1,0 +1,66 @@
+[scrolling]
+# Disable scrolling obsoleted by tmux
+history = 0
+# Only scroll one line per scroll
+multiplier = 1
+
+[mouse]
+hide_when_typing = true
+
+[terminal]
+shell = { program = "zsh" }
+
+# Configure visual bell
+[bell]
+duration = 10
+color = "#888888"
+
+# Ctrl to open links
+[[hints.enabled]]
+command = "xdg-open"
+hyperlinks = true
+post_processing = true
+mouse = { enabled = true, mods = "Control" }
+binding = { key = "O", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+
+# Font, colors and looks
+
+[font]
+normal = { family = "Anonymous Pro", style = "Regular" }
+size = 9.75
+
+[colors.primary]
+foreground = "#e5e5e5"
+background = "#000000"
+dim_foreground = "#e5e5e5"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.normal]
+black = "#000000"
+red = "#cd0000"
+green = "#00cd00"
+yellow = "#cdcd00"
+blue = "#4285f3"
+magenta = "#cd00cd"
+cyan = "#00cdcd"
+white = "#e5e5e5" # also serves as "light gray"
+
+[colors.bright]
+black = "#7f7f7f" # also serves as "dark gray"
+red = "#ff0000"
+green = "#00ff00"
+yellow = "#ffff00"
+blue = "#5c5cfe"
+magenta = "#ff00ff"
+cyan = "#00ffff"
+white = "#ffffff"
+
+[colors.cursor]
+text = "#000000"
+cursor = "#e5e5e5"
+
+[cursor.style]
+blinking = "Never"
