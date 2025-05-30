@@ -60,7 +60,7 @@ mkdirs=(
 autostart=(
 	firefox
 	spotify
-	alacritty
+	Alacritty
 )
 
 ###
