@@ -37,10 +37,9 @@ stty -ixon &>/dev/null
 # Import $PATH
 systemctl --user import-environment PATH
 
-# Start sway
+# Start uwsm
 if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ] && [ -f @DOTFILES@/local/wayland ]; then
-	export GTK2_RC_FILES="@HOME@/.config/gtk-2.0/gtkrc"
-	exec sway
+	exec systemd-cat -t uwsm uwsm start default
 fi
 
 # Start X11
