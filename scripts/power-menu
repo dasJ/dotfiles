@@ -11,6 +11,14 @@ killStuff() {
 	wait
 }
 
+launcher() {
+	if [[ "${XDG_SESSION_TYPE:-}" = wayland ]]; then
+		fuzzel --dmenu -p 'power> '
+	else
+		rofi -dmenu -p power
+	fi
+}
+
 out="$(echo 'Log Out
 Shut down
 Suspend
@@ -18,14 +26,18 @@ Reboot
 Hibernate
 Kexec
 Hybrid sleep
-Windows' | rofi -dmenu -p 'power')"
+Windows' | launcher)"
 
 [[ -z "${out}" ]] && exit
 
 case "${out}" in
 	'Log Out')
 		killStuff
-		i3-msg exit
+		if [[ "${XDG_SESSION_TYPE:-}" = wayland ]]; then
+			uwsm stop
+		else
+			i3-msg exit
+		fi
 	;;
 	'Shut down')
 		killStuff

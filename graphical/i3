@@ -107,7 +107,7 @@ bindsym $mod+u exec i3-input -F 'rename workspace to "%s"' -P 'Workspace name: '
 bindsym --release $mod+r exec --no-startup-id rofi -modi drun -show drun -show-icons
 bindsym --release $mod+x exec --no-startup-id rofi -modi window -show window -show-icons
 bindsym --release $mod+y exec --no-startup-id @DOTFILES@/scripts/i3-screenshot
-bindsym --release $mod+n exec --no-startup-id @DOTFILES@/scripts/i3-power
+bindsym --release $mod+n exec --no-startup-id @DOTFILES@/scripts/power-menu
 
 # XF86
 bindsym XF86AudioPlay exec --no-startup-id busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player PlayPause
