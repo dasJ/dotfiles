@@ -27,13 +27,10 @@ linkfiles=(
 	"$HOME/.ssh/config:misc/ssh_config|no"
 	"$HOME/.config/atuin/config.toml:misc/atuin.toml|no"
 	# Graphical stuff
-	"$HOME/.config/gtk-2.0/gtkrc:graphical/gtk/gtkrc-2.0|yes"
-	"$HOME/.config/gtk-2.0/gtkfilechooser.ini:graphical/gtk/gtk2.0-filechooser.ini|yes"
 	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
 	"$HOME/.config/gtk-3.0/bookmarks:graphical/gtk/gtk-bookmarks|yes"
 	"$HOME/.config/i3/config:graphical/i3|yes"
 	"$HOME/.config/dunst/dunstrc:graphical/dunstrc|yes"
-	"$HOME/.config/OpenImageIO/iv.conf:graphical/iv.conf|yes"
 	"$HOME/.config/rofi/config.rasi:graphical/rofi|yes"
 	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
 	"$HOME/.config/flameshot/flameshot.ini:graphical/flameshot.ini|yes"
