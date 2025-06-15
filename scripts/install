@@ -35,6 +35,7 @@ linkfiles=(
 	"$HOME/.config/mimeapps.list:graphical/mimeapps.list|yes"
 	"$HOME/.config/flameshot/flameshot.ini:graphical/flameshot.ini|yes"
 	"$HOME/.config/alacritty.toml:graphical/alacritty.toml|yes"
+	"$HOME/.config/safeeyes/safeeyes.json:graphical/safeeyes.json|yes"
 	"$HOME/.icons/default/index.theme:graphical/index.theme|yes"
 )
 # dir|graphical?
@@ -45,9 +46,9 @@ mkdirs=(
 	"$HOME/.config/git|no"
 	"$HOME/.config/i3|yes"
 	"$HOME/.config/dunst|yes"
-	"$HOME/.config/OpenImageIO|es"
 	"$HOME/.config/rofi|yes"
 	"$HOME/.config/flameshot|yes"
+	"$HOME/.config/safeeyes|yes"
 	"$HOME/.gnupg|no"
 	"$HOME/.ssh|no"
 	"$HOME/.icons/default"
