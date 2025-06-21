@@ -1,7 +1,7 @@
 [global]
 	# Position and size
 	width = 400
-	offset = 5x27
+	offset = (5, 27)
 	follow = keyboard
 	padding = 10
 	horizontal_padding = 10
@@ -19,7 +19,7 @@
 	show_age_threshold = 30
 	icon_position = left
 	max_icon_size = 64
-	icon_path = /run/current-system/sw/share/icons/Adwaita/16x16/mimetypes/:/run/current-system/sw/share/icons/Adwaita/16x16/devices/:/run/current-system/sw/share/icons/Adwaita/16x16/emblems/:/run/current-system/sw/share/icons/Adwaita/16x16/places/
+	icon_path = /run/current-system/sw/share/icons/Adwaita/16x16/mimetypes/:/run/current-system/sw/share/icons/Adwaita/16x16/devices/:/run/current-system/sw/share/icons/Adwaita/16x16/emblems/:/run/current-system/sw/share/icons/Adwaita/16x16/places/:/run/current-system/sw/share/icons/hicolor/48x48/status
 
 	# Frame
 	frame_width = 1
