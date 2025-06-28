@@ -28,6 +28,7 @@ linkfiles=(
 	"$HOME/.config/atuin/config.toml:misc/atuin.toml|no"
 	# Graphical stuff
 	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
+	"$HOME/.config/gtk-4.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
 	"$HOME/.config/gtk-3.0/bookmarks:graphical/gtk/gtk-bookmarks|yes"
 	"$HOME/.config/i3/config:graphical/i3|yes"
 	"$HOME/.config/dunst/dunstrc:graphical/dunstrc|yes"
@@ -40,8 +41,8 @@ linkfiles=(
 # dir|graphical?
 mkdirs=(
 	"$HOME/.config/systemd/user"
-	"$HOME/.config/gtk-2.0|yes"
 	"$HOME/.config/gtk-3.0|yes"
+	"$HOME/.config/gtk-4.0|yes"
 	"$HOME/.config/git|no"
 	"$HOME/.config/i3|yes"
 	"$HOME/.config/dunst|yes"
