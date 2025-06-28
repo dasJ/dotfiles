@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+touch "/run/user/$(id -u)/hypr-lock"
+flock -n -E 0 "/run/user/$(id -u)/hypr-lock" hyprlock
