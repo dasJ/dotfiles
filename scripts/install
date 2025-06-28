@@ -36,7 +36,6 @@ linkfiles=(
 	"$HOME/.config/flameshot/flameshot.ini:graphical/flameshot.ini|yes"
 	"$HOME/.config/alacritty.toml:graphical/alacritty.toml|yes"
 	"$HOME/.config/safeeyes/safeeyes.json:graphical/safeeyes.json|yes"
-	"$HOME/.icons/default/index.theme:graphical/index.theme|yes"
 )
 # dir|graphical?
 mkdirs=(
@@ -51,7 +50,6 @@ mkdirs=(
 	"$HOME/.config/safeeyes|yes"
 	"$HOME/.gnupg|no"
 	"$HOME/.ssh|no"
-	"$HOME/.icons/default"
 	"$HOME/.config/atuin|no"
 )
 
