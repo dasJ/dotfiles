@@ -22,10 +22,10 @@ hyperlinks = true
 post_processing = true
 mouse = { enabled = true, mods = "Control" }
 binding = { key = "O", mods = "Control|Shift" }
-regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\¶]+"
 
 [selection]
-semantic_escape_chars = ",│`|\"' ()[]{}<>\t"
+semantic_escape_chars = ",│`|\"' ()[]{}<>\t¶"
 
 # Font, colors and looks
 
