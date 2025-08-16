@@ -1,6 +1,7 @@
 dialect = "uk"
 update_check = false
 sync_address = "https://shellhist.hess.nz"
+sync_frequency = "0"
 # Needs https://github.com/atuinsh/atuin/pull/1417 patched in:
 filter_modes = [ "host", "workspace", "global" ]
 workspaces = true
