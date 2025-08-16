@@ -39,6 +39,7 @@ linkfiles=(
 	"$HOME/.config/flameshot/flameshot.ini:graphical/flameshot.ini|yes"
 	"$HOME/.config/alacritty.toml:graphical/alacritty.toml|yes"
 	"$HOME/.config/safeeyes/safeeyes.json:graphical/safeeyes.json|yes"
+	"$HOME/.config/fuzzel/fuzzel.ini:graphical/fuzzel.ini|yes"
 )
 # dir|graphical?
 mkdirs=(
@@ -52,6 +53,7 @@ mkdirs=(
 	"$HOME/.config/rofi|yes"
 	"$HOME/.config/flameshot|yes"
 	"$HOME/.config/safeeyes|yes"
+	"$HOME/.config/fuzzel|yes"
 	"$HOME/.gnupg|no"
 	"$HOME/.ssh|no"
 	"$HOME/.config/atuin|no"
