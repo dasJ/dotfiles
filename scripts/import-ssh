@@ -3,6 +3,10 @@
 set -euo pipefail
 shopt -s nullglob
 
+if [[ "${FLOCKER:-}" != "$0" ]]; then
+	exec env FLOCKER="$0" flock -en "$0" "$0" "$@"
+fi
+
 # Find pinentry
 if command -v pinentry-gnome3 &>/dev/null; then
 	entry=pinentry-gnome3
