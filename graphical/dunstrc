@@ -1,7 +1,8 @@
 [global]
 	# Position and size
 	width = 400
-	offset = (5, 27)
+	offset = (5, 25)
+	corner_radius = 5
 	follow = keyboard
 	padding = 10
 	horizontal_padding = 10
@@ -23,34 +24,29 @@
 
 	# Frame
 	frame_width = 1
-	frame_color = "#444444"
+	frame_color = "#444444dd"
 
 	# History
 	sticky_history = yes
 	history_length = 40
 
 	# External programs
-	dmenu = rofi -dmenu -p dunst>
+	dmenu = "fuzzel --dmenu -p dunst\> "
 	browser = firefox
 
-[shortcuts]
-	close = mod4+odiaeresis
-	history = mod4+adiaeresis
-	context = mod4+udiaeresis
-
 [urgency_low]
-	foreground = "#888888"
-	background = "#222222"
+	foreground = "#2a2a2aff"
+	background = "#bababadd"
 	timeout = 5
 
 [urgency_normal]
-	foreground = "#888888"
-	background = "#222222"
+	foreground = "#000000ff"
+	background = "#fafafadd"
 	timeout = 5
 
 [urgency_critical]
-	foreground = "#ffffff"
-	background = "#bb0000"
+	foreground = "#ffffffff"
+	background = "#bb0000dd"
 	timeout = 0
 	override_pause_level = 100
 
