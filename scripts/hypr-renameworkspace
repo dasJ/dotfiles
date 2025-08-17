@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+IFS=: read -r currentId currentName <<< "$(hyprctl activeworkspace -j | jq -r '"\(.id):\(.name)"')"
+newName="$(echo "${currentName}" | fuzzel --dmenu --lines 1 -p 'workspace> ')"
+
+hyprctl dispatch renameworkspace "${currentId}" "${newName}"

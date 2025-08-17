@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+while IFS='' read -r f; do
+	(app2unit -s a "${f}" || :) &
+done <<<"$(find "$HOME/.config/autostart" -type f -name '*.desktop' -printf '%f\n')"

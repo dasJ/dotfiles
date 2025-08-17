@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+windows=()
+choices=
+while IFS=: read -r address title; do
+	windows+=("${address}")
+	choices+="${title}"$'\n'
+done <<< "$(hyprctl clients -j | jq -r '[.[] | select(.monitor != -1)] | sort_by(.focusHistoryID)[] | ("\(.address):\(.title)")')"
+
+# Show fuzzel
+choice="$(echo -n "${choices}" | fuzzel --dmenu --index -p 'window> ')"
+if [[ "${choice}" == -1 ]]; then
+	echo "Unexpected choice" >&2
+	exit 1
+fi
+
+# Handle choice
+address="${windows["${choice}"]}"
+hyprctl dispatch focuswindow address:"${address}"
