@@ -71,5 +71,8 @@
         "today":    "<span color='#ff2222'><b><u>{}</u></b></span>"
       }
     }
+  },
+  "tray": {
+    "spacing": 5
   }
 }
