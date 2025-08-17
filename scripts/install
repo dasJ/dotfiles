@@ -40,6 +40,8 @@ linkfiles=(
 	"$HOME/.config/alacritty.toml:graphical/alacritty.toml|yes"
 	"$HOME/.config/safeeyes/safeeyes.json:graphical/safeeyes.json|yes"
 	"$HOME/.config/fuzzel/fuzzel.ini:graphical/fuzzel.ini|yes"
+	"$HOME/.config/waybar/config.jsonc:graphical/waybar/config.jsonc|yes"
+	"$HOME/.config/waybar/style.css:graphical/waybar/style.css|yes"
 )
 # dir|graphical?
 mkdirs=(
@@ -54,6 +56,7 @@ mkdirs=(
 	"$HOME/.config/flameshot|yes"
 	"$HOME/.config/safeeyes|yes"
 	"$HOME/.config/fuzzel|yes"
+	"$HOME/.config/waybar|yes"
 	"$HOME/.gnupg|no"
 	"$HOME/.ssh|no"
 	"$HOME/.config/atuin|no"

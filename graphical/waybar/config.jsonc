@@ -1,0 +1,75 @@
+// vi: sw=2 et
+{
+  "position": "bottom",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-right": ["pulseaudio", "custom/battery", "custom/default-route", "custom/dunst", "privacy", "custom/kimai", "load", "custom/temperature", "clock", "tray"],
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format-muted": "muted",
+    "on-click": "pavucontrol",
+    "on-click-right": "@DOTFILES@/scripts/volume toggle"
+  },
+  "custom/battery": {
+    "exec": "statusbar-waybar socket battery",
+    "return-type": "json"
+  },
+  "custom/default-route": {
+    "exec": "statusbar-waybar default-route",
+    "return-type": "json"
+  },
+  "custom/dunst": {
+    "exec": "statusbar-waybar dunst",
+    "return-type": "json",
+    "on-click-right": "pkill --newest -37 -f statusbar-waybar\\ dunst"
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+  "custom/kimai": {
+    "exec": "statusbar-waybar socket kimai",
+    "return-type": "json",
+    "on-click": "pkill --newest -35 -f statusbar-waybar\\ socket\\ kimai",
+    "on-click-right": "pkill --newest -37 -f statusbar-waybar\\ socket\\ kimai",
+    "on-click-middle": "pkill --newest -36 -f statusbar-waybar\\ socket\\ kimai"
+  },
+  "load": {
+    "format": "{load1:.2f}"
+  },
+  "custom/temperature": {
+    "exec": "statusbar-waybar temperature",
+    "return-type": "json"
+  },
+  "clock": {
+    "format": "(KW{:%V) %a, %d.%m. (%b) %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "interval": 2,
+    "locale": "de_DE.utf8",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months":   "<span color='#000000'><b>{}</b></span>",
+        "days":     "<span color='#000000'><b>{}</b></span>",
+        "weeks":    "<span color='#2222ff'><b>KW{:%V}</b></span>",
+        "weekdays": "<span color='#2222ff'><b>{}</b></span>",
+        "today":    "<span color='#ff2222'><b><u>{}</u></b></span>"
+      }
+    }
+  }
+}
