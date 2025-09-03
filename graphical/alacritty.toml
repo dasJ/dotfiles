@@ -4,9 +4,6 @@ history = 0
 # Only scroll one line per scroll
 multiplier = 1
 
-[mouse]
-hide_when_typing = true
-
 [terminal]
 shell = { program = "zsh" }
 
