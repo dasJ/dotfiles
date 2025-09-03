@@ -3,27 +3,12 @@
 set -euo pipefail
 
 focusedWorkspace="$(hyprctl activeworkspace -j | jq .id)"
+readarray -t monitors <<< "$(hyprctl monitors -j | jq -r '.[] | select(.name != "eDP-1") | "\(.id)"')"
 
-declare -A workspaceMap
-while IFS== read -r monitor workspace; do
-	workspaceMap["${monitor}"]="${workspace}"
-done < <(hyprctl monitors -j | jq -r '.[] | select(.name != "eDP-1") | "\(.id)=\(.activeWorkspace.id)"')
-
-if [[ "${#workspaceMap[@]}" != 2 ]]; then
+if [[ "${#monitors[@]}" != 2 ]]; then
 	echo "Not exactly 2 displays" >&2
 	exit 1
 fi
 
-# Turns out there's a swapactiveworkspaces dispatcher but the logic already works :/
-for monitor in "${!workspaceMap[@]}"; do
-	currentWorkspace="${workspaceMap["${monitor}"]}"
-	for monitor2 in "${!workspaceMap[@]}"; do
-		if [[ "${monitor}" != "${monitor2}" ]]; then
-			otherMonitor="${monitor2}"
-		fi
-	done
-	#echo "Moving ${currentWorkspace} from ${monitor} to ${otherMonitor}"
-	hyprctl dispatch workspace "${currentWorkspace}"
-	hyprctl dispatch moveworkspacetomonitor "${currentWorkspace}" "${otherMonitor}"
-done
+hyprctl dispatch swapactiveworkspaces "${monitors[@]}"
 hyprctl dispatch workspace "${focusedWorkspace}"
