@@ -26,6 +26,7 @@ linkfiles=(
 	"$HOME/.config/nvim:nvim|no"
 	"$HOME/.ssh/config:misc/ssh_config|no"
 	"$HOME/.config/atuin/config.toml:misc/atuin.toml|no"
+	"$HOME/.config/k9s/config.yaml:misc/k9s.yaml|no"
 	# Graphical stuff
 	"$HOME/.config/gtk-3.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
 	"$HOME/.config/gtk-4.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
@@ -66,6 +67,7 @@ mkdirs=(
 	"$HOME/.gnupg|no"
 	"$HOME/.ssh|no"
 	"$HOME/.config/atuin|no"
+	"$HOME/.config/k9s|no"
 )
 
 autostart=(
