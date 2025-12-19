@@ -38,7 +38,7 @@ stty -ixon &>/dev/null
 systemctl --user import-environment PATH
 
 # Start uwsm
-if [ -z "${DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ] && [ -f @DOTFILES@/local/wayland ]; then
+if [ -z "${WAYLAND_DISPLAY}" ] && [ "x${XDG_VTNR}" = 'x1' ] && [ "${EUID}" != 0 ] && [ -z "${SSH_CONNECTION}" ] && [ -f "@DOTFILES@/local/graphical" ] && [ -f @DOTFILES@/local/wayland ]; then
 	exec systemd-cat -t uwsm uwsm start default
 fi
 

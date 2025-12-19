@@ -25,9 +25,6 @@ zstyle ':completion:*' menu select
 # Reorder completion tags
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 
-# Parse known_hosts for hostnames
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
 # Ignore some usernames
 zstyle ':completion:*:*:*:users' ignored-patterns bin daemon mail ftp \
 	uuidd dbus avahi systemd-journal-gateway systemd-timesyncd systemd-network \

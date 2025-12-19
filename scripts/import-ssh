@@ -36,7 +36,8 @@ for absoluteCert in ~/.ssh/keys/*.key-cert.pub; do
 	keyName="${absoluteCert##*/}"
 	keyName="${keyName%%.*}"
 	if ! [[ " ${currentCerts[*]} " == *" ${keyName} "* ]]; then
-		requiredKeys+=("${absoluteCert%%-cert.pub}")
+		#requiredKeys+=("${absoluteCert%%-cert.pub}")
+		:
 	fi
 done
 
