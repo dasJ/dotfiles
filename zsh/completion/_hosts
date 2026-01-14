@@ -77,7 +77,7 @@ if ! zstyle -a ":completion:${curcontext}:hosts" hosts _hosts; then
       if [[ "$line" =~ '([a-zA-Z0-9.-]*.htun.net):$' ]]; then
         _cache_hosts+=("${match[1]}" "${match[1]/.htun.net/.hpub.net}")
       fi
-    done <<< "$(netbird-helsinki status -d 2>&1 || :)"
+    done <<< "$(timeout 1 netbird-helsinki status -d 2>&1 || :)"
 
   fi
 
