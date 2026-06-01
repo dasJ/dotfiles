@@ -2,4 +2,5 @@
 /thisislocal
 /scripts/*.pyc
 
-/zsh/antibody/repos
+/zsh/antidote/plugins.zsh
+/zsh/antidote/antidote/

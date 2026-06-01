@@ -210,10 +210,14 @@ astart() {
 
 updatesw() {
 	msg2 'zsh'
-	# Install
-	zsh -c "zshconf=\"${BASEDIR}/zsh\" source \"${BASEDIR}/zsh/include/antibody.zsh\""
-	# Update
-	ANTIBODY_HOME="${BASEDIR}/zsh/antibody/repos" antibody update
+	addir="${BASEDIR}/zsh/antidote/antidote"
+	if [[ -d "${addir}" ]]; then
+		git --git-dir="${addir}/.git" --work-tree="${addir}" pull --depth 1
+	else
+		git clone --depth 1 https://github.com/mattmc3/antidote.git "${addir}"
+	fi
+	# Install and update
+	zsh -ic "source ${BASEDIR}/zsh/include/antidote.zsh; antidote bundle" < "${BASEDIR}/zsh/antidote/plugins.txt" > "${BASEDIR}/zsh/antidote/plugins.zsh"
 }
 
 msg "Checking requirements..."
