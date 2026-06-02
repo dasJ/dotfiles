@@ -28,7 +28,7 @@ semantic_escape_chars = ",│`|\"' ()[]{}<>\t¶"
 
 [font]
 normal = { family = "Anonymous Pro", style = "Regular" }
-size = 9.75
+size = 10.25
 
 [colors.primary]
 foreground = "#e5e5e5"
