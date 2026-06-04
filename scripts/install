@@ -32,7 +32,7 @@ linkfiles=(
 	"$HOME/.config/gtk-4.0/settings.ini:graphical/gtk/gtkrc-3.0|yes"
 	"$HOME/.config/gtk-3.0/bookmarks:graphical/gtk/gtk-bookmarks|yes"
 	"$HOME/.config/uwsm/default-id:graphical/uwsm-default|yes"
-	"$HOME/.config/hypr/hyprland.conf:graphical/hypr/hyprland.conf|yes"
+	"$HOME/.config/hypr/hyprland.lua:graphical/hypr/hyprland.lua|yes"
 	"$HOME/.config/hypr/hypridle.conf:graphical/hypr/hypridle.conf|yes"
 	"$HOME/.config/hypr/xdph.conf:graphical/hypr/xdph.conf|yes"
 	"$HOME/.config/hypr/hyprlock.conf:graphical/hypr/hyprlock.conf|yes"

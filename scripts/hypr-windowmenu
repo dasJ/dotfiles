@@ -16,4 +16,4 @@ fi
 
 # Handle choice
 address="${windows["${choice}"]}"
-hyprctl dispatch focuswindow address:"${address}"
+hyprctl dispatch "hl.dsp.focus({ window = \"address:${address}\" })"
