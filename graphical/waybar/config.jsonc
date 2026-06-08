@@ -68,7 +68,7 @@
         "days":     "<span color='#000000'><b>{}</b></span>",
         "weeks":    "<span color='#2222ff'><b>KW{:%V}</b></span>",
         "weekdays": "<span color='#2222ff'><b>{}</b></span>",
-        "today":    "<span color='#ff2222'><b><u>{}</u></b></span>"
+        "today":    "<span color='#ff2222'><b>{}</b></span>"
       }
     }
   },
