@@ -2,4 +2,4 @@
 
 touch "/run/user/$(id -u)/hypr-lock"
 flock -n -E 0 "/run/user/$(id -u)/hypr-lock" hyprlock
-hyprctl dispatch 'hl.dsp.dpms({ state = "on" })'
+hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })'
